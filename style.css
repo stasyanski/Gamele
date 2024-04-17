@@ -35,6 +35,9 @@ header > nav > ul, .btns, .title {
     font-family: 'Roboto', sans-serif;
 }
 
+.title {
+text-decoration: none;
+}
 * {
     margin: 0;
     padding: 0;
