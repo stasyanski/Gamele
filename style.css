@@ -13,6 +13,7 @@ header {
     height: 100%;
     padding: 0.5rem;
     border-bottom: 1px solid #eaeaea;
+
 }
 
 header > nav > ul, .btns, .title {
@@ -24,10 +25,6 @@ header > nav > ul, .btns, .title {
 
 .btns {
     margin-left: auto;
-}
-
-.list {
-    margin-right: 0.5rem;
 }
 
 .parag, .anchor {
