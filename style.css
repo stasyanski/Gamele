@@ -38,6 +38,7 @@ header > nav > ul, .btns, .title {
 .title {
 text-decoration: none;
 }
+
 * {
     margin: 0;
     padding: 0;
