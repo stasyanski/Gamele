@@ -15,18 +15,22 @@ header {
     border-bottom: 1px solid #eaeaea;
 }
 
-header > nav > ul {
+header > nav > ul, .btns, .title {
     display: flex;
     justify-content: start;
     align-items: center;
     list-style-type: none;
-}   
+}
 
-header > nav > ul > li {
+.btns {
+    margin-left: auto;
+}
+
+.list {
     margin-right: 0.5rem;
 }
 
-header > nav > ul > li > a, header > nav > ul > li > p {
+.parag, .anchor {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 1.5rem;
