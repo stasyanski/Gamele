@@ -38,7 +38,24 @@ header > nav > ul, .btns, .title {
 .title {
 text-decoration: none;
 }
+
+
+
 * {
     margin: 0;
     padding: 0;
+}
+
+
+/* character csse */
+.character-container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+}
+.character {
+
+    position: relative;
+    
 }
