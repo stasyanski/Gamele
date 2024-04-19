@@ -5,6 +5,7 @@ body {
     height: 100%;
     width: 100%;
     background-color: #1a161d;
+    flex-direction: column;
 
 }
 
@@ -48,16 +49,36 @@ text-decoration: none;
     padding: 0;
 }
 
+/* buttons css  */
 
+
+.start{
+    width: 30em;
+    height: 5em;
+    margin-top: 100%;
+
+}
 /* character csse */
-.character-container{
+#character-container{
     justify-content: center;
     align-items: center;
     display: flex;
     height: 100vh;
+    flex-direction: column;
 }
-.character {
-
-    position: relative;
+#character-container img{
+    height: 30em;
+    width: 40em;
+}
+#character-container input{
+    margin-top: 5em;
+    height: 2em;
+    width: 20em;
+    background-color: #0a1359;
+    border: none;
+    color: white;
+}
+#character-container input::placeholder{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     
 }
