@@ -1,23 +1,17 @@
-const fs = require('fs');
-const path = require('path');
+fetch('images.json')
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById('character-container');
 
-const folderPath = 'characters';
-
-fs.readdir(folderPath, (err, files) => {
-    if (err) {
-        console.error('Error reading directory:', err);
-        return;
-    }
-
-    const data = files.map(file => ({
-        name: file,
-        path: path.join(folderPath, file)
-    }));
-
-    fs.writeFile('images.json', JSON.stringify(data, null, 2), (err) => {
-        if (err) {
-            console.error('Error writing file:', err);
-        }
-    });
-});
-
+    
+      const img = document.createElement('img');
+      setInterval(function() {
+        let random = Math.floor(Math.random() * data.length);
+        console.log(random)
+        img.src = data[random].path;
+        container.appendChild(img);
+        }, 3000);
+       
+      
+  })
+  .catch(error => console.error('Error:', error));
