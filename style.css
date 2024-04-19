@@ -63,12 +63,13 @@ text-decoration: none;
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
+    padding-top: 5em;
     flex-direction: column;
 }
 #character-container img{
     height: 30em;
-    width: 40em;
+    width: auto;
 }
 #character-container input{
     margin-top: 5em;
@@ -79,6 +80,20 @@ text-decoration: none;
     color: white;
 }
 #character-container input::placeholder{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Roboto', sans-serif;
     
+}
+
+#character-container p{
+    font-size: 1.5em;
+    color: white;
+    padding: 1em;
+    font-family: 'Roboto', sans-serif;
+}
+
+main div h4,p{
+    color: white;
+    font-size: 2em;
+    font-family: 'Roboto', sans-serif;
+    padding: 1em;
 }
