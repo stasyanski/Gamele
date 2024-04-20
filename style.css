@@ -68,6 +68,10 @@ text-decoration: none;
 
 /* score */
 
+.score {
+    display: none;
+}
+
 .score_txt{
     font-size: 2em;
     color: white;

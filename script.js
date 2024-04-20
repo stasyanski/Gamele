@@ -10,7 +10,7 @@ let score = document.querySelector('.score_txt');
 // dispalys character when user clicks start button 
 function characters(){
 
-  input.placeholder = 'guess the character';
+  input.placeholder = 'Guess the Character';
   fetch('images.json')
     .then(response => response.json())
     .then(data => {
@@ -41,21 +41,22 @@ function characters(){
   }
 //start game function 
 function startGame() {
+  const displayScore = document.querySelector('.score');
+  displayScore.style.display = 'flex';
 
-    console.log('Starting game');
+  console.log('Starting game');
 
-    let startButton = document.querySelector('.start');
-    startButton.style.display = 'none';
-    characters();
+  let startButton = document.querySelector('.start');
+  startButton.style.display = 'none';
+  characters();
+}
 
-  }
 // checks the users answer 
 let ptag = document.createElement('p');
 container.appendChild(ptag);
+
 function checkAnswer(input,name){
- 
-  
-  console.log('aa',name);
+
   console.log(input.value);
   if(input.value === name){
     
