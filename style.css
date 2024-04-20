@@ -41,24 +41,43 @@ text-decoration: none;
 }
 
 
-
-
-
 * {
     margin: 0;
     padding: 0;
 }
 
-/* buttons css  */
 
+
+
+/* buttons css  */
 
 .start{
     width: 30em;
     height: 5em;
-    margin-top: 100%;
-
+    border-radius: 2em;
+    background-color: rgb(48, 116, 48);
+    font-family: 'Roboto', sans-serif;
+    border: none;
 }
-/* character csse */
+
+.start_bttn_txt{
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}
+
+/* score */
+
+.score_txt{
+    font-size: 2em;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* character css */
+
 #character-container{
     justify-content: center;
     align-items: center;
@@ -67,10 +86,12 @@ text-decoration: none;
     padding-top: 5em;
     flex-direction: column;
 }
+
 #character-container img{
     height: 30em;
     width: auto;
 }
+
 #character-container input{
     margin-top: 5em;
     height: 2em;
@@ -79,6 +100,7 @@ text-decoration: none;
     border: none;
     color: white;
 }
+
 #character-container input::placeholder{
     font-family: 'Roboto', sans-serif;
     
@@ -89,11 +111,4 @@ text-decoration: none;
     color: white;
     padding: 1em;
     font-family: 'Roboto', sans-serif;
-}
-
-main div h4,p{
-    color: white;
-    font-size: 2em;
-    font-family: 'Roboto', sans-serif;
-    padding: 1em;
 }

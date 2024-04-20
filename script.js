@@ -5,10 +5,7 @@ const img = document.createElement('img');
 const input = document.createElement('input');
 const main = document.querySelector('.score');
 
-let score = document.createElement('h4');
-score.innerHTML = '0';
-main.appendChild(score);
-    
+let score = document.querySelector('.score_txt');
 
 // dispalys character when user clicks start button 
 function characters(){
@@ -63,27 +60,20 @@ function checkAnswer(input,name){
   if(input.value === name){
     
     ptag.textContent = 'Correct';
-    num = Number(score.innerText);
-    num ++;
-    score.innerText =num;
-    ptag.textContent = '';
+    let scoreText = score.innerText;          // get current text of score
+    let scoreArray = scoreText.split(' ');    // split text into an array by space char - becomes something like ['STREAK:', '0']
+    let scoreNum = parseInt(scoreArray[1]);   // store 2nd element of array as variable - which is the score number           ^
+    scoreNum ++
+    score.innerText = 'STREAK: ' + scoreNum;  // update score text with new score number
+    ptag.textContent = ' ';
     input.value = '';
 
     //  will need to apply score to local storage and make a next button 
     setTimeout(() => {
-     
       characters();
-      
-      
-
     }, 1000);
   }
-  else{
-    
-    
-    
-    
-    ptag.textContent ='try again';
-    
+  else{ 
+    ptag.textContent ='Try again';  
   }
 }
