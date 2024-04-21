@@ -4,10 +4,10 @@ const container = document.getElementById('character-container');
 const img = document.createElement('img');
 const input = document.createElement('input');
 const main = document.querySelector('.score');
+input.maxLength = 20;
 
 let score = document.createElement('h4');
-score.innerHTML = '0';
-main.appendChild(score);
+
     
 
 // dispalys character when user clicks start button 
@@ -44,7 +44,12 @@ function characters(){
   }
 //start game function 
 function startGame() {
-
+    
+  
+   
+    
+    main.appendChild(score);
+    score.innerText = 'score: 0';
     console.log('Starting game');
 
     let startButton = document.querySelector('.start');
@@ -56,20 +61,27 @@ function startGame() {
 let ptag = document.createElement('p');
 container.appendChild(ptag);
 function checkAnswer(input,name){
- 
+  // sets a limit of characters that can be typed 
   
-  console.log('aa',name);
+  
+  console.log(name);
   console.log(input.value);
   if(input.value === name){
     
     ptag.textContent = 'Correct';
-    num = Number(score.innerText);
+    let [label,num] =score.innerText.split(':');
+    
+    
+    num = Number(num);
+    console.log( num);
     num ++;
-    score.innerText =num;
+    // updates the score 
+    score.innerText ='score:' + num;
     ptag.textContent = '';
     input.value = '';
 
     //  will need to apply score to local storage and make a next button 
+
     setTimeout(() => {
      
       characters();
@@ -84,6 +96,16 @@ function checkAnswer(input,name){
     
     
     ptag.textContent ='try again';
+    let username = prompt('Please enter a username for our leaderboard: ');
+
+    // want to replace username with a input box so it looks more modren 
+    setTimeout(() => {
+     
+      
+      location.reload();
+      
+
+    }, 2000);
     
   }
 }
