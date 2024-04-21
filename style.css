@@ -41,24 +41,58 @@ text-decoration: none;
 }
 
 
-
-
-
 * {
     margin: 0;
     padding: 0;
 }
 
+
+
+
 /* buttons css  */
 
-
 .start{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
     width: 30em;
     height: 5em;
-    margin-top: 100%;
+    border-radius: 2em;
+    background-color: rgb(48, 116, 48);
+    font-family: 'Roboto', sans-serif;
+    border: none;
 
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
-/* character csse */
+
+.start_bttn_txt{
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}
+
+/* score */
+
+.score {
+    display: none;
+}
+
+.score_txt{
+    font-size: 2em;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* character css */
+
 #character-container{
     justify-content: center;
     align-items: center;
@@ -67,10 +101,12 @@ text-decoration: none;
     padding-top: 5em;
     flex-direction: column;
 }
+
 #character-container img{
     height: 30em;
     width: auto;
 }
+
 #character-container input{
     margin-top: 5em;
     height: 2em;
@@ -79,6 +115,7 @@ text-decoration: none;
     border: none;
     color: white;
 }
+
 #character-container input::placeholder{
     font-family: 'Roboto', sans-serif;
     
@@ -89,11 +126,4 @@ text-decoration: none;
     color: white;
     padding: 1em;
     font-family: 'Roboto', sans-serif;
-}
-
-main div h4,p{
-    color: white;
-    font-size: 2em;
-    font-family: 'Roboto', sans-serif;
-    padding: 1em;
 }

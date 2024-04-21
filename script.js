@@ -6,14 +6,12 @@ const input = document.createElement('input');
 const main = document.querySelector('.score');
 input.maxLength = 20;
 
-let score = document.createElement('h4');
-
-    
+let score = document.querySelector('.score_txt');
 
 // dispalys character when user clicks start button 
 function characters(){
 
-  input.placeholder = 'guess the character';
+  input.placeholder = 'Guess the Character';
   fetch('images.json')
     .then(response => response.json())
     .then(data => {
@@ -51,15 +49,20 @@ function startGame() {
     main.appendChild(score);
     score.innerText = 'score: 0';
     console.log('Starting game');
+  const displayScore = document.querySelector('.score');
+  displayScore.style.display = 'flex';
 
-    let startButton = document.querySelector('.start');
-    startButton.style.display = 'none';
-    characters();
+  console.log('Starting game');
 
-  }
+  let startButton = document.querySelector('.start');
+  startButton.style.display = 'none';
+  characters();
+}
+
 // checks the users answer 
 let ptag = document.createElement('p');
 container.appendChild(ptag);
+
 function checkAnswer(input,name){
   // sets a limit of characters that can be typed 
   
@@ -69,43 +72,21 @@ function checkAnswer(input,name){
   if(input.value === name){
     
     ptag.textContent = 'Correct';
-    let [label,num] =score.innerText.split(':');
-    
-    
-    num = Number(num);
-    console.log( num);
-    num ++;
-    // updates the score 
-    score.innerText ='score:' + num;
-    ptag.textContent = '';
+    let scoreText = score.innerText;          // get current text of score
+    let scoreArray = scoreText.split(' ');    // split text into an array by space char - becomes something like ['STREAK:', '0']
+    let scoreNum = parseInt(scoreArray[1]);   // store 2nd element of array as variable - which is the score number           ^
+    scoreNum ++
+    score.innerText = 'STREAK: ' + scoreNum;  // update score text with new score number
+    ptag.textContent = ' ';
     input.value = '';
 
     //  will need to apply score to local storage and make a next button 
 
     setTimeout(() => {
-     
       characters();
-      
-      
-
     }, 1000);
   }
-  else{
-    
-    
-    
-    
-    ptag.textContent ='try again';
-    let username = prompt('Please enter a username for our leaderboard: ');
-
-    // want to replace username with a input box so it looks more modren 
-    setTimeout(() => {
-     
-      
-      location.reload();
-      
-
-    }, 2000);
-    
+  else{ 
+    ptag.textContent ='Try again';  
   }
 }
