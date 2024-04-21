@@ -47,7 +47,7 @@ function startGame() {
    
     
     main.appendChild(score);
-    score.innerText = 'score: 0';
+    // score.innerText = 'score: 0';
     console.log('Starting game');
   const displayScore = document.querySelector('.score');
   displayScore.style.display = 'flex';
