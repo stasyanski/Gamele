@@ -122,17 +122,21 @@ text-decoration: none;
 }
 
 #character-container input{
-    margin-top: 5em;
-    height: 2em;
-    width: 20em;
-    background-color: #0a1359;
+    margin-top: 2em;
+    height: 3em;
+    width: 25em;
+    background-color: #3b3b3b4f;
     border: none;
     color: white;
+    border-style: none;
+
+    box-shadow: #64646441 0px 0px 10px 0px;
 }
 
 #character-container input::placeholder{
     font-family: 'Roboto', sans-serif;
-    
+    font-size: 1.2em;
+    text-align: center;
 }
 
 #character-container p{

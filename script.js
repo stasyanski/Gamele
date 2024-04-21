@@ -9,46 +9,55 @@ input.maxLength = 20;
 let score = document.querySelector('.score_txt');
 
 // dispalys character when user clicks start button 
-function characters(){
+function characters() {
 
-  input.placeholder = 'Guess the Character';
+  input.placeholder = 'guess the character';
+
+  // guess the character animation
+  let dotCount = 0;
+  setInterval(() => {
+    if (dotCount < 3) {
+      input.placeholder += '.';
+      dotCount++;
+    } else{
+      input.placeholder = input.placeholder.replace(/\./g, '');
+      dotCount = 0;
+    }
+  }, 430);
+
   fetch('images.json')
-    .then(response => response.json())
-    .then(data => {
-      // gets the character and places it on the web page
-      
-      // gets a random Number to display 
-      let random = Math.floor(Math.random() * data.length);
-    
-      img.src = data[random].path;
-      container.appendChild(img);
-      let source = data[random].name;
-      let [name,type] = source.split('.');
+      .then(response => response.json())
+      .then(data => {
+        // gets the character and places it on the web page
 
-      let nameSpaces = name.replace(/_/g, ' ');
-      console.log(nameSpaces);
-      // creates input placeholder 
-      
-      container.appendChild(input);
-      
-      input.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          checkAnswer(input, nameSpaces);
-        }
-      });
-      
-    })
-    .catch(error => console.error('Error:', error));
-  }
+        // gets a random Number to display 
+        let random = Math.floor(Math.random() * data.length);
+
+        img.src = data[random].path;
+        container.appendChild(img);
+        let source = data[random].name;
+        let [name, type] = source.split('.');
+
+        let nameSpaces = name.replace(/_/g, ' ');
+        console.log(nameSpaces);
+        // creates input placeholder 
+
+        container.appendChild(input);
+
+        input.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+            checkAnswer(input, nameSpaces);
+          }
+        });
+
+      })
+      .catch(error => console.error('Error:', error));
+}
 //start game function 
 function startGame() {
-    
-  
-   
-    
-    main.appendChild(score);
-    // score.innerText = 'score: 0';
-    console.log('Starting game');
+  main.appendChild(score);
+  // score.innerText = 'score: 0';
+  console.log('Starting game');
   const displayScore = document.querySelector('.score');
   displayScore.style.display = 'flex';
 
@@ -63,19 +72,17 @@ function startGame() {
 let ptag = document.createElement('p');
 container.appendChild(ptag);
 
-function checkAnswer(input,name){
-  // sets a limit of characters that can be typed 
-  
-  
+function checkAnswer(input, name) {
+  // sets a limit of characters that can be typed   
   console.log(name);
   console.log(input.value);
-  if(input.value === name){
-    
+  if (input.value === name) {
+
     ptag.textContent = 'Correct';
     let scoreText = score.innerText;          // get current text of score
     let scoreArray = scoreText.split(' ');    // split text into an array by space char - becomes something like ['STREAK:', '0']
     let scoreNum = parseInt(scoreArray[1]);   // store 2nd element of array as variable - which is the score number           ^
-    scoreNum ++
+    scoreNum++
     score.innerText = 'STREAK: ' + scoreNum;  // update score text with new score number
     ptag.textContent = ' ';
     input.value = '';
@@ -86,7 +93,7 @@ function checkAnswer(input,name){
       characters();
     }, 1000);
   }
-  else{ 
-    ptag.textContent ='Try again';  
+  else {
+    ptag.textContent = 'Try again';
   }
 }
