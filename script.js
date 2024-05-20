@@ -97,3 +97,20 @@ function checkAnswer(input, name) {
     ptag.textContent = 'Try again';
   }
 }
+
+window.onload = function() {
+  var modal = document.getElementById("myModal");
+  var okButton = document.getElementById("okButton");
+
+  modal.style.display = "block";
+
+  okButton.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+}
