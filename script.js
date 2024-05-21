@@ -1,6 +1,6 @@
 // creates a ptag to give user response 
 
-const container = document.getElementById('character-container');
+const container = document.querySelector('.character-container');
 const img = document.createElement('img');
 const input = document.createElement('input');
 const main = document.querySelector('.score');
