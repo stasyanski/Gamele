@@ -6,7 +6,6 @@ body {
     width: 100%;
     background-color: #1a161d;
     flex-direction: column;
-
 }
 
 header {
@@ -14,12 +13,9 @@ header {
     height: 100%;
     padding: 0.5rem;
     border-bottom: 1px solid #eaeaea;
-
 }
 
-header>nav>ul,
-.btns,
-.title {
+header > nav > ul, .btns, .title {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -30,8 +26,7 @@ header>nav>ul,
     margin-left: auto;
 }
 
-.parag,
-.anchor {
+.parag, .anchor {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 1.5rem;
@@ -50,87 +45,42 @@ header>nav>ul,
 }
 
 
-
-
-/* buttons css  */
-
-.start {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-
-    width: 30em;
-    height: 5em;
-    border-radius: 2em;
-    background-color: rgb(48, 116, 48);
-    font-family: 'Roboto', sans-serif;
-    border: none;
-
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-        /* translate -50% -50% is needed here as to not override the top and left % by scale */
-    }
-
-    50% {
-        transform: translate(-50%, -50%) scale(1.15);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-.start_bttn_txt {
-    font-size: 2em;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-}
-
 /* score */
-
 .score {
     display: none;
 }
 
 .score_txt {
-    font-size: 2em;
+    font-size: 2rem;
     color: white;
     font-family: 'Roboto', sans-serif;
 }
 
 
 
-/* character css */
-
+/* The css below is for character container, 
+ *
+ *
+ *
+*/ 
 #character-container {
     justify-content: center;
     align-items: center;
     display: flex;
     /* height: 100vh; */
-    padding-top: 5em;
+    padding-top: 5rem;
     flex-direction: column;
 }
 
 #character-container img {
-    height: 30em;
+    height: 30rem;
     width: auto;
 }
 
 #character-container input {
-    margin-top: 2em;
-    height: 3em;
-    width: 25em;
+    margin-top: 2rem;
+    height: 3rem;
+    width: 25rem;
     background-color: #3b3b3b4f;
     border: none;
     color: white;
@@ -141,60 +91,106 @@ header>nav>ul,
 
 #character-container input::placeholder {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     text-align: center;
 }
 
 #character-container p {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     color: white;
-    padding: 1em;
+    padding: 1rem;
     font-family: 'Roboto', sans-serif;
 }
 
+
+/* The CSS below is for the modal, the
+ * modal is a pop up that appears when the user
+ * initially loads the page, giving user instructions and how to play the game
+*/ 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
-  animation: fadeIn 1s;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 998;
 }
 
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  animation: fadeIn 1s;
+.modal_content {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s;
 }
 
-#okButton {
-  display: block;
-  width: 100px;
-  height: 30px;
-  margin: 20px auto 0;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  padding: 3px;
-  border-radius: 5px;
-  cursor: pointer;
+.game_desc {
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgb(119, 119, 119);
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
 }
 
-#okButton:hover {
-  background-color: #45a049;
+/* The css below is related to the
+ * start button in the modal
+*/
+.start {
+    width: 30rem;
+    height: 5rem;
+    border-radius: 2rem;
+    margin-top: 15px;;
+    background-color: rgb(92, 179, 92);
+    font-family: 'Roboto', sans-serif;
+    border: none;
+
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.start_bttn_txt {
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
 }

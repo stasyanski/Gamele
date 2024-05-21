@@ -10,7 +10,6 @@ let score = document.querySelector('.score_txt');
 
 // dispalys character when user clicks start button 
 function characters() {
-
   input.placeholder = 'guess the character';
 
   // guess the character animation
@@ -98,13 +97,14 @@ function checkAnswer(input, name) {
   }
 }
 
+// loads the modal on window load and hides it when user clicks start button
 window.onload = function() {
-  var modal = document.getElementById("myModal");
-  var okButton = document.getElementById("okButton");
+  let modal = document.querySelector(".modal");
+  let start = document.querySelector(".start");
 
-  modal.style.display = "block";
+  modal.style.display = "flex";
 
-  okButton.onclick = function() {
+  start.onclick = function() {
     modal.style.display = "none";
   }
 

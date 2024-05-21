@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <script src="fetch.js" ></script>
+    <script src="fetch.js"></script>
     <title>Gamele</title>
 </head>
 
@@ -33,23 +34,23 @@
         <p class="score_txt">STREAK: 0</p>
     </div>
 
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-          <p>TO PLAY THE GAME INSTRUCTIONS TO BE ADDED</p>
-          <button id="okButton">GOT IT! </button>
+    <div class="modal">
+        <div class="modal_content">
+            <p class="game_desc">This game follows a similar structure to that of Wordle, and other games. Test your knowledge by guessing
+                as many characters in a row as possible!</p>
+            <button class="start" type="button" onclick="startGame()">
+                <p class="start_bttn_txt">START GAME</p>
+            </button>
         </div>
-      </div>
+    </div>
 
 
     <main>
         <div>
-            <button class="start" type="button" onclick="startGame()">
-                <p class="start_bttn_txt">START GAME</p>
-            </button>
             <!-- <button class="information" type="button" >rules</button> -->
         </div>
 
-        <section id="character-container" >
+        <section id="character-container">
             <!-- empty -->
         </section>
     </main>
