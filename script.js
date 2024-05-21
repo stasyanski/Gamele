@@ -52,6 +52,7 @@ function characters() {
       })
       .catch(error => console.error('Error:', error));
 }
+
 //start game function 
 function startGame() {
   main.appendChild(score);
@@ -96,6 +97,7 @@ function checkAnswer(input, name) {
     ptag.textContent = 'Try again';
   }
 }
+document.querySelector('.start').addEventListener('click', startGame);
 
 // loads the modal on window load and hides it when user clicks start button
 window.onload = function() {

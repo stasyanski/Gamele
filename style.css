@@ -59,9 +59,8 @@ header > nav > ul, .btns, .title {
 
 
 /* The css below is for character container, 
- *
- *
- *
+ * this is for playing the game generating the characters 
+ * and input to enter the guesses 
 */ 
 #character-container {
     justify-content: center;
