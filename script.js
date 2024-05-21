@@ -1,6 +1,6 @@
 // creates a ptag to give user response 
 
-const container = document.querySelector('.character-container');
+let container = document.querySelector('.character-container');
 const img = document.createElement('img');
 const input = document.createElement('input');
 const main = document.querySelector('.score');
@@ -100,8 +100,6 @@ function checkAnswer(input, name) {
     // CREATES  an input box for the user to enter  their username when they lose 
     input.value='';
     input.placeholder = 'Enter Username';
-    
-
     
   }
 }
