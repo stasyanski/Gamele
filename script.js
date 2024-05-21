@@ -42,7 +42,7 @@ function characters() {
         // creates input placeholder 
 
         container.appendChild(input);
-
+        //checks to see if the user has pressed enter
         input.addEventListener('keydown', (event) => {
           if (event.key === 'Enter') {
             checkAnswer(input, nameSpaces);
@@ -76,6 +76,8 @@ function checkAnswer(input, name) {
   // sets a limit of characters that can be typed   
   console.log(name);
   console.log(input.value);
+
+  
   if (input.value === name) {
 
     ptag.textContent = 'Correct';
@@ -94,7 +96,13 @@ function checkAnswer(input, name) {
     }, 1000);
   }
   else {
-    ptag.textContent = 'Try again';
+    ptag.textContent = 'Game Over !';
+    // CREATES  an input box for the user to enter  their username when they lose 
+    input.value='';
+    input.placeholder = 'Enter Username';
+    
+
+    
   }
 }
 document.querySelector('.start').addEventListener('click', startGame);
@@ -116,3 +124,5 @@ window.onload = function() {
     }
   }
 }
+
+
