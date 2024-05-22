@@ -199,3 +199,14 @@ header > nav > ul, .btns, .title {
 }
 
 
+
+
+/* leaderboard css  */
+
+main h2{
+    font-family: 'Roboto', sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    padding-top: 2em;
+    font-size: 3em;
+}

@@ -9,7 +9,10 @@ let keydownEnter = null;
 input.maxLength = 20;
 
 let score = document.querySelector('.score_txt');
-let dotinterval;
+let dotinterval;  // used to cancel the interval making sure its only called once
+
+
+let scoreNum;
 // dispalys character when user clicks start button 
 function characters() {
   input.placeholder = 'guess the character';
@@ -54,8 +57,8 @@ function characters() {
         keydownEnter = (event) => {
           if (event.key === 'Enter') {
             console.log( nameSpaces);
-
-            checkAnswer(input.value.toLowerCase(), nameSpaces.toLowerCase()); //makes the values lowercase so easier to compare 
+            
+            checkAnswer(input, nameSpaces); 
           }
         }
         input.addEventListener('keydown', keydownEnter);
@@ -89,16 +92,16 @@ function checkAnswer(input, name) {
   
   
   
-  if (input === name ) {
-
+  if (input.value.toLowerCase() === name.toLowerCase()  && !gamover ) { //makes the values lowercase so easier to compare 
+    input.value = '';
     ptag.textContent = 'Correct';
     let scoreText = score.innerText;          // get current text of score
     let scoreArray = scoreText.split(' ');    // split text into an array by space char - becomes something like ['STREAK:', '0']
-    let scoreNum = parseInt(scoreArray[1]);   // store 2nd element of array as variable - which is the score number           ^
+    scoreNum = parseInt(scoreArray[1]);   // store 2nd element of array as variable - which is the score number           ^
     scoreNum++
     score.innerText = 'STREAK: ' + scoreNum;  // update score text with new score number
     ptag.textContent = ' ';
-    input = '';
+    
 
     //  will need to apply score to local storage and make a next button 
     clearInterval(dotinterval);
@@ -107,11 +110,14 @@ function checkAnswer(input, name) {
     }, 1000);
   }
   else {
-    // gamover = true;
+    gamover = true;
     ptag.textContent = 'Game Over !';
     // CREATES  an input box for the user to enter  their username when they lose 
     input.value='';
     input.placeholder = 'Enter Username';
+     
+    localStorage.setItem(input.value,scoreNum);
+    console.log(localStorage.getItem(input.value));
     
   }
 }
