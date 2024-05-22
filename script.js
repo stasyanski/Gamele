@@ -4,17 +4,19 @@ let container = document.querySelector('.character-container');
 const img = document.createElement('img');
 const input = document.createElement('input');
 const main = document.querySelector('.score');
+let gamover = false;
+let keydownEnter = null;
 input.maxLength = 20;
 
 let score = document.querySelector('.score_txt');
-
+let dotinterval;
 // dispalys character when user clicks start button 
 function characters() {
   input.placeholder = 'guess the character';
 
   // guess the character animation
   let dotCount = 0;
-  setInterval(() => {
+  dotinterval= setInterval(() => {
     if (dotCount < 3) {
       input.placeholder += '.';
       dotCount++;
@@ -22,7 +24,7 @@ function characters() {
       input.placeholder = input.placeholder.replace(/\./g, '');
       dotCount = 0;
     }
-  }, 430);
+  }, 630);
 
   fetch('images.json')
       .then(response => response.json())
@@ -42,12 +44,22 @@ function characters() {
         // creates input placeholder 
 
         container.appendChild(input);
+        
         //checks to see if the user has pressed enter
-        input.addEventListener('keydown', (event) => {
+
+        if(keydownEnter){
+          input.removeEventListener('keydown',keydownEnter); //making sure the event listener is removed before adding a new one
+        }
+      
+        keydownEnter = (event) => {
           if (event.key === 'Enter') {
-            checkAnswer(input, nameSpaces);
+            console.log( nameSpaces);
+
+            checkAnswer(input.value.toLowerCase(), nameSpaces.toLowerCase()); //makes the values lowercase so easier to compare 
           }
-        });
+        }
+        input.addEventListener('keydown', keydownEnter);
+        
 
       })
       .catch(error => console.error('Error:', error));
@@ -61,7 +73,7 @@ function startGame() {
   const displayScore = document.querySelector('.score');
   displayScore.style.display = 'flex';
 
-  console.log('Starting game');
+
 
   let startButton = document.querySelector('.start');
   startButton.style.display = 'none';
@@ -74,11 +86,10 @@ container.appendChild(ptag);
 
 function checkAnswer(input, name) {
   // sets a limit of characters that can be typed   
-  console.log(name);
-  console.log(input.value);
-
   
-  if (input.value === name) {
+  
+  
+  if (input === name ) {
 
     ptag.textContent = 'Correct';
     let scoreText = score.innerText;          // get current text of score
@@ -87,15 +98,16 @@ function checkAnswer(input, name) {
     scoreNum++
     score.innerText = 'STREAK: ' + scoreNum;  // update score text with new score number
     ptag.textContent = ' ';
-    input.value = '';
+    input = '';
 
     //  will need to apply score to local storage and make a next button 
-
+    clearInterval(dotinterval);
     setTimeout(() => {
       characters();
     }, 1000);
   }
   else {
+    // gamover = true;
     ptag.textContent = 'Game Over !';
     // CREATES  an input box for the user to enter  their username when they lose 
     input.value='';
