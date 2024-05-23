@@ -135,6 +135,7 @@ document.querySelector('.start').addEventListener('click', startGame);
   choice_overlay.style.transition = 'top 0.5s, left 0.5s, width 0.5s, height 0.5s';
   choice_overlay.style.boxShadow = 'inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150)';
   choice_overlay.style.zIndex = '1000';
+  document.body.appendChild(choice_overlay);
 
   
   function move_overlay(choice) {
@@ -145,13 +146,13 @@ document.querySelector('.start').addEventListener('click', startGame);
     choice_overlay.style.top = (ch_size.top + window.scrollY) + 'px';      // moves overlay to the clicked button
     choice_overlay.style.left = (ch_size.left + window.scrollX) + 'px';    // moves overlay to the clicked button
     current_choice = choice;
-
-    document.body.appendChild(choice_overlay);
   }
 
   // move overlay to the clicked button
   choices.forEach(choice => {
-    choice.addEventListener('click', () => move_overlay (choice));
+    setTimeout(() => {                                                     // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
+      choice.addEventListener('click', () => move_overlay (choice));
+    }, 1010);
   });
 
   // window resize - hide overlay, causes twitching when resizing
@@ -169,17 +170,9 @@ document.querySelector('.start').addEventListener('click', startGame);
   
     modal.style.display = "flex";
   
-    start.addEventListener('click', function(event) {
+    start.addEventListener('click', ()=> {
       modal.style.display = "none";
       choice_overlay.style.display = 'none';
-      event.stopPropagation(); // prevent event from bubbling up to window
-    });
-  
-    window.addEventListener('click', function(event) {
-      if (start.contains(event.target)) {
-        modal.style.display = "none";
-        choice_overlay.style.display = 'none';
-      }
     });
   }
 })();
