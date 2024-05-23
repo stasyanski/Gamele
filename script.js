@@ -1,18 +1,18 @@
 // creates a ptag to give user response 
 
-let container = document.querySelector('.character-container');
-const img = document.createElement('img');
-const input = document.createElement('input');
-const main = document.querySelector('.score');
-let gamover = false;
-let keydownEnter = null;
-input.maxLength = 20;
+let container     = document.querySelector('.character-container');
+const img         = document.createElement('img');
+const input       = document.createElement('input');
+const main        = document.querySelector('.score');
+let gamover       = false;
+let keydownEnter  = null;
+input.maxLength   = 20;
 
-let score = document.querySelector('.score_txt');
+let score         = document.querySelector('.score_txt');
 let dotinterval;  // used to cancel the interval making sure its only called once
-
-
 let scoreNum;
+
+
 // dispalys character when user clicks start button 
 function characters() {
   input.placeholder = 'guess the character';
@@ -135,7 +135,7 @@ window.onload = function() {
   }
 
   window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target == start) {
       modal.style.display = "none";
     }
   }
