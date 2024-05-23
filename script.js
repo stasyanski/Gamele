@@ -90,8 +90,6 @@ container.appendChild(ptag);
 function checkAnswer(input, name) {
   // sets a limit of characters that can be typed   
   
-  
-  
   if (input.value.toLowerCase() === name.toLowerCase()  && !gamover ) { //makes the values lowercase so easier to compare 
     input.value = '';
     ptag.textContent = 'Correct';
@@ -123,22 +121,69 @@ function checkAnswer(input, name) {
 }
 document.querySelector('.start').addEventListener('click', startGame);
 
-// loads the modal on window load and hides it when user clicks start button
-window.onload = function() {
-  let modal = document.querySelector(".modal");
-  let start = document.querySelector(".start");
+// modal / startgame splash screen functions
+(() => {
+  let choices = document.querySelectorAll('.choice');
+  let choice_overlay = document.createElement('div');
+  let current_choice = null;
 
-  modal.style.display = "flex";
+  // style the overlay, can be placed in .css 
+  choice_overlay.style.position = 'absolute';
+  choice_overlay.style.boxSizing = 'border-box';
+  choice_overlay.style.pointerEvents = 'none'; 
+  choice_overlay.style.borderRadius = '5px';
+  choice_overlay.style.transition = 'top 0.5s, left 0.5s, width 0.5s, height 0.5s';
+  choice_overlay.style.boxShadow = 'inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150)';
+  choice_overlay.style.zIndex = '1000';
 
-  start.onclick = function() {
-    modal.style.display = "none";
+  
+  function move_overlay(choice) {
+    let ch_size = choice.getBoundingClientRect();
+    choice_overlay.style.display = 'block';
+    choice_overlay.style.width = ch_size.width + 'px';
+    choice_overlay.style.height = ch_size.height + 'px';
+    choice_overlay.style.top = (ch_size.top + window.scrollY) + 'px';      // moves overlay to the clicked button
+    choice_overlay.style.left = (ch_size.left + window.scrollX) + 'px';    // moves overlay to the clicked button
+    current_choice = choice;
+
+    document.body.appendChild(choice_overlay);
   }
 
-  window.onclick = function(event) {
-    if (event.target == start) {
-      modal.style.display = "none";
+  // move overlay to the clicked button
+  choices.forEach(choice => {
+    choice.addEventListener('click', () => move_overlay (choice));
+  });
+
+  // window resize - hide overlay, causes twitching when resizing
+  window.addEventListener('resize', () => {
+    if (current_choice) {
+      choice_overlay.style.display = 'none';
+      current_choice = null;
     }
+  });
+
+  // loads the modal on window load and hides it when user clicks start button
+  window.onload = () => {
+    let modal = document.querySelector(".modal");
+    let start = document.querySelector(".start");
+  
+    modal.style.display = "flex";
+  
+    start.addEventListener('click', function(event) {
+      modal.style.display = "none";
+      choice_overlay.style.display = 'none';
+      event.stopPropagation(); // prevent event from bubbling up to window
+    });
+  
+    window.addEventListener('click', function(event) {
+      if (start.contains(event.target)) {
+        modal.style.display = "none";
+        choice_overlay.style.display = 'none';
+      }
+    });
   }
-}
+})();
+
+
 
 
