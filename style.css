@@ -179,7 +179,7 @@ header > nav > ul, .btns, .title {
 }
 
 @keyframes pulse {
-    0% {
+    0%,100% {
         transform: scale(1);
     }
 
@@ -187,9 +187,7 @@ header > nav > ul, .btns, .title {
         transform: scale(0.85);
     }
 
-    100% {
-        transform: scale(1);
-    }
+    
 }
 
 .start_bttn_txt {
@@ -209,4 +207,6 @@ main h2{
     font-weight: 600;
     padding-top: 2em;
     font-size: 3em;
+    
+    animation: fadeIn 2s;
 }
