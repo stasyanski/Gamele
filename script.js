@@ -76,8 +76,6 @@ function startGame() {
   const displayScore = document.querySelector('.score');
   displayScore.style.display = 'flex';
 
-
-
   let startButton = document.querySelector('.start');
   startButton.style.display = 'none';
   characters();
