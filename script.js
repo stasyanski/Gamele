@@ -1,5 +1,8 @@
-// creates a ptag to give user response 
+/* This file contains general
+ * scripting for the game
+*/
 
+// creates a ptag to give user response 
 let container     = document.querySelector('.character-container');
 const img         = document.createElement('img');
 const input       = document.createElement('input');

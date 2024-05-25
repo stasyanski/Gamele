@@ -14,6 +14,7 @@ body {
 }
 
 
+
 /* The css below is for displaying
  * the navbar of the game
 */
@@ -62,6 +63,7 @@ header > nav > ul, .btns, .title {
 
 
 
+
 /* The css below is for character container, 
  * this is for playing the game generating the characters 
  * and input to enter the guesses 
@@ -104,6 +106,8 @@ header > nav > ul, .btns, .title {
     padding: 10px;
     font-family: 'Roboto', sans-serif;
 }
+
+
 
 
 /* The CSS below is for the modal, the
@@ -164,6 +168,8 @@ header > nav > ul, .btns, .title {
     text-align: center;
 }
 
+
+
 /* The css below is related to the
  * start button in the modal
 */
@@ -197,6 +203,8 @@ header > nav > ul, .btns, .title {
     font-weight: 600;
 }
 
+
+
 /* The css below is for choosing the gamemode
  * contained within the modal
 */
@@ -224,19 +232,4 @@ header > nav > ul, .btns, .title {
     font-family: 'Roboto', sans-serif;
     font-size: 1.2rem;
     color: rgb(100, 100, 100);
-}
-
-
-/* 
- * The css below is for the leaderboard
-*/
-
-main h2{
-    font-family: 'Roboto', sans-serif;
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    padding-top: 2rem;
-    font-size: 3rem;
-    
-    animation: fadeIn 2s;
 }
