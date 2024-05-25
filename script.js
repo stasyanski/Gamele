@@ -166,7 +166,7 @@ document.querySelector('.start').addEventListener('click', startGame);
 
   // loads the modal on window load and hides it when user clicks start button
   window.onload = () => {
-    let modal = document.querySelector(".modal");
+    let modal = document.querySelector(".darken_bg");
     let start = document.querySelector(".start");
   
     modal.style.display = "flex";
