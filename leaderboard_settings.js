@@ -2,12 +2,16 @@
  * scripting for the game
 */
 
+/* This file contains website settings
+ *  related scripting for the game
+*/
+
 // create a darkened bg for the leaderboard, nice effect
 let darken_bg = document.createElement('div');
 darken_bg.style.display = 'flex';                   // display the reused darken_bg, for consitency
 darken_bg.classList.add('darken_bg');
 
-function openStats() {
+function openSplash(arg) {
 
     // reference vw to properly set the container size; mobile responsive
     const mobile = 768;
@@ -45,4 +49,11 @@ function openStats() {
 
     // create the leaderboard
     leaderboard = document.body.appendChild(darken_bg).appendChild(container); // append the container to the darken_bg
+
+    // stats or settings
+    if (arg === 'stats') {
+        // code 
+    } else if (arg === 'settings') {
+        // code 
+    }
 }
