@@ -54,6 +54,8 @@ function openSplash(arg) {
     if (arg === 'stats') {
         // code 
     } else if (arg === 'settings') {
-        // code 
+        let heading = document.createElement('h1');
+        heading.textContent = 'Settings';
+        container.appendChild(heading);
     }
 }
