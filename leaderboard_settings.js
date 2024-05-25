@@ -6,7 +6,7 @@
  *  related scripting for the game
 */
 
-// create a darkened bg for the leaderboard, nice effect
+// create a darkened bg for the splash, nice effect
 let darken_bg = document.createElement('div');
 darken_bg.style.display = 'flex';                   // display the reused darken_bg, for consitency
 darken_bg.classList.add('darken_bg');
@@ -23,7 +23,7 @@ function openSplash(arg) {
     // get the viewport width
     let vw = window.innerWidth;                             // get the viewport width
 
-    // create the container for the leaderboard
+    // create the container for the splash
     let container = document.createElement('div');
 
     // set container size based on viewport size
@@ -47,8 +47,26 @@ function openSplash(arg) {
     // style the container   
     container.classList.add('splash_content');              // add the splash_content class to the container
 
-    // create the leaderboard
-    leaderboard = document.body.appendChild(darken_bg).appendChild(container); // append the container to the darken_bg
+    // create the splash
+    if (darken_bg.firstChild) {
+        darken_bg.removeChild(darken_bg.firstChild);       // remove the previous splash, allowing only one splas at a time, for reusal
+    }
+    let splash = document.body.appendChild(darken_bg).appendChild(container); // append the container to the darken_bg
+
+    // create the close btn
+    let close = document.createElement('span');
+    close.textContent = 'X';
+    close.style.position = 'absolute';
+    close.style.right = '10px';
+    close.style.top = '10px';
+    close.style.cursor = 'pointer';
+
+    close.addEventListener('click', function() {
+        document.body.removeChild(darken_bg);
+    });
+
+    // append the close btn to the container
+    splash.appendChild(close);
 
     // stats or settings
     if (arg === 'stats') {
