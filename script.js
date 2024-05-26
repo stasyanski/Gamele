@@ -127,7 +127,6 @@ document.querySelector('.start').addEventListener('click', startGame);
   let choices = document.querySelectorAll('.choice');
   let choice_overlay = document.createElement('div');
   let current_choice = null;
-  let Besttime =document.querySelector('#ch1');
 
   // style the overlay, can be placed in .css 
   choice_overlay.style.position = 'absolute';
@@ -152,9 +151,7 @@ document.querySelector('.start').addEventListener('click', startGame);
 
   // move overlay to the clicked button
   choices.forEach(choice => {
-    setTimeout(() => {                 
-      move_overlay(Besttime);
-                                    // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
+    setTimeout(() => {                                                     // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
       choice.addEventListener('click', () => move_overlay (choice));
     }, 1010);
   });
@@ -168,11 +165,7 @@ document.querySelector('.start').addEventListener('click', startGame);
   });
 
   // loads the modal on window load and hides it when user clicks start button
-
-//selecting a default gamemode
-
   window.onload = () => {
-    
     let modal = document.querySelector(".darken_bg");
     let start = document.querySelector(".start");
   

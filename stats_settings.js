@@ -8,12 +8,12 @@
 
 // set container size based on viewport size, reference vw to properly set the container size; mobile responsive
 const viewport_sizes = [
-    {max: 768, width: '90%', height: '80%'},         // set the container size based on the viewport size, 768 is mobile
-    {max: 1024, width: '80%', height: '70%'},        // 1024 is tablet
-    {max: 1366, width: '70%', height: '60%'},        // 1366 is laptop
-    {max: 1920, width: '60%', height: '50%'},        // 1920 is desktop
-    {max: 2560, width: '50%', height: '40%'},        // 2560 is large
-    {max: Infinity, width: '40%', height: '30%'}     // greater than 2560 
+    { max: 768, width: '90%', height: '80%' },         // set the container size based on the viewport size, 768 is mobile
+    { max: 1024, width: '80%', height: '70%' },        // 1024 is tablet
+    { max: 1366, width: '70%', height: '60%' },        // 1366 is laptop
+    { max: 1920, width: '60%', height: '50%' },        // 1920 is desktop
+    { max: 2560, width: '50%', height: '40%' },        // 2560 is large
+    { max: Infinity, width: '40%', height: '30%' }     // greater than 2560 
 ]
 
 // create a darkened bg for the splash, nice effect
@@ -39,8 +39,8 @@ function openSplash(arg) {
 
     // create the container for the splash / style the container   
     let container = document.createElement('div');
-    container.classList.add('splash_content');             
-    
+    container.classList.add('splash_content');
+
     // set the container size based on the viewport size, useful for mobile responsiveness
     for (const size of viewport_sizes) {
         if (vw < size.max) {
@@ -75,3 +75,11 @@ function openSplash(arg) {
         container.appendChild(heading);
     }
 }
+
+// window resize - remove splash
+window.addEventListener('resize', () => {
+    if (darken_bg.firstChild) {
+        document.body.removeChild(darken_bg);
+        openSplash(arg);
+    }
+});
