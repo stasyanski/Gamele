@@ -28,8 +28,12 @@ function createLine(rotation) {
     return line;
 }
 
-
-
+function createHeading(txt) {
+    const heading = document.createElement('h1');
+    heading.textContent = txt;
+    heading.classList.add('splash_h1_txt');
+    return heading;
+}
 
 
 // opens splash, either settings or stats depending on the argument
@@ -66,14 +70,17 @@ function openSplash(arg) {
     close_container.addEventListener('click', () => document.body.removeChild(darken_bg)); // event listener which closes splash by removing darken_bg
     splash.appendChild(close_container);                                    // adds the close button to the splash
 
+
+
     // stats or settings
     if (arg === 'stats') {
-        // code 
+        const heading = createHeading('Stats')
+        splash.appendChild(heading);
     } else if (arg === 'settings') {
-        let heading = document.createElement('h1');
-        heading.textContent = 'Settings';
-        container.appendChild(heading);
+        const heading = createHeading('Settings')
+        splash.appendChild(heading);
     }
+
 }
 
 // window resize - remove splash

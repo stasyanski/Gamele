@@ -76,6 +76,14 @@ body {
     pointer-events: none;
 }
 
+.splash_h1_txt {
+    font-size: 2rem;
+    color: rgb(95, 95, 95);
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
 
 
 /* The css below is for displaying
@@ -178,7 +186,7 @@ header > nav > ul, .btns, .title {
 
 .game_desc {
     font-size: 1rem;
-    color: rgb(119, 119, 119);
+    color: rgb(120, 120, 120);
     font-weight: 550;
     font-family: 'Roboto', sans-serif;
     text-align: justify;
