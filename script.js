@@ -122,24 +122,28 @@ function checkAnswer(input, name) {
 }
 document.querySelector('.start').addEventListener('click', startGame);
 
+
+
+
+
 // modal / startgame splash screen functions
 (() => {
-  let choices = document.querySelectorAll('.choice');
-  let choice_overlay = document.createElement('div');
+  const choices = document.querySelectorAll('.choice');
+  const choice_overlay = document.createElement('div');
   let current_choice = null;
 
-  // style the overlay, can be placed in .css 
+  // style the overlay, styling in .css 
   choice_overlay.classList.add('choice_overlay');
   document.body.appendChild(choice_overlay);
 
-  
+  // moves the overlay to the clicked button
   function move_overlay(choice) {
-    let ch_size = choice.getBoundingClientRect();
+    const ch_size = choice.getBoundingClientRect();
     choice_overlay.style.display = 'block';
-    choice_overlay.style.width = ch_size.width + 'px';
-    choice_overlay.style.height = ch_size.height + 'px';
-    choice_overlay.style.top = (ch_size.top + window.scrollY) + 'px';      // moves overlay to the clicked button
-    choice_overlay.style.left = (ch_size.left + window.scrollX) + 'px';    // moves overlay to the clicked button
+    choice_overlay.style.width = `${ch_size.width}px`;
+    choice_overlay.style.height = `${ch_size.height}px`;
+    choice_overlay.style.top = `${ch_size.top + window.scrollY}px`;      // moves overlay to the clicked button
+    choice_overlay.style.left = `${ch_size.left + window.scrollX}px`;    // moves overlay to the clicked button
     current_choice = choice;
   }
 
@@ -151,25 +155,25 @@ document.querySelector('.start').addEventListener('click', startGame);
   });
 
   // window resize - hide overlay, causes twitching when resizing
-  window.addEventListener('resize', () => {
-    if (current_choice) {
-      choice_overlay.style.display = 'none';
-      current_choice = null;
-    }
-  });
+  window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.querySelector(".darken_bg");
+    const start = document.querySelector(".start");
 
-  // loads the modal on window load and hides it when user clicks start button
-  window.onload = () => {
-    let modal = document.querySelector(".darken_bg");
-    let start = document.querySelector(".start");
-  
     modal.style.display = "flex";
-  
-    start.addEventListener('click', ()=> {
+
+    start.addEventListener('click', () => {
       modal.style.display = "none";
       choice_overlay.style.display = 'none';
     });
-  }
+
+    // attach resize event listener
+    window.addEventListener('resize', () => {
+      if (current_choice) {
+        choice_overlay.style.display = 'none';
+        current_choice = null;
+      }
+    });
+  });
 })();
 
 
