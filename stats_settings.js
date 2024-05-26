@@ -28,6 +28,7 @@ function createLine(rotation) {
     return line;
 }
 
+// function create heading for the splash
 function createHeading(txt) {
     const heading = document.createElement('h1');
     heading.textContent = txt;

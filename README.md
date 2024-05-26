@@ -14,7 +14,7 @@
 
 ## How it functions / libraries
 
-**Node.js:** used to fetch images stored in the repo
+**Node.js:** used to fetch images stored in the repo   
 **Js, HTML, CSS:** used for general components and building the website
 
 ## Contributing and feedback

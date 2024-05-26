@@ -129,13 +129,7 @@ document.querySelector('.start').addEventListener('click', startGame);
   let current_choice = null;
 
   // style the overlay, can be placed in .css 
-  choice_overlay.style.position = 'absolute';
-  choice_overlay.style.boxSizing = 'border-box';
-  choice_overlay.style.pointerEvents = 'none'; 
-  choice_overlay.style.borderRadius = '5px';
-  choice_overlay.style.transition = 'top 0.5s, left 0.5s, width 0.5s, height 0.5s';
-  choice_overlay.style.boxShadow = 'inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150)';
-  choice_overlay.style.zIndex = '1000';
+  choice_overlay.classList.add('choice_overlay');
   document.body.appendChild(choice_overlay);
 
   
