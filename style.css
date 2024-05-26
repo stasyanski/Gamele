@@ -16,7 +16,7 @@ body {
 }
 
 .darken_bg {
-    display: none;
+    display: flex;
     position: fixed;
     left: 0;
     top: 0;
@@ -50,9 +50,31 @@ body {
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: fadeIn 1s;
+    position: relative;
 }
 
+/* The css below is for the settings / leaderboard splash
+ * screen, e.g. line creation
+*/
 
+.close_container {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    pointer-events: none;
+}
 
 
 
