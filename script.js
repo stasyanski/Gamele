@@ -128,9 +128,12 @@ function checkAnswer(input, name) {
         
       })();
     }
-    else{
-      
+    else if (current_choice.textContent == gamemode2){
+      ptag.textContent = 'Wrong Answer try again!';
     }
+    // else{
+    //   gameover();
+    // }
   }
 }
 function gameover(){
@@ -172,12 +175,13 @@ document.querySelector('.start').addEventListener('click', startGame);
 
 
   }
-
+  
   // move overlay to the clicked button
   choices.forEach(choice => {
-    
+    // makes the infinte game mode the default gamemode
+   
     setTimeout(() => {           
-                                           // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
+      move_overlay(choices[1]);                                    // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
       choice.addEventListener('click', () => move_overlay (choice));
     }, 1010);
   });
@@ -187,6 +191,7 @@ document.querySelector('.start').addEventListener('click', startGame);
     const modal = document.querySelector(".darken_bg");
     const start = document.querySelector(".start");
 
+    
     modal.style.display = "flex";
 
     start.addEventListener('click', () => {
