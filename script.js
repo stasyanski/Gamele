@@ -5,11 +5,10 @@
 // creates a ptag to give user response 
 const container = document.querySelector('.character-container');
 const img = document.createElement('img');
-const input = document.createElement('input');
 const main = document.querySelector('.score');
+let input;
 let gamover = false;
 let keydownEnter = null;
-input.maxLength = 20;
 
 const score = document.querySelector('.score_txt');
 let dotinterval;  // used to cancel the interval making sure its only called once
@@ -24,59 +23,72 @@ gamemode3 = 'Three lives';
 let current_choice = null;
 
 
+
+
+
+
 // lives selector 
 const extralives = document.querySelector('.lives');
-// displays character when user clicks start button 
-async function characters() {
-  input.placeholder = 'guess the character';
 
-  // guess the character animation
-  let dotCount = 0;
-  dotinterval = setInterval(() => {
-    if (dotCount < 3) {
-      input.placeholder += '.';
-      dotCount++;
-    } else {
-      input.placeholder = input.placeholder.replace(/\./g, '');
-      dotCount = 0;
-    }
-  }, 630);
 
+
+// retrieve random character  
+async function retrieve_characters() {
   try {
-    const response = await fetch('images.json');
-    const data = await response.json();
+    const data = await fetchImages();
 
-    // gets a random Number to display 
-    const random = Math.floor(Math.random() * data.length);
+    // gets a random image to display 
+    const image = getRandomImage(data);
 
-    img.src = data[random].path;
+    img.src = image.path;
     container.appendChild(img);
-    const source = data[random].name;
+    const source = image.name;
     const [name, type] = source.split('.');
 
-    const nameSpaces = name.replace(/_/g, ' ');
-    console.log(nameSpaces);
+    const formattedName = formatName(name);
 
-    container.appendChild(input);
+    // call input_guess function with formattedName as parameter
+    input_guess(formattedName);
 
     //checks to see if the user has pressed enter
-    if (keydownEnter) {
-      input.removeEventListener('keydown', keydownEnter); //making sure the event listener is removed before adding a new one
-    }
-
-    keydownEnter = (event) => {
-      if (event.key === 'Enter') {
-        console.log(nameSpaces);
-
-        checkAnswer(input, nameSpaces);
-      }
-    }
-    input.addEventListener('keydown', keydownEnter);
+    const keydownEnter = createKeyDownEnter(formattedName);
+    input.addEventListener('keydown', keydownEnter); // Now input is accessible here
 
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching images:', error);
   }
 }
+
+// fetches the images from the json file
+async function fetchImages() {
+  const response = await fetch('images.json');
+  return response.json();
+}
+
+// gets a random image from the data
+function getRandomImage(data) {
+  const randomIndex = Math.floor(Math.random() * data.length);
+  return data[randomIndex];
+}
+
+// formats the name of the image
+function formatName(name) {
+  return name.replace(/_/g, ' '); // replaces all underscores with spaces (images saved with _ to not cause issues with spaces)
+}
+
+// creates a keydown event listener for the input
+function createKeyDownEnter(formattedName) {
+  return (event) => {
+    if (event.key === 'Enter') {
+      checkAnswer(input, formattedName);
+    }
+  }
+}
+
+
+
+
+
 
 //start game function 
 function startGame() {
@@ -87,8 +99,12 @@ function startGame() {
 
   const startButton = document.querySelector('.start');
   startButton.style.display = 'none';
-  characters();
+  retrieve_characters();
 }
+
+
+
+
 
 // checks the users answer 
 const ptag = document.createElement('p');
@@ -109,7 +125,7 @@ function checkAnswer(input, name) {
     //  will need to apply score to local storage and make a next button 
     clearInterval(dotinterval);
     setTimeout(() => {
-      characters();
+      retrieve_characters();
     }, 1000);
   }
   else {
@@ -117,26 +133,24 @@ function checkAnswer(input, name) {
     if(current_choice.textContent == gamemode3) {
       (()=>{
         if(extralives.childElementCount == 0) {
-          gameover();
+          game_over();
         }
         else{
           ptag.textContent = 'Lost a life';
           extralives.lastElementChild.remove();
-        }
-        
-        
-        
+        } 
       })();
     }
     else if (current_choice.textContent == gamemode2){
       ptag.textContent = 'Wrong Answer Try Again!';
     }
-    // else{
-    //   gameover();
-    // }
   }
 }
-function gameover(){
+
+
+
+
+function game_over(){
       gamover = true;
       ptag.textContent = 'Game Over !';
       // CREATES  an input box for the user to enter  their username when they lose 
@@ -147,6 +161,42 @@ function gameover(){
       console.log(localStorage.getItem(input.value));
 }
 document.querySelector('.start').addEventListener('click', startGame);
+
+
+
+// creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
+function input_guess(formattedName) {
+  const container = document.querySelector('.input_container');
+
+  for (let i = 0; i < formattedName.length; i++) {
+    let element;
+    if (formattedName[i] === ' ') {
+      element = document.createElement('div');
+      element.style.width = '20px'; 
+      element.style.height = '20px'; 
+      element.style.display = 'inline-block';
+    } else {
+      element = document.createElement('input');
+      element.size = 1;
+      element.maxLength = 1;
+
+      element.addEventListener('input', function() {
+        if (element.value) {
+          // find the next input box, skipping over any divs
+          let nextInput = i + 1;
+          while (nextInput < container.children.length && container.children[nextInput].tagName !== 'INPUT') {
+            nextInput++;
+          }
+          // if there's a next input box, focus on it
+          if (nextInput < container.children.length) {
+            container.children[nextInput].focus();
+          }
+        }
+      });
+    }
+    container.appendChild(element);
+  }
+}
 
 
 
@@ -172,7 +222,6 @@ document.querySelector('.start').addEventListener('click', startGame);
     choice_overlay.style.top = `${ch_size.top + window.scrollY}px`;      // moves overlay to the clicked button
     choice_overlay.style.left = `${ch_size.left + window.scrollX}px`;    // moves overlay to the clicked button
     current_choice = choice;
-
 
   }
   

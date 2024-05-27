@@ -154,23 +154,6 @@ header > nav > ul, .btns, .title {
     width: auto;
 }
 
-.character-container input {
-    margin-top: 10px;
-    height: 50px;
-    width: 320px;
-    background-color: #3b3b3b4f;
-    border: none;
-    color: white;
-    border-style: none;
-    box-shadow: #64646441 0px 0px 10px 0px;
-}
-
-.character-container input::placeholder {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
 .character-container p {
     font-size: 1.5rem;
     color: white;
@@ -178,6 +161,15 @@ header > nav > ul, .btns, .title {
     font-family: 'Roboto', sans-serif;
 }
 
+.input_container {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 /* The css below is for the splash screen that
