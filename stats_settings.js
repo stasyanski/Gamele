@@ -80,6 +80,22 @@ function openSplash(arg) {
     } else if (arg === 'settings') {
         const heading = createHeading('Settings')
         splash.appendChild(heading);
+        // settings content
+        // dark_theme = document.createElement('div');
+        //creating the dark theme switch
+        let input = document.createElement('input');
+        let label = document.createElement('label');
+        label.classList.add('label');
+        label.textContent = 'Dark Theme:';
+        input.type = 'checkbox';
+        input.role = 'switch';
+        input.className = 'dark_theme';
+        splash.appendChild(label);
+        splash.appendChild(input);
+
+
+
+
     }
 
 }
