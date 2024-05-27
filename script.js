@@ -32,6 +32,56 @@ const extralives = document.querySelector('.lives');
 
 
 
+
+
+// creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
+function input_guess(formattedName) {
+  const container = document.querySelector('.input_container');
+
+  // creates a keydown event listener for the input
+  function createKeyDownEnter() {
+    return (event) => {
+      if (event.key === 'Enter') {
+        checkAnswer(event.target, formattedName);
+      }
+    }
+  }
+
+  const keydownEnter = createKeyDownEnter();
+
+  for (let i = 0; i < formattedName.length; i++) {
+    let element;
+    if (formattedName[i] === ' ') {
+      element = document.createElement('div');
+      element.style.width = '20px'; 
+      element.style.height = '20px'; 
+      element.style.display = 'inline-block';
+    } else {
+      element = document.createElement('input');
+      element.size = 1;
+      element.maxLength = 1;
+
+      element.addEventListener('input', function() {
+        if (element.value) {
+          // find the next input box, skipping over any divs
+          let nextInput = i + 1;
+          while (nextInput < container.children.length && container.children[nextInput].tagName !== 'INPUT') {
+            nextInput++;
+          }
+          // if there's a next input box, focus on it
+          if (nextInput < container.children.length) {
+            container.children[nextInput].focus();
+          }
+        }
+      });
+
+      // Add the keydown event listener here
+      element.addEventListener('keydown', keydownEnter);
+    }
+    container.appendChild(element);
+  }
+}
+
 // retrieve random character  
 async function retrieve_characters() {
   try {
@@ -47,12 +97,11 @@ async function retrieve_characters() {
 
     const formattedName = formatName(name);
 
-    // call input_guess function with formattedName as parameter
-    input_guess(formattedName);
-
     //checks to see if the user has pressed enter
     const keydownEnter = createKeyDownEnter(formattedName);
-    input.addEventListener('keydown', keydownEnter); // Now input is accessible here
+
+    // call input_guess function with formattedName and keydownEnter as parameters
+    input_guess(formattedName, keydownEnter);
 
   } catch (error) {
     console.error('Error fetching images:', error);
@@ -161,42 +210,6 @@ function game_over(){
       console.log(localStorage.getItem(input.value));
 }
 document.querySelector('.start').addEventListener('click', startGame);
-
-
-
-// creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
-function input_guess(formattedName) {
-  const container = document.querySelector('.input_container');
-
-  for (let i = 0; i < formattedName.length; i++) {
-    let element;
-    if (formattedName[i] === ' ') {
-      element = document.createElement('div');
-      element.style.width = '20px'; 
-      element.style.height = '20px'; 
-      element.style.display = 'inline-block';
-    } else {
-      element = document.createElement('input');
-      element.size = 1;
-      element.maxLength = 1;
-
-      element.addEventListener('input', function() {
-        if (element.value) {
-          // find the next input box, skipping over any divs
-          let nextInput = i + 1;
-          while (nextInput < container.children.length && container.children[nextInput].tagName !== 'INPUT') {
-            nextInput++;
-          }
-          // if there's a next input box, focus on it
-          if (nextInput < container.children.length) {
-            container.children[nextInput].focus();
-          }
-        }
-      });
-    }
-    container.appendChild(element);
-  }
-}
 
 
 
