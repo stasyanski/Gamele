@@ -42,9 +42,16 @@ function input_guess(name, formatted_name) {
   // reset the container for each input_guess call so there wont be duplicates
   container.innerHTML = '';
 
-  // reset the user input for each input_guess call
-  user_input = '';
-  
+  function get_user_input() { // checks the actual elemeents innerHTML to compare to the formatted name, much better and ensure the user input is correct
+    let user_input = '';
+    for (let i = 0; i < container.children.length; i++) {
+      if (container.children[i].tagName === 'INPUT') {
+        user_input += container.children[i].value;
+      }
+    }
+    return user_input;
+  }
+
   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
   for (let i = 0; i < name.length; i++) {
     let element;
@@ -58,8 +65,8 @@ function input_guess(name, formatted_name) {
       element.classList.add('input_one_char');
 
       element.addEventListener('input', function () {
-        element.value = element.value.toUpperCase(); // convert input to uppercase
-        user_input += element.value; // add the input to the user_input string which will be checked against the correct answer
+        element.value = element.value.toUpperCase(); // convert input to uppercase, show on user end
+        user_input = get_user_input();
 
         if (element.value) {
           // find the next input box, skipping over any divs
@@ -74,16 +81,14 @@ function input_guess(name, formatted_name) {
         }
       });
 
-      // add keydown event listener for Enter, when enter is pressed checkes the answer against formatted name
+      // add keydown event listener for Enter, Delete or Backspace
       element.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-          check_answer(formatted_name);
-        }
-      });
-
-      // add keydown event listener for Delete or Backspace
-      element.addEventListener('keydown', function(event) {
-        if (event.key === 'Delete' || event.key === 'Backspace') {
+          if (typeof check_answer === 'function') {
+            user_input = get_user_input();
+            check_answer(formatted_name);
+          }
+        } else if (event.key === 'Delete' || event.key === 'Backspace') {
           // find the previous input box, skipping over any divs
           let prev_input = i - 1;
           while (prev_input >= 0 && container.children[prev_input].tagName !== 'INPUT') {
@@ -95,8 +100,6 @@ function input_guess(name, formatted_name) {
               container.children[prev_input].focus();
             }, 5);
           }
-          // remove the last index of user input, to reflect the backspace or delete
-          user_input = user_input.slice(0, -1);
         }
       });
     }
@@ -104,6 +107,12 @@ function input_guess(name, formatted_name) {
   }
 }
 
+
+
+
+
+
+// check answer stuff, to be improved
 const ptag = document.createElement('p');
 container.appendChild(ptag);
 

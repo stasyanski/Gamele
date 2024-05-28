@@ -7,6 +7,5 @@ ideas:
 todo
 - make the 3 gamemodes
 - make settings and stats
-- make a footer
 - add info button in navbar
 - improve image selection, some are not transparent, some too low quality
