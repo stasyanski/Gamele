@@ -4,6 +4,7 @@
 
 // creates a ptag to give user response 
 const container = document.querySelector('.character-container');
+const input_container = document.querySelector('.input_container');
 const img = document.createElement('img');
 const main = document.querySelector('.score');
 let input;
@@ -37,16 +38,16 @@ const extralives = document.querySelector('.lives');
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
 function input_guess(name, formatted_name) {
-  const container = document.querySelector('.input_container');
+  const input_container = document.querySelector('.input_container');
 
   // reset the container for each input_guess call so there wont be duplicates
-  container.innerHTML = '';
+  input_container.innerHTML = '';
 
   function get_user_input() { // checks the actual elemeents innerHTML to compare to the formatted name, much better and ensure the user input is correct
     let user_input = '';
-    for (let i = 0; i < container.children.length; i++) {
-      if (container.children[i].tagName === 'INPUT') {
-        user_input += container.children[i].value;
+    for (let i = 0; i < input_container.children.length; i++) {
+      if (input_container.children[i].tagName === 'INPUT') {
+        user_input += input_container.children[i].value;
       }
     }
     return user_input;
@@ -71,12 +72,12 @@ function input_guess(name, formatted_name) {
         if (element.value) {
           // find the next input box, skipping over any divs
           let nextInput = i + 1;
-          while (nextInput < container.children.length && container.children[nextInput].tagName !== 'INPUT') {
+          while (nextInput < input_container.children.length && input_container.children[nextInput].tagName !== 'INPUT') {
             nextInput++;
           }
           // if there's a next input box, focus on it
-          if (nextInput < container.children.length) {
-            container.children[nextInput].focus();
+          if (nextInput < input_container.children.length) {
+            input_container.children[nextInput].focus();
           }
         }
       });
@@ -91,19 +92,23 @@ function input_guess(name, formatted_name) {
         } else if (event.key === 'Delete' || event.key === 'Backspace') {
           // find the previous input box, skipping over any divs
           let prev_input = i - 1;
-          while (prev_input >= 0 && container.children[prev_input].tagName !== 'INPUT') {
+          while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
             prev_input--;
           }
           // if there's a previous input box, focus on it
           if (prev_input >= 0) {
             setTimeout(() => {
-              container.children[prev_input].focus();
+              input_container.children[prev_input].focus();
             }, 5);
           }
         }
       });
     }
-    container.appendChild(element);
+    input_container.appendChild(element);
+  }
+  const first_element = input_container.children[0];
+  if (first_element) {
+    first_element.focus();  // automatically focuses on the first input box, saving user a few clicks.
   }
 }
 
@@ -120,10 +125,21 @@ container.appendChild(ptag);
 function check_answer(formatted_name) {
   console.log(user_input, formatted_name)
   if (user_input.toUpperCase() === formatted_name.toUpperCase()) {
+   
+    for (let i = 0; i < input_container.children.length; i++) {
+      if (input_container.children[i].tagName === 'INPUT') {            // checks if its an input type element ( so it doesnt set the invisible divs to green)
+        input_container.children[i].disabled = true;                    // disables the input boxes which takes off focus as well
+        setTimeout(() => {
+          input_container.children[i].style.backgroundColor = 'green';  // changes to green with a css transition in .css
+        }, i*150);                                                      // every 150 ms, so it looks like a cool effect, and not instant because of i* 150, i gets incremented by 1 every time
+      }
+    }
+
+
     ptag.textContent = 'Correct!';
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
-    retrieve_characters();
+    setTimeout(retrieve_characters, input_container.children.length * 200); // slightly longer delay, acting as feedback to the user that they got it right before swtiching 
   } else {    
     ptag.textContent = 'Incorrect!';
     if (gamemode3 === current_choice.textContent) {

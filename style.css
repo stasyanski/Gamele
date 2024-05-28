@@ -302,7 +302,7 @@ header > nav > ul, .btns, .title {
     border: none;
     border-bottom: 2px solid yellow;
     margin-top: 10px;                                   /* !!! Margin top 10px needed as the width and height gets changed by 10 px, otherwise causes weird shifting*/
-    transition: width 0.3s ease, height 0.3s ease, margin-top 0.3s ease; 
+    transition: width 0.3s ease, height 0.3s ease, margin-top 0.3s ease, background-color 0.3s ease-in-out;
 }
 
 .input_one_char:focus {
