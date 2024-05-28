@@ -53,15 +53,14 @@ function input_guess(formattedName) {
     let element;
     if (formattedName[i] === ' ') {
       element = document.createElement('div');
-      element.style.width = '20px'; 
-      element.style.height = '20px'; 
-      element.style.display = 'inline-block';
+      element.classList.add('input_one_char_spacing');
     } else {
       element = document.createElement('input');
       element.size = 1;
       element.maxLength = 1;
+      element.classList.add('input_one_char');
 
-      element.addEventListener('input', function() {
+      element.addEventListener('input', function () {
         if (element.value) {
           // find the next input box, skipping over any divs
           let nextInput = i + 1;
@@ -160,7 +159,7 @@ const ptag = document.createElement('p');
 container.appendChild(ptag);
 
 function checkAnswer(input, name) {
-  
+
   if (input.value.toLowerCase() === name.toLowerCase() && !gamover) { //makes the values lowercase so easier to compare 
     input.value = '';
     ptag.textContent = 'Correct';
@@ -178,19 +177,19 @@ function checkAnswer(input, name) {
     }, 1000);
   }
   else {
-    
-    if(current_choice.textContent == gamemode3) {
-      (()=>{
-        if(extralives.childElementCount == 0) {
+
+    if (current_choice.textContent == gamemode3) {
+      (() => {
+        if (extralives.childElementCount == 0) {
           game_over();
         }
-        else{
+        else {
           ptag.textContent = 'Lost a life';
           extralives.lastElementChild.remove();
-        } 
+        }
       })();
     }
-    else if (current_choice.textContent == gamemode2){
+    else if (current_choice.textContent == gamemode2) {
       ptag.textContent = 'Wrong Answer Try Again!';
     }
   }
@@ -199,15 +198,15 @@ function checkAnswer(input, name) {
 
 
 
-function game_over(){
-      gamover = true;
-      ptag.textContent = 'Game Over !';
-      // CREATES  an input box for the user to enter  their username when they lose 
-      input.value = '';
-      input.placeholder = 'Enter Username';
+function game_over() {
+  gamover = true;
+  ptag.textContent = 'Game Over !';
+  // CREATES  an input box for the user to enter  their username when they lose 
+  input.value = '';
+  input.placeholder = 'Enter Username';
 
-      localStorage.setItem(input.value, scoreNum);
-      console.log(localStorage.getItem(input.value));
+  localStorage.setItem(input.value, scoreNum);
+  console.log(localStorage.getItem(input.value));
 }
 document.querySelector('.start').addEventListener('click', startGame);
 
@@ -219,7 +218,7 @@ document.querySelector('.start').addEventListener('click', startGame);
 (() => {
   const choices = document.querySelectorAll('.choice');
   const choice_overlay = document.createElement('div');
-  
+
 
   // style the overlay, styling in .css 
   choice_overlay.classList.add('choice_overlay');
@@ -228,7 +227,7 @@ document.querySelector('.start').addEventListener('click', startGame);
   // moves the overlay to the clicked button
   function move_overlay(choice) {
     const ch_size = choice.getBoundingClientRect();
-    
+
     choice_overlay.style.display = 'block';
     choice_overlay.style.width = `${ch_size.width}px`;
     choice_overlay.style.height = `${ch_size.height}px`;
@@ -237,15 +236,15 @@ document.querySelector('.start').addEventListener('click', startGame);
     current_choice = choice;
 
   }
-  
+
   // move overlay to the clicked button
   choices.forEach(choice => {
     // makes the infinte game mode the default gamemode
-   
-    setTimeout(() => {           
+
+    setTimeout(() => {
       move_overlay(choices[1]);        // makes the infinite mode selected by default
       // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
-      choice.addEventListener('click', () => move_overlay (choice));
+      choice.addEventListener('click', () => move_overlay(choice));
     }, 1010);
   });
 
@@ -254,7 +253,7 @@ document.querySelector('.start').addEventListener('click', startGame);
     const modal = document.querySelector(".darken_bg");
     const start = document.querySelector(".start");
 
-    
+
     modal.style.display = "flex";
 
     start.addEventListener('click', () => {
@@ -270,16 +269,16 @@ document.querySelector('.start').addEventListener('click', startGame);
       }
     });
     start.addEventListener('click', () => {
-      
+
       if (current_choice.textContent == gamemode3) {
         console.log("test")
-        
-        
+
+
         for (let i = 0; i < 3; i++) {
           let lives = document.createElement('li');
           extralives.appendChild(lives);
+        }
       }
-    }
     });
   });
 })();

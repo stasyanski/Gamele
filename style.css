@@ -8,24 +8,32 @@
 
     /* dark theme colours */
     --main-bg-color-dark:#1a161d;
-    --darken-bg-color-dark :rgba(0, 0, 0, 0.4);
+    --darken-bg-color-dark:rgba(0, 0, 0, 0.4);
+
     --splash-bg-color-dark: #ffffff;
-    --splash-box-shadow-dark:rgba(0, 0, 0, 0.3);
     --splash-h1-text-dark:rgb(95, 95, 95);
+
     --line-color-dark:gray;
     --border-bottom-dark:1px solid #eaeaea;
+
     --anchor-parag-color-dark:rgb(255, 255, 255);
     --score-text-color-dark:white;
+
     --character-container-p-color-dark:rgb(255, 255, 255);
+
     --game-desc-text-color-dark:rgb(120, 120, 120);
     --game-desc-title-color-dark:rgb(95, 95, 95);
+
     --choice-text-color-dark: rgb(100, 100, 100);
+
     --start-color-dark:rgb(92, 179, 92);
     --start-box-shadow-dark:rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     --start-bttn-text-color-dark:rgb(255, 255, 255);
-    --choice-overlay-shadow-dark:inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
-    --lives-color-dark:rgb(255, 255, 255);
 
+    --choice-overlay-shadow-dark:inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
+
+    --guess-input-color-dark:rgba(70, 70, 70, 0.5);
+    --lives-color-dark:rgb(255, 255, 255);
 }
 
 body {
@@ -69,7 +77,6 @@ body {
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
-    box-shadow: 0 5px 15px var(--splash-box-shadow-dark);
     animation: fadeIn 1s;
     position: relative;
 }
@@ -278,10 +285,41 @@ header > nav > ul, .btns, .title {
     z-index: 1000;
 }
 
+/* The CSS below is for the input
+ * field(s) when guessing
+*/
+.input_one_char {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 3px;
+    font-family: 'Roboto', sans-serif;
+    background: var;
+    background: var(--guess-input-color-dark);
+    color: white;
+    border: none;
+    border-bottom: 2px solid yellow;
+    margin-top: 10px;                                   /* !!! Margin top 10px needed as the width and height gets changed by 10 px, otherwise causes weird shifting*/
+    transition: width 0.3s ease, height 0.3s ease, margin-top 0.3s ease; 
+}
+
+.input_one_char:focus {
+    outline: none;
+    width: 80px;
+    height: 80px;
+    margin-top: 0px;                                    /* here margin top is 0 px to counteract the margin top 10px from above, 80px-10px gives the original height and width px */
+}
+
+.input_one_char_spacing {
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+}
+
 
 /* applies the css to the lives  */
-
-
 
 .lives {
     display: flex;
@@ -296,10 +334,6 @@ header > nav > ul, .btns, .title {
     text-decoration: none;
     list-style: none;
     margin:1.5em;
-    
-
-
-    
 }
 
 /* setting css 
@@ -338,6 +372,6 @@ input:where([type="checkbox"][role="switch"])::before {
     background: currentcolor;
   }
   
-  input:where([type="checkbox"][role="switch"]):checked::before {
+input:where([type="checkbox"][role="switch"]):checked::before {
     left: 1em;
-  }
+}
