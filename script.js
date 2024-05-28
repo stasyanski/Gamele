@@ -61,6 +61,8 @@ function input_guess(formattedName) {
       element.classList.add('input_one_char');
 
       element.addEventListener('input', function () {
+        element.value = element.value.toUpperCase(); // Convert input to uppercase
+
         if (element.value) {
           // find the next input box, skipping over any divs
           let nextInput = i + 1;
@@ -76,6 +78,21 @@ function input_guess(formattedName) {
 
       // Add the keydown event listener here
       element.addEventListener('keydown', keydownEnter);
+
+      // Add keydown event listener for Delete or Backspace
+      element.addEventListener('keydown', function(event) {
+        if (event.key === 'Delete' || event.key === 'Backspace') {
+          // find the previous input box, skipping over any divs
+          let prevInput = i - 1;
+          while (prevInput >= 0 && container.children[prevInput].tagName !== 'INPUT') {
+            prevInput--;
+          }
+          // if there's a previous input box, focus on it
+          if (prevInput >= 0) {
+            container.children[prevInput].focus();
+          }
+        }
+      });
     }
     container.appendChild(element);
   }
