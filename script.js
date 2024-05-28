@@ -13,7 +13,7 @@ let user_input = null;
 
 const score = document.querySelector('.score_txt');
 let dotinterval;  // used to cancel the interval making sure its only called once
-let scoreNum;
+let scoreNum = 0;
 
 // game mode varaibles
 gamemode1 = 'Best time';
@@ -38,6 +38,9 @@ const extralives = document.querySelector('.lives');
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
 function input_guess(name, formatted_name) {
   const container = document.querySelector('.input_container');
+
+  // reset the container for each input_guess call so there wont be duplicates
+  container.innerHTML = '';
 
   // reset the user input for each input_guess call
   user_input = '';
@@ -82,16 +85,18 @@ function input_guess(name, formatted_name) {
       element.addEventListener('keydown', function(event) {
         if (event.key === 'Delete' || event.key === 'Backspace') {
           // find the previous input box, skipping over any divs
-          let prevInput = i - 1;
-          while (prevInput >= 0 && container.children[prevInput].tagName !== 'INPUT') {
-            prevInput--;
+          let prev_input = i - 1;
+          while (prev_input >= 0 && container.children[prev_input].tagName !== 'INPUT') {
+            prev_input--;
           }
           // if there's a previous input box, focus on it
-          if (prevInput >= 0) {
+          if (prev_input >= 0) {
             setTimeout(() => {
-              container.children[prevInput].focus();
+              container.children[prev_input].focus();
             }, 5);
           }
+          // remove the last index of user input, to reflect the backspace or delete
+          user_input = user_input.slice(0, -1);
         }
       });
     }
@@ -104,7 +109,8 @@ container.appendChild(ptag);
 
 
 function check_answer(formatted_name) {
-  if (user_input.toUpperCase === formatted_name.toUpperCase) {
+  console.log(user_input, formatted_name)
+  if (user_input.toUpperCase() === formatted_name.toUpperCase()) {
     ptag.textContent = 'Correct!';
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
