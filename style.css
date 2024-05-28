@@ -5,13 +5,34 @@
 * {
     margin: 0;
     padding: 0;
+
+    /* dark theme colours */
+    --main-bg-color-dark:#1a161d;
+    --darken-bg-color-dark :rgba(0, 0, 0, 0.4);
+    --splash-bg-color-dark: #ffffff;
+    --splash-box-shadow-dark:rgba(0, 0, 0, 0.3);
+    --splash-h1-text-dark:rgb(95, 95, 95);
+    --line-color-dark:gray;
+    --border-bottom-dark:1px solid #eaeaea;
+    --anchor-parag-color-dark:rgb(255, 255, 255);
+    --score-text-color-dark:white;
+    --character-container-p-color-dark:rgb(255, 255, 255);
+    --game-desc-text-color-dark:rgb(120, 120, 120);
+    --game-desc-title-color-dark:rgb(95, 95, 95);
+    --choice-text-color-dark: rgb(100, 100, 100);
+    --start-color-dark:rgb(92, 179, 92);
+    --start-box-shadow-dark:rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    --start-bttn-text-color-dark:rgb(255, 255, 255);
+    --choice-overlay-shadow-dark:inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
+    --lives-color-dark:rgb(255, 255, 255);
+
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #1a161d;
+    background-color: var(--main-bg-color-dark);
     flex-direction: column;
 }
 
@@ -27,7 +48,7 @@ body {
     align-items: center;
 
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--darken-bg-color-dark);
     z-index: 998;
 }
 
@@ -44,11 +65,11 @@ body {
 }
 
 .splash_content {
-    background-color: #ffffff;
+    background-color: var(--splash-bg-color-dark); 
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px var(--splash-box-shadow-dark);
     animation: fadeIn 1s;
     position: relative;
 }
@@ -69,7 +90,7 @@ body {
 .line {
     width: 100%;
     height: 2px;
-    background-color: gray;
+    background-color: var(--line-color-dark);
     position: absolute;
     top: 50%;
     left: 0;
@@ -78,7 +99,7 @@ body {
 
 .splash_h1_txt {
     font-size: 2rem;
-    color: rgb(95, 95, 95);
+    color: var(--splash-h1-text-dark);
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -94,7 +115,7 @@ header {
     width: 40%;
     height: 100%;
     padding: 0.5rem;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: var(--border-bottom-dark);
 }
 
 header > nav > ul, .btns, .title {
@@ -110,7 +131,7 @@ header > nav > ul, .btns, .title {
 
 .parag, .anchor {
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: var(--anchor-parag-color-dark);
     font-size: 1.5rem;
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
@@ -129,7 +150,7 @@ header > nav > ul, .btns, .title {
 
 .score_txt {
     font-size: 2rem;
-    color: white;
+    color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -156,7 +177,7 @@ header > nav > ul, .btns, .title {
 
 .character-container p {
     font-size: 1.5rem;
-    color: white;
+    color: var(--character-container-p-color-dark);
     padding: 10px;
     font-family: 'Roboto', sans-serif;
 }
@@ -178,7 +199,7 @@ header > nav > ul, .btns, .title {
 
 .game_desc {
     font-size: 1rem;
-    color: rgb(120, 120, 120);
+    color: var(--game-desc-text-color-dark);
     font-weight: 550;
     font-family: 'Roboto', sans-serif;
     text-align: justify;
@@ -186,7 +207,7 @@ header > nav > ul, .btns, .title {
 
 .game_desc_title {
     font-size: 2rem;
-    color: rgb(95, 95, 95);
+    color: var(--game-desc-title-color-dark) ;
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -224,7 +245,7 @@ header > nav > ul, .btns, .title {
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
     font-size: 1.2rem;
-    color: rgb(100, 100, 100);
+    color: var(--choice-text-color-dark);
 }
 
 .start {
@@ -232,18 +253,18 @@ header > nav > ul, .btns, .title {
     height: 100px;
     border-radius: 2rem;
     margin-top: 15px;
-    background-color: rgb(92, 179, 92);
+    background-color: var(--start-color-dark);
     font-family: 'Roboto', sans-serif;
     border: none;
 
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    box-shadow: var(--start-box-shadow-dark);
 
     animation: pulse 2s infinite;
 }
 
 .start_bttn_txt {
     font-size: 2rem;
-    color: rgb(255, 255, 255);
+    color: var(--start-bttn-text-color-dark);
     font-weight: 600;
 }
 
@@ -253,7 +274,7 @@ header > nav > ul, .btns, .title {
     pointer-events: none;
     border-radius: 5px;
     transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
-    box-shadow: inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
+    box-shadow: var(--choice-overlay-shadow-dark);
     z-index: 1000;
 }
 
@@ -268,7 +289,7 @@ header > nav > ul, .btns, .title {
     justify-content: center;
 }
 .lives li{
-    background-color: red;
+    background-color: var(--lives-color-dark);
     border-radius: 50%;
     width: 1em;
     height: 1em;
