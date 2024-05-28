@@ -86,14 +86,24 @@ function openSplash(arg) {
         let input = document.createElement('input');
         let label = document.createElement('label');
         label.classList.add('label');
-        label.textContent = 'Dark Theme:';
+        label.textContent = 'Light Theme:';
         input.type = 'checkbox';
         input.role = 'switch';
-        input.className = 'dark_theme';
+        input.className = 'lightswitch';
         splash.appendChild(label);
         splash.appendChild(input);
-
-
+        document.getElementsByClassName('lightswitch')[0].addEventListener('change', function()  {
+        
+            if(this.checked){
+                
+                document.body.classList.add('light-theme');
+            }
+            
+         else {
+            
+            document.body.classList.remove('light-theme');
+        }
+        });
 
 
     }

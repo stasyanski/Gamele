@@ -34,6 +34,37 @@
 
     --guess-input-color-dark:rgba(70, 70, 70, 0.5);
     --lives-color-dark:rgb(255, 255, 255);
+
+
+    /* light theme colours */
+    --main-bg-color-light:#eae3ef;
+    --darken-bg-color-light:rgba(224, 207, 207, 0.4);
+
+    --splash-bg-color-light: #030303;
+    --splash-h1-text-light:rgb(95, 95, 95);
+
+    --line-color-light:gray;
+    --border-bottom-light:1px solid #0e0e0e;
+
+    --anchor-parag-color-light:rgb(18, 18, 18);
+    --score-text-color-light: black;
+
+    --character-container-p-color-light:rgb(0, 0, 0);
+
+    --game-desc-text-color-light:rgb(120, 120, 120);
+    --game-desc-title-color-light:rgb(95, 95, 95);
+
+    --choice-text-color-light: rgb(100, 100, 100);
+
+    --start-color-light:rgb(92, 179, 92);
+    --start-box-shadow-light:rgba(245, 243, 243, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    --start-bttn-text-color-light:rgb(17, 17, 17);
+
+    --choice-overlay-shadow-light:inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
+
+    --guess-input-color-light:rgba(210, 204, 204, 0.5);
+    --lives-color-light:rgb(0, 0, 0);
+
 }
 
 body {
@@ -42,6 +73,10 @@ body {
     align-items: center;
     background-color: var(--main-bg-color-dark);
     flex-direction: column;
+}
+
+body.light-theme{
+    background-color: var(--main-bg-color-light);
 }
 
 .darken_bg {
@@ -59,6 +94,10 @@ body {
     background-color: var(--darken-bg-color-dark);
     z-index: 998;
 }
+body.light-theme .darken_bg{
+    background-color: var(--darken-bg-color-light);
+}
+
 
 @keyframes fadeIn {
     0% {
@@ -80,6 +119,11 @@ body {
     animation: fadeIn 1s;
     position: relative;
 }
+body.light-theme splash_content{
+    background-color: var(--splash-bg-color-light);
+}
+
+
 
 /* The css below is for the settings / leaderboard splash
  * screen, e.g. line creation
@@ -103,13 +147,18 @@ body {
     left: 0;
     pointer-events: none;
 }
-
+body.light-theme .line{
+    background-color: var(--line-color-light);
+}
 .splash_h1_txt {
     font-size: 2rem;
     color: var(--splash-h1-text-dark);
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+}
+body.light-theme .splash_h1_txt{
+    color: var(--splash-h1-text-light);
 }
 
 
@@ -123,6 +172,9 @@ header {
     height: 100%;
     padding: 0.5rem;
     border-bottom: var(--border-bottom-dark);
+}
+body.light-theme header{
+    border-bottom: var(--border-bottom-light);
 }
 
 header > nav > ul, .btns, .title {
@@ -143,7 +195,9 @@ header > nav > ul, .btns, .title {
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
 }
-
+body.light-theme .parag, body.light-theme .anchor{
+    color: var(--anchor-parag-color-light);
+}
 .title {
     text-decoration: none;
 }
@@ -159,6 +213,9 @@ header > nav > ul, .btns, .title {
     font-size: 2rem;
     color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
+}
+body.light-theme .score_txt{
+    color: var(--score-text-color-light);
 }
 
 
@@ -188,7 +245,9 @@ header > nav > ul, .btns, .title {
     padding: 10px;
     font-family: 'Roboto', sans-serif;
 }
-
+body.light-theme .character-container p{
+    color: var(--character-container-p-color-light);
+}
 .input_container {
     position: absolute;
     width: 100%;
@@ -211,6 +270,9 @@ header > nav > ul, .btns, .title {
     font-family: 'Roboto', sans-serif;
     text-align: justify;
 }
+body.light-theme .game_desc{
+    color: var(--game-desc-text-color-light);
+}
 
 .game_desc_title {
     font-size: 2rem;
@@ -218,6 +280,9 @@ header > nav > ul, .btns, .title {
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+}
+body.light-theme .game_desc_title{
+    color: var(--game-desc-title-color-light);
 }
 
 @keyframes pulse {
@@ -254,7 +319,9 @@ header > nav > ul, .btns, .title {
     font-size: 1.2rem;
     color: var(--choice-text-color-dark);
 }
-
+body.light-theme .choice{
+    color: var(--choice-text-color-light);
+}
 .start {
     width: 100%;
     height: 100px;
@@ -268,11 +335,17 @@ header > nav > ul, .btns, .title {
 
     animation: pulse 2s infinite;
 }
-
+body.light-theme .start{
+    background-color: var(--start-color-light);
+    box-shadow: var(--start-box-shadow-light);
+}
 .start_bttn_txt {
     font-size: 2rem;
     color: var(--start-bttn-text-color-dark);
     font-weight: 600;
+}
+body.light-theme .start_bttn_txt{
+    color: var(--start-bttn-text-color-light);
 }
 
 .choice_overlay {
@@ -283,6 +356,9 @@ header > nav > ul, .btns, .title {
     transition: top 0.5s, left 0.5s, width 0.5s, height 0.5s;
     box-shadow: var(--choice-overlay-shadow-dark);
     z-index: 1000;
+}
+body.light-theme .choice_overlay{
+    box-shadow: var(--choice-overlay-shadow-light);
 }
 
 /* The CSS below is for the input
@@ -296,7 +372,7 @@ header > nav > ul, .btns, .title {
     text-align: center;
     margin: 0 3px;
     font-family: 'Roboto', sans-serif;
-    background: var;
+
     background: var(--guess-input-color-dark);
     color: white;
     border: none;
@@ -304,7 +380,9 @@ header > nav > ul, .btns, .title {
     margin-top: 10px;                                   /* !!! Margin top 10px needed as the width and height gets changed by 10 px, otherwise causes weird shifting*/
     transition: width 0.3s ease, height 0.3s ease, margin-top 0.3s ease, background-color 0.3s ease-in-out;
 }
-
+body.light-theme .input_one_char{
+    background: var(--guess-input-color-light);
+}
 .input_one_char:focus {
     outline: none;
     width: 80px;
@@ -335,7 +413,9 @@ header > nav > ul, .btns, .title {
     list-style: none;
     margin:1.5em;
 }
-
+body.light-theme .lives li{
+    background-color: var(--lives-color-light);
+}
 /* setting css 
  */
 label{
