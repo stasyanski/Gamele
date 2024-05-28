@@ -36,16 +36,16 @@ const extralives = document.querySelector('.lives');
 
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
-function input_guess(formattedName) {
+function input_guess(name, formatted_name) {
   const container = document.querySelector('.input_container');
 
   // reset the user input for each input_guess call
   user_input = '';
   
   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
-  for (let i = 0; i < formattedName.length; i++) {
+  for (let i = 0; i < name.length; i++) {
     let element;
-    if (formattedName[i] === ' ') {
+    if (name[i] === '_') {
       element = document.createElement('div');
       element.classList.add('input_one_char_spacing');
     } else {
@@ -71,6 +71,12 @@ function input_guess(formattedName) {
         }
       });
 
+      // add keydown event listener for Enter, when enter is pressed checkes the answer against formatted name
+      element.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          check_answer(formatted_name);
+        }
+      });
 
       // add keydown event listener for Delete or Backspace
       element.addEventListener('keydown', function(event) {
@@ -93,44 +99,70 @@ function input_guess(formattedName) {
   }
 }
 
-function check_answer {
-  
+const ptag = document.createElement('p');
+container.appendChild(ptag);
+
+
+function check_answer(formatted_name) {
+  if (user_input.toUpperCase === formatted_name.toUpperCase) {
+    ptag.textContent = 'Correct!';
+    scoreNum++;
+    score.textContent = `Score: ${scoreNum}`;
+    retrieve_characters();
+  } else {    
+    ptag.textContent = 'Incorrect!';
+    if (gamemode3 === current_choice.textContent) {
+      let lives = extralives.children;
+      if (lives.length > 0) {
+        lives[0].remove();
+      } else {
+        game_over();
+      }
+    }
+  }
+}
+
+// fetches the images from the json file
+async function fetch_images() {
+  const response = await fetch('images.json');
+  return response.json();
+}
+
+// gets a random image from the data
+function get_random_img(data) {
+  const randomIndex = Math.floor(Math.random() * data.length);
+  return data[randomIndex];
+}
+
+// formats the name of the image
+function format(name) {
+  // replaces all underscores with nothing, as user input will not have spaces
+  // (images saved with _ to not cause issues with spaces)
+  return name.replace(/_/g, '')
 }
 
 // retrieve random character  
 async function retrieve_characters() {
   try {
+    // fetch image data
     const data = await fetch_images();
 
-    // gets a random image to display 
+    // get a random image to display 
     const image = get_random_img(data);
 
+    // set the image source and append it to the container
     img.src = image.path;
     container.appendChild(img);
+
+    // extract the name and type from the image name
     const source = image.name;
     const [name, type] = source.split('.');
 
-    const formattedName = format_name(name);
+    // format the name
+    const formatted_name = format(name);
 
-    // call input_guess function with formattedName and keydownEnter as parameters
-    input_guess(formattedName, keydownEnter);
-
-    // fetches the images from the json file
-    async function fetch_images() {
-      const response = await fetch('images.json');
-      return response.json();
-    }
-
-    // gets a random image from the data
-    function get_random_img(data) {
-      const randomIndex = Math.floor(Math.random() * data.length);
-      return data[randomIndex];
-    }
-
-    // formats the name of the image
-    function format_name(name) {
-      return name.replace(/_/g, ' '); // replaces all underscores with spaces (images saved with _ to not cause issues with spaces)
-    }
+    // call input_guess function with formatted_name and keydownEnter as parameters
+    input_guess(name, formatted_name);
 
   } catch (error) {
     console.error('Error fetching images:', error);
