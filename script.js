@@ -122,69 +122,45 @@ container.appendChild(ptag);
 
 
 function check_answer(formatted_name) {
-  console.log(user_input, formatted_name)
-  if (user_input.toUpperCase() === formatted_name.toUpperCase()) {
-   
-    for (let i = 0; i < input_container.children.length; i++) {
-      if (input_container.children[i].tagName === 'INPUT') {  
-                  // checks if its an input type element ( so it doesnt set the invisible divs to green)
-       
 
-        input_container.children[i].disabled = true;                    // disables the input boxes which takes off focus as well
-        setTimeout(() => {
-          input_container.children[i].style.backgroundColor = 'green';  // changes to green with a css transition in .css
-        }, i*150);                                                      // every 150 ms, so it looks like a cool effect, and not instant because of i* 150, i gets incremented by 1 every time
+  // the main function variables 
+  formatted_name = formatted_name.toUpperCase();
+  let userinput_array = user_input.split('');
+  let formatted_name_array = formatted_name.split('');
+
+  // function to update the element, changes the colour of the input boxes, and disables them if needed, used in the for loop below
+  function updateElement(element, color, disabled = false) {
+    element.style.backgroundColor = color;
+    element.disabled = disabled;
+  }
+
+  // for loop to go through the input boxes, and check if the user input is correct, and if it is in the correct position
+  for (let i = 0, index = 0; i < input_container.children.length; i++) {
+    let child = input_container.children[i];
+    if (child.tagName !== 'INPUT') continue;
+
+    // checks if the user input is correct, and if it is in the correct position
+    if (user_input.toUpperCase() === formatted_name) {
+      setTimeout(() => updateElement(child, 'green'), i * 150);
+    } else if (user_input.length === formatted_name.length) {
+      if (formatted_name_array[index] === userinput_array[index]) {
+        updateElement(child, 'green', true);  // disables the input box if the user input is correct          
+      } else if (formatted_name.includes(userinput_array[index])) {
+        updateElement(child, '#fa9507');
+      } else {
+        updateElement(child, 'red');
       }
+      index++;
     }
+  }
 
-
+  // checks if the user input is correct, and if it is in the correct position
+  if (user_input.toUpperCase() === formatted_name) {
     ptag.textContent = 'Correct!';
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
-    setTimeout(retrieve_characters, input_container.children.length * 200); // slightly longer delay, acting as feedback to the user that they got it right before swtiching 
-
-  } 
-  // going to make characters an amber colour if they are correct but in wrong postion
-
-  else if (user_input.length === formatted_name.length) {
-    formatted_name = formatted_name.toUpperCase();
-    
-    let userinput_array = user_input.split('');
-    let formatted_name_array = formatted_name.split('');
-    console.log(input_container.children.length);
-
-    //adding only the characters to  an array
-    
-    let index=0; // used to change the index if there is a space 
-    for (let i = 0; i < input_container.children.length ; i++) {
-
-      // seeing if a character is correct but in the wrong postion 
-      if(input_container.children[i].tagName !== 'INPUT'){
-        continue;
-      }
-      
-        if(formatted_name_array[index] === userinput_array[index]){
-          input_container.children[i].style.backgroundColor = 'green';
-          input_container.children[i].disabled = true;    
-          console.log('input_container');
-        }
-        else if (formatted_name.includes(userinput_array[index])) {
-        
-        
-          input_container.children[i].style.backgroundColor = '#fa9507';
-        } 
-        else{
-        
-          input_container.children[i].style.backgroundColor = 'red';
-        }
-      
-    
-        index ++;
-    
-
-    }
-  }
-  else {    
+    setTimeout(retrieve_characters, input_container.children.length * 200);
+  } else if (user_input.length !== formatted_name.length) {
     ptag.textContent = 'Incorrect!';
     if (gamemode3 === current_choice.textContent) {
       let lives = extralives.children;
@@ -196,6 +172,10 @@ function check_answer(formatted_name) {
     }
   }
 }
+
+
+
+
 
 // fetches the images from the json file
 async function fetch_images() {
@@ -245,6 +225,9 @@ async function retrieve_characters() {
 }
 
 
+
+
+
 //start game function 
 function startGame() {
   main.appendChild(score);
@@ -258,6 +241,10 @@ function startGame() {
 }
 
 
+
+
+
+// game over function
 function game_over() {
   gamover = true;
   ptag.textContent = 'Game Over !';
