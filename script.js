@@ -128,7 +128,7 @@ function check_answer(formatted_name) {
     for (let i = 0; i < input_container.children.length; i++) {
       if (input_container.children[i].tagName === 'INPUT') {  
                   // checks if its an input type element ( so it doesnt set the invisible divs to green)
-        console.log(input_container.children[i]);
+       
 
         input_container.children[i].disabled = true;                    // disables the input boxes which takes off focus as well
         setTimeout(() => {
@@ -147,8 +147,42 @@ function check_answer(formatted_name) {
   // going to make characters an amber colour if they are correct but in wrong postion
 
   else if (user_input.length === formatted_name.length) {
-    //using the include method
+    formatted_name = formatted_name.toUpperCase();
+    
+    let userinput_array = user_input.split('');
+    let formatted_name_array = formatted_name.split('');
+    console.log(input_container.children.length);
 
+    //adding only the characters to  an array
+    
+    let index=0; // used to change the index if there is a space 
+    for (let i = 0; i < input_container.children.length ; i++) {
+
+      // seeing if a character is correct but in the wrong postion 
+      if(input_container.children[i].tagName !== 'INPUT'){
+        continue;
+      }
+      
+        if(formatted_name_array[index] === userinput_array[index]){
+          input_container.children[i].style.backgroundColor = 'green';
+          input_container.children[i].disabled = true;    
+          console.log('input_container');
+        }
+        else if (formatted_name.includes(userinput_array[index])) {
+        
+        
+          input_container.children[i].style.backgroundColor = '#fa9507';
+        } 
+        else{
+        
+          input_container.children[i].style.backgroundColor = 'red';
+        }
+      
+    
+        index ++;
+    
+
+    }
   }
   else {    
     ptag.textContent = 'Incorrect!';
