@@ -69,13 +69,22 @@ function input_guess(name, formatted_name) {
 
         if (element.value) {
           // find the next input box, skipping over any divs
-          let nextInput = i + 1;
-          while (nextInput < input_container.children.length && input_container.children[nextInput].tagName !== 'INPUT') {
-            nextInput++;
+          let next_input = i + 1;
+          while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') {
+            next_input++;
           }
           // if there's a next input box, focus on it
-          if (nextInput < input_container.children.length) {
-            input_container.children[nextInput].focus();
+          if (next_input < input_container.children.length) {
+            input_container.children[next_input].focus();
+          } else {
+            // if there is no next input box, move to the next one that is red or amber
+            for (let i = 0; i < input_container.children.length; i++) {
+              let child = input_container.children[i];
+              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                child.focus();
+                break;
+              }
+            }
           }
         }
       });
@@ -83,10 +92,8 @@ function input_guess(name, formatted_name) {
       // add keydown event listener for Enter, Delete or Backspace
       element.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
-          if (typeof check_answer === 'function') {
-            user_input = get_user_input();
-            check_answer(formatted_name);
-          }
+          user_input = get_user_input();
+          check_answer(formatted_name);
         } else if (event.key === 'Delete' || event.key === 'Backspace') {
           // if it's the last child, only delete the current value and don't switch focus
           if (i === input_container.children.length - 1 && input_container.children[i].value !== '') {
