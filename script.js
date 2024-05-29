@@ -82,23 +82,29 @@ function input_guess(name, formatted_name) {
       });
 
       // add keydown event listener for Enter, Delete or Backspace
-      element.addEventListener('keydown', function(event) {
+      element.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
           if (typeof check_answer === 'function') {
             user_input = get_user_input();
             check_answer(formatted_name);
           }
         } else if (event.key === 'Delete' || event.key === 'Backspace') {
-          // find the previous input box, skipping over any divs
-          let prev_input = i - 1;
-          while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
-            prev_input--;
-          }
-          // if there's a previous input box, focus on it
-          if (prev_input >= 0) {
-            setTimeout(() => {
-              input_container.children[prev_input].focus();
-            }, 5);
+          // if it's the last child, only delete the current value and don't switch focus
+          if (i === input_container.children.length - 1 && input_container.children[i].value !== '') {
+            input_container.children[i].value = '';
+          } else {
+            // find the previous input box, skipping over any divs
+            let prev_input = i - 1;
+            while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
+              prev_input--;
+            }
+            // if there's a previous input box, focus on it
+            if (prev_input >= 0) {
+              setTimeout(() => {
+                input_container.children[prev_input].value = ''; // removes the previous value too, game breaking bug fixed
+                input_container.children[prev_input].focus();
+              }, 5);
+            }
           }
         }
       });
@@ -144,13 +150,24 @@ function check_answer(formatted_name) {
       setTimeout(() => updateElement(child, 'green'), i * 150);
     } else if (user_input.length === formatted_name.length) {
       if (formatted_name_array[index] === userinput_array[index]) {
-        updateElement(child, 'green', true);  // disables the input box if the user input is correct          
+        updateElement(child, 'green', true);                                // disables the input box if the user input is correct          
       } else if (formatted_name.includes(userinput_array[index])) {
-        updateElement(child, '#fa9507');
+        updateElement(child, 'orange');
       } else {
         updateElement(child, 'red');
       }
       index++;
+    }
+  }
+
+  // focus on the first amber / red box if the user input is incorrect
+  for (let i = 0; i < input_container.children.length; i++) {
+    let child = input_container.children[i];
+    if (child.tagName !== 'INPUT') continue;
+    console.log(child.style.backgroundColor);
+    if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+      child.focus();
+      break;          // break ensures no going to next amber/red but stopping on first found element
     }
   }
 
