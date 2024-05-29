@@ -1,6 +1,3 @@
-KNOWN ISSUES:
-- when pressing backspace or del on input field, it prevents user from typing in the field again
-
 ideas:
 - improve the input for character
 - improve the imput for saving the score

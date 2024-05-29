@@ -46,7 +46,6 @@ function input_guess(name, formatted_name) {
     for (let i = 0; i < input_container.children.length; i++) {
       if (input_container.children[i].tagName === 'INPUT') {
         user_input += input_container.children[i].value;
-        // console.log(user_input);
       }
     }
     return user_input;
@@ -101,8 +100,10 @@ function input_guess(name, formatted_name) {
             // if there's a previous input box, focus on it
             if (prev_input >= 0) {
               setTimeout(() => {
-                input_container.children[prev_input].value = ''; // removes the previous value too, game breaking bug fixed
                 input_container.children[prev_input].focus();
+                if (input_container.children[prev_input].disabled === false) { // only clears previous value if it's not disabled, if it it leave it alone, prevents deletion of correct values
+                  input_container.children[prev_input].value = ''; // removes the previous value too, game breaking bug fixed
+                }
               }, 5);
             }
           }
