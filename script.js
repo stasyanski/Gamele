@@ -107,8 +107,10 @@ function input_guess(name, formatted_name) {
             // if there's a previous input box, focus on it
             if (prev_input >= 0) {
               setTimeout(() => {
-                input_container.children[prev_input].focus();
-                if (input_container.children[prev_input].disabled === false) { // only clears previous value if it's not disabled, if it it leave it alone, prevents deletion of correct values
+                if (input_container.children[i].style.backgroundColor !== 'red' && input_container.children[i].style.backgroundColor !== 'orange') {
+                  input_container.children[prev_input].focus();
+                }
+                if (input_container.children[prev_input].disabled === false && input_container.children[i].style.backgroundColor !== 'red' && input_container.children[i].style.backgroundColor !== 'orange') { // only clears previous value if it's not disabled, if it it leave it alone, prevents deletion of correct values, or red / amber values
                   input_container.children[prev_input].value = ''; // removes the previous value too, game breaking bug fixed
                 }
               }, 5);
