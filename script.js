@@ -27,8 +27,6 @@ let current_choice = null;
 
 
 
-
-
 // lives selector 
 const extralives = document.querySelector('.lives');
 
@@ -48,6 +46,7 @@ function input_guess(name, formatted_name) {
     for (let i = 0; i < input_container.children.length; i++) {
       if (input_container.children[i].tagName === 'INPUT') {
         user_input += input_container.children[i].value;
+        // console.log(user_input);
       }
     }
     return user_input;
@@ -127,7 +126,10 @@ function check_answer(formatted_name) {
   if (user_input.toUpperCase() === formatted_name.toUpperCase()) {
    
     for (let i = 0; i < input_container.children.length; i++) {
-      if (input_container.children[i].tagName === 'INPUT') {            // checks if its an input type element ( so it doesnt set the invisible divs to green)
+      if (input_container.children[i].tagName === 'INPUT') {  
+                  // checks if its an input type element ( so it doesnt set the invisible divs to green)
+        console.log(input_container.children[i]);
+
         input_container.children[i].disabled = true;                    // disables the input boxes which takes off focus as well
         setTimeout(() => {
           input_container.children[i].style.backgroundColor = 'green';  // changes to green with a css transition in .css
@@ -140,7 +142,15 @@ function check_answer(formatted_name) {
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
     setTimeout(retrieve_characters, input_container.children.length * 200); // slightly longer delay, acting as feedback to the user that they got it right before swtiching 
-  } else {    
+
+  } 
+  // going to make characters an amber colour if they are correct but in wrong postion
+
+  else if (user_input.length === formatted_name.length) {
+    //using the include method
+
+  }
+  else {    
     ptag.textContent = 'Incorrect!';
     if (gamemode3 === current_choice.textContent) {
       let lives = extralives.children;
