@@ -1,7 +1,4 @@
-IMPLEMENT arrow keys to move between elements in the input guess field!
-
 ideas:
-- improve the input for character
 - improve the imput for saving the score
 - improve streak p tag
 
