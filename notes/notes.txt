@@ -1,4 +1,5 @@
 Clean up CSS file and make a UI css class which contains score, lives, incorrect / correct etc.
+After inputting right guess, disable all input and focus
 
 ideas:
 - improve the imput for saving the score
