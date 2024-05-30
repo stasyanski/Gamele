@@ -1,7 +1,6 @@
-IMPLEMENT arrow keys to move between elements in the input guess field!
+Clean up CSS file and make a UI css class which contains score, lives, incorrect / correct etc.
 
 ideas:
-- improve the input for character
 - improve the imput for saving the score
 - improve streak p tag
 

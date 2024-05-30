@@ -116,6 +116,26 @@ function input_guess(name, formatted_name) {
               }, 5);
             }
           }
+        } else if (event.key === 'ArrowLeft') {
+          // move focus to the left input box on arrowleft
+          let prev_input = i - 1;
+          while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
+            prev_input--;
+          }
+          // if there's a previous input box, focus on it
+          if (prev_input >= 0) {
+            input_container.children[prev_input].focus();
+          }
+        } else if (event.key === 'ArrowRight') {
+          // move focus to the right input box on arrowright
+          let next_input = i + 1;
+          while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
+            next_input++;
+          }
+          // if there's a next input box, focus on it
+          if (next_input < input_container.children.length) {
+            input_container.children[next_input].focus();
+          }
         }
       });
     }
