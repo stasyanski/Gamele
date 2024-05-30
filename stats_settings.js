@@ -95,7 +95,8 @@ function openSplash(arg) {
         document.getElementsByClassName('lightswitch')[0].addEventListener('change', function()  {
         
             if(this.checked){
-                document.getElementsByClassName('lightswitch')[0].checked = true;
+                // document.getElementsByClassName('lightswitch')[0].checked = true;
+                lightswitch.checked = true;
                 document.body.classList.add('light-theme');
                 localStorage.setItem('light-theme',1); //saves the users choice
             }
@@ -104,7 +105,8 @@ function openSplash(arg) {
             
             document.body.classList.remove('light-theme');
             localStorage.setItem('light-theme',0);
-            document.getElementsByClassName('lightswitch')[0].checked = false;
+            // document.getElementsByClassName('lightswitch')[0].checked = false;
+            lightswitch.checked = false;
         }   
         });
 
@@ -115,17 +117,18 @@ function openSplash(arg) {
 // const updateSettings =() =>{
     
 // }
+let lightswitch = document.getElementsByClassName('lightswitch')[0];
+(()=>{
 
-// (()=>{
-//     if(localStorage.getItem('light-theme') == 1){
-//         document.getElementsByClassName('lightswitch')[0].checked = true;
-//         document.body.classList.add('light-theme');
-//     }
-//     else{
-//         document.body.classList.remove('light-theme');
-//         document.getElementsByClassName('lightswitch')[0].checked = false;
-//     }
-// })();
+    if(localStorage.getItem('light-theme') == 1){
+        lightswitch.checked = true;
+        document.body.classList.add('light-theme');
+    }
+    else{
+        document.body.classList.remove('light-theme');
+        lightswitch.checked = false;
+    }
+})();
 // window resize - remove splash
 window.addEventListener('resize', () => {
     if (darken_bg.firstChild) {
