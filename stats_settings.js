@@ -95,21 +95,37 @@ function openSplash(arg) {
         document.getElementsByClassName('lightswitch')[0].addEventListener('change', function()  {
         
             if(this.checked){
-                
+                document.getElementsByClassName('lightswitch')[0].checked = true;
                 document.body.classList.add('light-theme');
+                localStorage.setItem('light-theme',1); //saves the users choice
             }
             
          else {
             
             document.body.classList.remove('light-theme');
-        }
+            localStorage.setItem('light-theme',0);
+            document.getElementsByClassName('lightswitch')[0].checked = false;
+        }   
         });
 
 
     }
 
 }
+// const updateSettings =() =>{
+    
+// }
 
+// (()=>{
+//     if(localStorage.getItem('light-theme') == 1){
+//         document.getElementsByClassName('lightswitch')[0].checked = true;
+//         document.body.classList.add('light-theme');
+//     }
+//     else{
+//         document.body.classList.remove('light-theme');
+//         document.getElementsByClassName('lightswitch')[0].checked = false;
+//     }
+// })();
 // window resize - remove splash
 window.addEventListener('resize', () => {
     if (darken_bg.firstChild) {
