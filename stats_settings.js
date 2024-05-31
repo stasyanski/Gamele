@@ -6,6 +6,14 @@
  *  related scripting for the game
 */
 
+
+// light switch label and switch 
+let lightswitch = document.querySelector('.lightswitch');
+let lightinput = document.createElement('input');
+let label = document.createElement('label');
+lightinput.type = 'checkbox';
+lightinput.role = 'switch';
+lightinput.className = 'lightswitch'; //ads the light switch class to the input 
 // set container size based on viewport size, reference vw to properly set the container size; mobile responsive
 const viewport_sizes = [
     { max: 768, width: '90%', height: '80%' },         // set the container size based on the viewport size, 768 is mobile
@@ -81,54 +89,48 @@ function openSplash(arg) {
         const heading = createHeading('Settings')
         splash.appendChild(heading);
         // settings content
-        // dark_theme = document.createElement('div');
-        //creating the dark theme switch
-        let input = document.createElement('input');
-        let label = document.createElement('label');
+        
+        //creating the light theme switch
+        
         label.classList.add('label');
         label.textContent = 'Light Theme:';
-        input.type = 'checkbox';
-        input.role = 'switch';
-        input.className = 'lightswitch';
-        splash.appendChild(label);
-        splash.appendChild(input);
-        document.getElementsByClassName('lightswitch')[0].addEventListener('change', function()  {
         
+        splash.appendChild(label);
+        splash.appendChild(lightinput);
+        
+        document.querySelector('.lightswitch').addEventListener('change', function()  {
+        
+
+            
             if(this.checked){
-                // document.getElementsByClassName('lightswitch')[0].checked = true;
-                lightswitch.checked = true;
-                document.body.classList.add('light-theme');
-                localStorage.setItem('light-theme',1); //saves the users choice
+                document.getElementsByClassName('lightswitch')[0].checked = true; 
+                
+                document.body.classList.add('light-theme'); //adds the light theme class if the switch is checked 
+                localStorage.setItem('light-theme',1); //saves the users choice 
             }
             
          else {
             
             document.body.classList.remove('light-theme');
-            localStorage.setItem('light-theme',0);
-            // document.getElementsByClassName('lightswitch')[0].checked = false;
-            lightswitch.checked = false;
+            localStorage.setItem('light-theme',0); //sets local storage to 0 when lightswitch is off
+            
         }   
+    // }
         });
-
+        //gets the light swithc and applies the theme to it 
+        lightswitch = document.querySelector('.lightswitch');
+        if (localStorage.getItem('light-theme') == 1) {
+            lightswitch.checked = true;
+            document.body.classList.add('light-theme');
+        } else {
+            document.body.classList.remove('light-theme');
+            lightswitch.checked = false;
+        }
 
     }
 
 }
-// const updateSettings =() =>{
-    
-// }
-let lightswitch = document.getElementsByClassName('lightswitch')[0];
-(()=>{
 
-    if(localStorage.getItem('light-theme') == 1){
-        lightswitch.checked = true;
-        document.body.classList.add('light-theme');
-    }
-    else{
-        document.body.classList.remove('light-theme');
-        lightswitch.checked = false;
-    }
-})();
 // window resize - remove splash
 window.addEventListener('resize', () => {
     if (darken_bg.firstChild) {
@@ -136,3 +138,16 @@ window.addEventListener('resize', () => {
         openSplash(arg);
     }
 });
+
+//applies the users choice of theme when the page is loaded
+function applyLightTheme(){
+    if (localStorage.getItem('light-theme') == 1) {
+        
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+        
+    }
+}
+
+applyLightTheme();

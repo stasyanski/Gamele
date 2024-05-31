@@ -2,9 +2,8 @@
  * from a directory (characters)
 */
 
-import { readdir, writeFile } from 'fs';
-import { join } from 'path';
-
+const { readdir, writeFile } = require('fs');
+const { join } = require('path');
 const folder_path = 'characters';
 
 readdir(folder_path, (err, files) => {
