@@ -332,7 +332,7 @@ document.querySelector('.start').addEventListener('click', startGame);
   // move overlay to the clicked button
   choices.forEach(choice => {
     // makes the infinte game mode the default gamemode
-
+    current_choice = gamemode2;//makes it so current choice is assinged a value to begin with 
     setTimeout(() => {
       move_overlay(choices[1]);        // makes the infinite mode selected by default
       // set the event listener after 1010 ms , wating for the fadeIn animation in .css applied to modal to finish playing
@@ -369,6 +369,23 @@ document.querySelector('.start').addEventListener('click', startGame);
           let lives = document.createElement('li');
           extralives.appendChild(lives);
         }
+      }
+
+      if (current_choice.textContent ==gamemode1){ //starts the best time mode
+        let time =0;
+        let timerLabel = document.createElement('span')
+        let startTime = Date.now();
+        timerLabel.classList.add('timer');
+        document.body.appendChild(timerLabel);
+        setInterval(() => {
+          let elapsedTime = Date.now() - startTime
+          console.log(elapsedTime);
+          let seconds = Math.floor(elapsedTime / 1000);
+          let milliseconds = (elapsedTime % 1000);
+          
+          
+          timerLabel.textContent = seconds + "." + milliseconds ;
+        }, 1);
       }
     });
   });
