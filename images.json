@@ -8,32 +8,76 @@
     "path": "characters\\alex_mercer.png"
   },
   {
+    "name": "arthur_morgan.png",
+    "path": "characters\\arthur_morgan.png"
+  },
+  {
     "name": "bandi.png",
     "path": "characters\\bandi.png"
   },
   {
-    "name": "Cayde.webp",
-    "path": "characters\\Cayde.webp"
+    "name": "batman.png",
+    "path": "characters\\batman.png"
   },
   {
-    "name": "Chun_Li.webp",
-    "path": "characters\\Chun_Li.webp"
+    "name": "bowser.webp",
+    "path": "characters\\bowser.webp"
+  },
+  {
+    "name": "cammy.webp",
+    "path": "characters\\cammy.webp"
+  },
+  {
+    "name": "captain_price.png",
+    "path": "characters\\captain_price.png"
+  },
+  {
+    "name": "cayde.webp",
+    "path": "characters\\cayde.webp"
+  },
+  {
+    "name": "chun_li.webp",
+    "path": "characters\\chun_li.webp"
+  },
+  {
+    "name": "ciri.png",
+    "path": "characters\\ciri.png"
   },
   {
     "name": "claire_redfield.png",
     "path": "characters\\claire_redfield.png"
   },
   {
-    "name": "Cloud_Strife.webp",
-    "path": "characters\\Cloud_Strife.webp"
+    "name": "clank.webp",
+    "path": "characters\\clank.webp"
   },
   {
-    "name": "Ellie_williams.png",
-    "path": "characters\\Ellie_williams.png"
+    "name": "cloud_strife.webp",
+    "path": "characters\\cloud_strife.webp"
   },
   {
-    "name": "Ezio.webp",
-    "path": "characters\\Ezio.webp"
+    "name": "donkey_kong.png",
+    "path": "characters\\donkey_kong.png"
+  },
+  {
+    "name": "doom_slayer.webp",
+    "path": "characters\\doom_slayer.webp"
+  },
+  {
+    "name": "ellie_williams.png",
+    "path": "characters\\ellie_williams.png"
+  },
+  {
+    "name": "ezio.webp",
+    "path": "characters\\ezio.webp"
+  },
+  {
+    "name": "geralt_of_rivia.png",
+    "path": "characters\\geralt_of_rivia.png"
+  },
+  {
+    "name": "gordon_freeman.png",
+    "path": "characters\\gordon_freeman.png"
   },
   {
     "name": "jill_valentine.png",
@@ -42,6 +86,10 @@
   {
     "name": "kassandra.webp",
     "path": "characters\\kassandra.webp"
+  },
+  {
+    "name": "kazuma_kiryu.webp",
+    "path": "characters\\kazuma_kiryu.webp"
   },
   {
     "name": "kratos.png",
@@ -56,20 +104,68 @@
     "path": "characters\\leon_kennedy.png"
   },
   {
+    "name": "luigi.png",
+    "path": "characters\\luigi.png"
+  },
+  {
+    "name": "mario.png",
+    "path": "characters\\mario.png"
+  },
+  {
+    "name": "max_payne.png",
+    "path": "characters\\max_payne.png"
+  },
+  {
+    "name": "nathan_drake.webp",
+    "path": "characters\\nathan_drake.webp"
+  },
+  {
     "name": "niko_bellic.png",
     "path": "characters\\niko_bellic.png"
+  },
+  {
+    "name": "pac_man.png",
+    "path": "characters\\pac_man.png"
   },
   {
     "name": "pikachu.png",
     "path": "characters\\pikachu.png"
   },
   {
+    "name": "princess_peach.png",
+    "path": "characters\\princess_peach.png"
+  },
+  {
     "name": "pyramid_head.png",
     "path": "characters\\pyramid_head.png"
   },
   {
+    "name": "ratchet.webp",
+    "path": "characters\\ratchet.webp"
+  },
+  {
+    "name": "ryu.png",
+    "path": "characters\\ryu.png"
+  },
+  {
+    "name": "sackboy.webp",
+    "path": "characters\\sackboy.webp"
+  },
+  {
+    "name": "samus_aran.webp",
+    "path": "characters\\samus_aran.webp"
+  },
+  {
     "name": "scorpion.png",
     "path": "characters\\scorpion.png"
+  },
+  {
+    "name": "shadowheart.png",
+    "path": "characters\\shadowheart.png"
+  },
+  {
+    "name": "solid_snake.webp",
+    "path": "characters\\solid_snake.webp"
   },
   {
     "name": "sonic.png",
@@ -84,6 +180,10 @@
     "path": "characters\\spyro.png"
   },
   {
+    "name": "steve.png",
+    "path": "characters\\steve.png"
+  },
+  {
     "name": "subzero.png",
     "path": "characters\\subzero.png"
   },
@@ -96,11 +196,27 @@
     "path": "characters\\vaas.png"
   },
   {
-    "name": "Yorha_2B.webp",
-    "path": "characters\\Yorha_2B.webp"
+    "name": "vault_boy.png",
+    "path": "characters\\vault_boy.png"
+  },
+  {
+    "name": "wario.webp",
+    "path": "characters\\wario.webp"
+  },
+  {
+    "name": "yorha_2b.webp",
+    "path": "characters\\yorha_2b.webp"
+  },
+  {
+    "name": "yorha_9s.webp",
+    "path": "characters\\yorha_9s.webp"
   },
   {
     "name": "yorha_a2.png",
     "path": "characters\\yorha_a2.png"
+  },
+  {
+    "name": "yoshi.webp",
+    "path": "characters\\yoshi.webp"
   }
 ]
