@@ -79,43 +79,37 @@ function openSplash(arg) {
     close_container.addEventListener('click', () => document.body.removeChild(darken_bg)); // event listener which closes splash by removing darken_bg
     splash.appendChild(close_container);                                    // adds the close button to the splash
 
-
-
     // stats or settings
     if (arg === 'stats') {
         const heading = createHeading('Stats')
         splash.appendChild(heading);
+
     } else if (arg === 'settings') {
         const heading = createHeading('Settings')
         splash.appendChild(heading);
         // settings content
-        
+
         //creating the light theme switch
-        
         label.classList.add('label');
         label.textContent = 'Light Theme:';
-        
+
         splash.appendChild(label);
         splash.appendChild(lightinput);
-        
-        document.querySelector('.lightswitch').addEventListener('change', function()  {
-        
 
-            
-            if(this.checked){
-                document.getElementsByClassName('lightswitch')[0].checked = true; 
-                
+        document.querySelector('.lightswitch').addEventListener('change', function () {
+
+            if (this.checked) {
+                document.getElementsByClassName('lightswitch')[0].checked = true;
+
                 document.body.classList.add('light-theme'); //adds the light theme class if the switch is checked 
-                localStorage.setItem('light-theme',1); //saves the users choice 
+                localStorage.setItem('light-theme', 1); //saves the users choice 
             }
-            
-         else {
-            
-            document.body.classList.remove('light-theme');
-            localStorage.setItem('light-theme',0); //sets local storage to 0 when lightswitch is off
-            
-        }   
-    // }
+            else {
+
+                document.body.classList.remove('light-theme');
+                localStorage.setItem('light-theme', 0); //sets local storage to 0 when lightswitch is off
+
+            }
         });
         //gets the light swithc and applies the theme to it 
         lightswitch = document.querySelector('.lightswitch');
@@ -140,14 +134,10 @@ window.addEventListener('resize', () => {
 });
 
 //applies the users choice of theme when the page is loaded
-function applyLightTheme(){
+(() => {
     if (localStorage.getItem('light-theme') == 1) {
-        
         document.body.classList.add('light-theme');
     } else {
         document.body.classList.remove('light-theme');
-        
     }
-}
-
-applyLightTheme();
+})();

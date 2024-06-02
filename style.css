@@ -416,11 +416,13 @@ body.light-theme .input_one_char{
 body.light-theme .lives li{
     background-color: var(--lives-color-light);
 }
-/* setting css 
+
+/* Below is the settings for css, including the switch 
  */
 label{
     padding-right: 1em;
 }
+
 input:where([type="checkbox"][role="switch"]) {
     -webkit-appearance: none;
     -moz-appearance: none;
