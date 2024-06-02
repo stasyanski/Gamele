@@ -4,9 +4,13 @@ After inputting right guess, disable all input and focus
 ideas:
 - improve the imput for saving the score
 - improve streak p tag
+- maybe add a global leaerboard (doubt we can implement this)
+-maybe in the future we implement genres 
+-hardcore mode where you get 1 life and no assitance no colour on the characters 
 
 todo
 - make the 3 gamemodes
 - make settings and stats
 - add info button in navbar
 - improve image selection, some are not transparent, some too low quality
+- if you get an answer right and spam enter it will skip some characters
