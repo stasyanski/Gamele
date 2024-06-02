@@ -25,13 +25,8 @@ gamemode3 = 'Three lives';
 let current_choice = null;
 
 
-
-
 // lives selector 
 const extralives = document.querySelector('.lives');
-
-
-
 
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
@@ -149,9 +144,6 @@ function input_guess(name, formatted_name) {
 
 
 
-
-
-
 // check answer stuff, to be improved
 const ptag = document.createElement('p');
 container.appendChild(ptag);
@@ -223,7 +215,6 @@ function check_answer(formatted_name) {
 
 
 
-
 // fetches the images from the json file
 async function fetch_images() {
   const response = await fetch('images.json');
@@ -274,7 +265,6 @@ async function retrieve_characters() {
 
 
 
-
 //start game function 
 function startGame() {
   main.appendChild(score);
@@ -286,8 +276,6 @@ function startGame() {
   startButton.style.display = 'none';
   retrieve_characters();
 }
-
-
 
 
 
@@ -303,8 +291,6 @@ function game_over() {
   console.log(localStorage.getItem(input.value));
 }
 document.querySelector('.start').addEventListener('click', startGame);
-
-
 
 
 

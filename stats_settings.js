@@ -13,7 +13,9 @@ let lightinput = document.createElement('input');
 let label = document.createElement('label');
 lightinput.type = 'checkbox';
 lightinput.role = 'switch';
-lightinput.className = 'lightswitch'; //ads the light switch class to the input 
+lightinput.className = 'lightswitch'; //ads the light switch class to the input
+
+
 // set container size based on viewport size, reference vw to properly set the container size; mobile responsive
 const viewport_sizes = [
     { max: 768, width: '90%', height: '80%' },         // set the container size based on the viewport size, 768 is mobile
@@ -23,6 +25,7 @@ const viewport_sizes = [
     { max: 2560, width: '50%', height: '40%' },        // 2560 is large
     { max: Infinity, width: '40%', height: '30%' }     // greater than 2560 
 ]
+
 
 // create a darkened bg for the splash, nice effect
 const darken_bg = document.createElement('div');
@@ -36,6 +39,8 @@ function createLine(rotation) {
     return line;
 }
 
+
+
 // function create heading for the splash
 function createHeading(txt) {
     const heading = document.createElement('h1');
@@ -43,6 +48,7 @@ function createHeading(txt) {
     heading.classList.add('splash_h1_txt');
     return heading;
 }
+
 
 
 // opens splash, either settings or stats depending on the argument
@@ -81,38 +87,59 @@ function openSplash(arg) {
 
     // stats or settings
     if (arg === 'stats') {
+        // stats content
         const heading = createHeading('Stats')
+        splash.appendChild(heading);
+        
+    } else if (arg === 'info') {
+        // info content
+        const heading = createHeading('Info')
         splash.appendChild(heading);
 
     } else if (arg === 'settings') {
+        // settings content
         const heading = createHeading('Settings')
         splash.appendChild(heading);
-        // settings content
-
+    
+        // create the div that stores and organises all settings
+        const settings_div = document.createElement('div');
+        settings_div.classList.add('stats_settings_div');
+        splash.appendChild(settings_div);
+    
+        // create the div for the label
+        const left_label_div = document.createElement('div');
+        left_label_div.classList.add('left_label_div');
+        settings_div.appendChild(left_label_div);
+    
+        // create the div for the input
+        const input_switch_div = document.createElement('div');
+        input_switch_div.classList.add('input_switch_div');
+        settings_div.appendChild(input_switch_div);
+    
         //creating the light theme switch
-        label.classList.add('label');
-        label.textContent = 'Light Theme:';
-
-        splash.appendChild(label);
-        splash.appendChild(lightinput);
-
+        const label = document.createElement('label');
+        label.classList.add('left_label');
+        label.textContent = 'Light Theme';
+    
+        left_label_div.appendChild(label);
+        input_switch_div.appendChild(lightinput);
+    
         document.querySelector('.lightswitch').addEventListener('change', function () {
-
+    
             if (this.checked) {
                 document.getElementsByClassName('lightswitch')[0].checked = true;
-
+    
                 document.body.classList.add('light-theme'); //adds the light theme class if the switch is checked 
                 localStorage.setItem('light-theme', 1); //saves the users choice 
-            }
-            else {
-
+            } else {
                 document.body.classList.remove('light-theme');
                 localStorage.setItem('light-theme', 0); //sets local storage to 0 when lightswitch is off
-
             }
         });
-        //gets the light swithc and applies the theme to it 
+    
+        //gets the light switch and applies the theme to it 
         lightswitch = document.querySelector('.lightswitch');
+    
         if (localStorage.getItem('light-theme') == 1) {
             lightswitch.checked = true;
             document.body.classList.add('light-theme');
@@ -120,9 +147,7 @@ function openSplash(arg) {
             document.body.classList.remove('light-theme');
             lightswitch.checked = false;
         }
-
     }
-
 }
 
 // window resize - remove splash
