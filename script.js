@@ -198,8 +198,14 @@ function check_answer(formatted_name) {
   if (user_input.toUpperCase() === formatted_name) {
     answerEnabled = false;
     ptag.textContent = 'Correct!';
+    //disables the user input when right 
+    for (let i = 0, index = 0; i < input_container.children.length; i++) {
+      let child = input_container.children[i];
+      child.disabled = true;
+    }
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
+
     setTimeout(retrieve_characters, input_container.children.length * 200);
   } else   {
     ptag.textContent = 'Incorrect!';
