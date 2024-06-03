@@ -103,13 +103,13 @@ function openSplash(arg) {
         splash.appendChild(heading);
 
 
-    }else if(arg === 'bestTime') {
+    } else if(arg === 'bestTime') {
         label_txt= 'Your Score:' + {scoreNum};
         const label = createLabel(label_txt ) ;
         splash.appendChild(label);
         
     
-    }else if (arg === 'settings') {
+    } else if (arg === 'settings') {
         // settings content
         const heading = createHeading('Settings')
         splash.appendChild(heading);
@@ -161,15 +161,16 @@ function openSplash(arg) {
             lightswitch.checked = false;
         }
     }
-}
 
-// window resize - remove splash
-window.addEventListener('resize', () => {
-    if (darken_bg.firstChild) {
-        document.body.removeChild(darken_bg);
-        openSplash(arg);
-    }
-});
+    // window resize - remove splash - keep it in this function - causes Uncaught DOMException: Node.removeChild: Uncaught ReferenceError:
+    // a timeout is used so that too many calls on every resize event are avoided - causes crashes
+    window.addEventListener('resize', () => {
+        if (darken_bg.firstChild && document.body.contains(darken_bg)) {
+            document.body.removeChild(darken_bg);
+            setTimeout(() => openSplash(arg), 100);
+        }
+    });
+}
 
 //applies the users choice of theme when the page is loaded
 (() => {

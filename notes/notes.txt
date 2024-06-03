@@ -15,9 +15,3 @@ todo
 - improve image selection, some are not transparent, some too low quality
 - if you get an answer right and spam enter it will skip some characters
 - cleanup everything after done
-
-
-errors on splash open and window resize:
-Uncaught ReferenceError: arg is not defined
-Uncaught DOMException: Node.removeChild: The node to be removed is not a child of this node
-On window resize

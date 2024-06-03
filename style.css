@@ -171,11 +171,14 @@ body.light-theme .line {
 
 }
 
+
 body.light-theme .splash_h1_txt {
     color: var(--splash-h1-text-light);
 }
 
-
+body.light-theme .splash_label_txt {
+    color: var(--splash-h1-text-light);
+}
 
 /* The css below is for displaying
  * the navbar of the game
@@ -517,4 +520,8 @@ input:where([type="checkbox"][role="switch"])::before {
 
 input:where([type="checkbox"][role="switch"]):checked::before {
     left: 1em;
+}
+
+.timer{
+    color: var(--lives-color-light)
 }
