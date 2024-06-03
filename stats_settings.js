@@ -163,10 +163,11 @@ function openSplash(arg) {
     }
 
     // window resize - remove splash - keep it in this function - causes Uncaught DOMException: Node.removeChild: Uncaught ReferenceError:
+    // a timeout is used so that too many calls on every resize event are avoided - causes crashes
     window.addEventListener('resize', () => {
-        if (darken_bg.firstChild) {
+        if (darken_bg.firstChild && document.body.contains(darken_bg)) {
             document.body.removeChild(darken_bg);
-            openSplash(arg);
+            setTimeout(() => openSplash(arg), 100);
         }
     });
 }
