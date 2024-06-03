@@ -23,7 +23,8 @@ gamemode3 = 'Three lives';
 
 //makes its so you through out the program you can get the current game mode 
 let current_choice = null;
-
+//enables or disables the ability to get an answer right 
+let answerEnabled = true
 
 // lives selector 
 const extralives = document.querySelector('.lives');
@@ -86,7 +87,7 @@ function input_guess(name, formatted_name) {
 
       // add keydown event listener for Enter, Delete or Backspace
       element.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && answerEnabled) {
           user_input = get_user_input();
           check_answer(formatted_name);
         } else if (event.key === 'Delete' || event.key === 'Backspace') {
@@ -195,6 +196,7 @@ function check_answer(formatted_name) {
 
   // checks if the user input is correct, and if it is in the correct position
   if (user_input.toUpperCase() === formatted_name) {
+    answerEnabled = false;
     ptag.textContent = 'Correct!';
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
@@ -236,6 +238,7 @@ function format(name) {
 
 // retrieve random character  
 async function retrieve_characters() {
+  answerEnabled = true;
   try {
     // fetch image data
     const data = await fetch_images();
