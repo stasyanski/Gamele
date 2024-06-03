@@ -201,20 +201,23 @@ function check_answer(formatted_name) {
     scoreNum++;
     score.textContent = `Score: ${scoreNum}`;
     setTimeout(retrieve_characters, input_container.children.length * 200);
-  } else if (user_input.length !== formatted_name.length) {
+  } else   {
     ptag.textContent = 'Incorrect!';
     if (gamemode3 === current_choice.textContent) {
-      let lives = extralives.children;
-      if (lives.length > 0) {
-        lives[0].remove();
-      } else {
-        game_over();
-      }
+      removeLife()
+
     }
   }
 }
 
-
+const removeLife  = () => {
+    let lives = extralives.children;
+    if (lives.length > 0) {
+      lives[0].remove();
+    } else {
+      game_over();
+    }
+}
 
 
 // fetches the images from the json file
@@ -285,6 +288,7 @@ function startGame() {
 // game over function
 function game_over() {
   gamover = true;
+  answerEnabled = false;
   ptag.textContent = 'Game Over !';
   // CREATES  an input box for the user to enter  their username when they lose 
   input.value = '';
@@ -351,7 +355,7 @@ document.querySelector('.start').addEventListener('click', startGame);
     start.addEventListener('click', () => {
 
       if (current_choice.textContent == gamemode3) {
-        console.log("test")
+        
 
 
         for (let i = 0; i < 3; i++) {
@@ -371,7 +375,7 @@ document.querySelector('.start').addEventListener('click', startGame);
         let time =setInterval(() => {
           milliseconds--;
           if (milliseconds < 0) {
-            milliseconds = 9;
+            milliseconds = 99;
             seconds--;
           }
           if (seconds < 0) {
@@ -388,7 +392,7 @@ document.querySelector('.start').addEventListener('click', startGame);
           let displaySeconds = String(seconds).padStart(2, '0');
           let displayMilliseconds = String(milliseconds).padStart(2, '0');
           
-          timerLabel.textContent = 'Timer: ' + displayMinutes + ':' + displaySeconds + "." + displayMilliseconds;
+          timerLabel.textContent = 'Timer: ' + displayMinutes + '.' + displaySeconds + "." + displayMilliseconds;
         }, 10);
       }
     });

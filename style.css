@@ -523,5 +523,8 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 }
 
 .timer{
-    color: var(--lives-color-light)
+    padding-top: 1em;
+    color: var(--score-text-color-dark);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
 }
