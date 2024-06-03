@@ -161,6 +161,15 @@ body.light-theme .line {
     font-family: 'Roboto', sans-serif;
     text-align: center;
 }
+.splash_label_txt{
+    font-size: 2rem;
+    color: var(--splash-h1-text-dark);
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding:5em
+
+}
 
 body.light-theme .splash_h1_txt {
     color: var(--splash-h1-text-light);

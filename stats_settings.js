@@ -49,6 +49,12 @@ function createHeading(txt) {
     return heading;
 }
 
+function createLabel(txt) {
+    const label = document.createElement('label');
+    label.textContent = txt;
+    label.classList.add('splash_label_txt');
+    return label;
+}
 
 
 // opens splash, either settings or stats depending on the argument
@@ -96,7 +102,14 @@ function openSplash(arg) {
         const heading = createHeading('Info')
         splash.appendChild(heading);
 
-    } else if (arg === 'settings') {
+
+    }else if(arg === 'bestTime') {
+        label_txt= 'Your Score:' + {scoreNum};
+        const label = createLabel(label_txt ) ;
+        splash.appendChild(label);
+        
+    
+    }else if (arg === 'settings') {
         // settings content
         const heading = createHeading('Settings')
         splash.appendChild(heading);

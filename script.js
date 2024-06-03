@@ -358,20 +358,35 @@ document.querySelector('.start').addEventListener('click', startGame);
       }
 
       if (current_choice.textContent ==gamemode1){ //starts the best time mode
-        let time =0;
+        let minute =1;
+        let seconds = 59;
+        let milliseconds = 99;
         let timerLabel = document.createElement('span')
-        let startTime = Date.now();
+       
         timerLabel.classList.add('timer');
         document.body.appendChild(timerLabel);
-        setInterval(() => {
-          let elapsedTime = Date.now() - startTime
-          console.log(elapsedTime);
-          let seconds = Math.floor(elapsedTime / 1000);
-          let milliseconds = (elapsedTime % 1000);
+        let time =setInterval(() => {
+          milliseconds--;
+          if (milliseconds < 0) {
+            milliseconds = 9;
+            seconds--;
+          }
+          if (seconds < 0) {
+            seconds = 59;
+            minute--;
+          }
           
+          if(minute ==0 && seconds ==0 && milliseconds== 0){
+            
+            clearInterval(time);
+            openSplash('bestTime')
+          }
+          let displayMinutes = String(minute).padStart(2, '0');
+          let displaySeconds = String(seconds).padStart(2, '0');
+          let displayMilliseconds = String(milliseconds).padStart(2, '0');
           
-          timerLabel.textContent = seconds + "." + milliseconds ;
-        }, 1);
+          timerLabel.textContent = 'Timer: ' + displayMinutes + ':' + displaySeconds + "." + displayMilliseconds;
+        }, 10);
       }
     });
   });
