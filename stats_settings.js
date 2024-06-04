@@ -149,22 +149,22 @@ function open_splash(arg) {
             if (this.checked) {
                 document.getElementsByClassName('lightswitch')[0].checked = true;
 
-                document.body.classList.add('light-theme'); //adds the light theme class if the switch is checked 
-                localStorage.setItem('light-theme', 1); //saves the users choice 
+                document.body.classList.add('light_theme'); //adds the light theme class if the switch is checked 
+                localStorage.setItem('light_theme', 1); //saves the users choice 
             } else {
-                document.body.classList.remove('light-theme');
-                localStorage.setItem('light-theme', 0); //sets local storage to 0 when light_switch is off
+                document.body.classList.remove('light_theme');
+                localStorage.setItem('light_theme', 0); //sets local storage to 0 when light_switch is off
             }
         });
 
         //gets the light switch and applies the theme to it 
         light_switch = document.querySelector('.lightswitch');
 
-        if (localStorage.getItem('light-theme') == 1) {
+        if (localStorage.getItem('light_theme') == 1) {
             light_switch.checked = true;
-            document.body.classList.add('light-theme');
+            document.body.classList.add('light_theme');
         } else {
-            document.body.classList.remove('light-theme');
+            document.body.classList.remove('light_theme');
             light_switch.checked = false;
         }
     }
@@ -187,9 +187,9 @@ function open_splash(arg) {
 
 //applies the users choice of theme when the page is loaded
 (() => {
-    if (localStorage.getItem('light-theme') == 1) {
-        document.body.classList.add('light-theme');
+    if (localStorage.getItem('light_theme') == 1) {
+        document.body.classList.add('light_theme');
     } else {
-        document.body.classList.remove('light-theme');
+        document.body.classList.remove('light_theme');
     }
 })();

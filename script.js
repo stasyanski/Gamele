@@ -9,7 +9,7 @@
 
 
 // DOM elements
-const container       = document.querySelector('.character-container');
+const container       = document.querySelector('.character_container');
 const input_container = document.querySelector('.input_container');
 const main            = document.querySelector('.score');
 const score           = document.querySelector('.score_txt');

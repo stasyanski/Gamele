@@ -75,7 +75,7 @@ body {
     flex-direction: column;
 }
 
-body.light-theme {
+body.light_theme {
     background-color: var(--main-bg-color-light);
 }
 
@@ -95,7 +95,7 @@ body.light-theme {
     z-index: 998;
 }
 
-body.light-theme .darken_bg {
+body.light_theme .darken_bg {
     background-color: var(--darken-bg-color-light);
 }
 
@@ -121,7 +121,7 @@ body.light-theme .darken_bg {
     position: relative;
 }
 
-body.light-theme splash_content {
+body.light_theme splash_content {
     background-color: var(--splash-bg-color-light);
 }
 
@@ -150,7 +150,7 @@ body.light-theme splash_content {
     pointer-events: none;
 }
 
-body.light-theme .line {
+body.light_theme .line {
     background-color: var(--line-color-light);
 }
 
@@ -161,22 +161,22 @@ body.light-theme .line {
     font-family: 'Roboto', sans-serif;
     text-align: center;
 }
-.splash_label_txt{
+
+.splash_label_txt {
     font-size: 2rem;
     color: var(--splash-h1-text-dark);
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    padding:5em
-
+    padding: 5em
 }
 
 
-body.light-theme .splash_h1_txt {
+body.light_theme .splash_h1_txt {
     color: var(--splash-h1-text-light);
 }
 
-body.light-theme .splash_label_txt {
+body.light_theme .splash_label_txt {
     color: var(--splash-h1-text-light);
 }
 
@@ -191,7 +191,7 @@ header {
     border-bottom: var(--border-bottom-dark);
 }
 
-body.light-theme header {
+body.light_theme header {
     border-bottom: var(--border-bottom-light);
 }
 
@@ -217,8 +217,8 @@ header>nav>ul,
     font-family: 'Roboto', sans-serif;
 }
 
-body.light-theme .parag,
-body.light-theme .anchor {
+body.light_theme .parag,
+body.light_theme .anchor {
     color: var(--anchor-parag-color-light);
 }
 
@@ -239,7 +239,7 @@ body.light-theme .anchor {
     font-family: 'Roboto', sans-serif;
 }
 
-body.light-theme .score_txt {
+body.light_theme .score_txt {
     color: var(--score-text-color-light);
 }
 
@@ -248,8 +248,7 @@ body.light-theme .score_txt {
  * this is for playing the game generating the characters 
  * and input to enter the guesses 
 */
-
-.character-container {
+.character_container {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -259,19 +258,19 @@ body.light-theme .score_txt {
     overflow: auto;
 }
 
-.character-container img {
+.character_container img {
     height: 80vh;
     width: auto;
 }
 
-.character-container p {
+.character_container p {
     font-size: 1.5rem;
     color: var(--character-container-p-color-dark);
     padding: 10px;
     font-family: 'Roboto', sans-serif;
 }
 
-body.light-theme .character-container p {
+body.light_theme .character_container p {
     color: var(--character-container-p-color-light);
 }
 
@@ -289,7 +288,6 @@ body.light-theme .character-container p {
 /* The css below is for the splash screen that
  * that appears on game load
 */
-
 .game_desc {
     font-size: 1rem;
     color: var(--game-desc-text-color-dark);
@@ -298,7 +296,7 @@ body.light-theme .character-container p {
     text-align: justify;
 }
 
-body.light-theme .game_desc {
+body.light_theme .game_desc {
     color: var(--game-desc-text-color-light);
 }
 
@@ -310,7 +308,7 @@ body.light-theme .game_desc {
     text-align: center;
 }
 
-body.light-theme .game_desc_title {
+body.light_theme .game_desc_title {
     color: var(--game-desc-title-color-light);
 }
 
@@ -351,7 +349,7 @@ body.light-theme .game_desc_title {
     color: var(--choice-text-color-dark);
 }
 
-body.light-theme .choice {
+body.light_theme .choice {
     color: var(--choice-text-color-light);
 }
 
@@ -369,7 +367,7 @@ body.light-theme .choice {
     animation: pulse 2s infinite;
 }
 
-body.light-theme .start {
+body.light_theme .start {
     background-color: var(--start-color-light);
     box-shadow: var(--start-box-shadow-light);
 }
@@ -380,7 +378,7 @@ body.light-theme .start {
     font-weight: 600;
 }
 
-body.light-theme .start_bttn_txt {
+body.light_theme .start_bttn_txt {
     color: var(--start-bttn-text-color-light);
 }
 
@@ -394,14 +392,15 @@ body.light-theme .start_bttn_txt {
     z-index: 1000;
 }
 
-body.light-theme .choice_overlay {
+body.light_theme .choice_overlay {
     box-shadow: var(--choice-overlay-shadow-light);
 }
+
+
 
 /* The CSS below is for the input
  * field(s) when guessing
 */
-
 .input_one_char {
     width: 70px;
     height: 70px;
@@ -420,7 +419,7 @@ body.light-theme .choice_overlay {
     transition: width 0.3s ease, height 0.3s ease, margin-top 0.3s ease, background-color 0.3s ease-in-out;
 }
 
-body.light-theme .input_one_char {
+body.light_theme .input_one_char {
     background: var(--guess-input-color-light);
 }
 
@@ -439,7 +438,10 @@ body.light-theme .input_one_char {
 }
 
 
-/* applies the css to the lives  
+
+/* The css below is for the lives
+ * of the user, shows how many lives
+ * they have left
 */
 .lives {
     display: flex;
@@ -457,9 +459,11 @@ body.light-theme .input_one_char {
     margin: 1.5em;
 }
 
-body.light-theme .lives li {
+body.light_theme .lives li {
     background-color: var(--lives-color-light);
 }
+
+
 
 /* Below is the settings for css, including the switch 
 */
@@ -522,7 +526,12 @@ input:where([type="checkbox"][role="switch"]):checked::before {
     left: 1em;
 }
 
-.timer{
+
+
+/* The css below is for the timer 
+ * in best time gamemode
+*/
+.timer {
     padding-top: 1em;
     color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
