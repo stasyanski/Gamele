@@ -113,7 +113,7 @@ function input_guess(name, formatted_name) {
                   input_container.children[prev_input].focus();
                 }
                 if (input_container.children[prev_input].disabled === false && input_container.children[i].style.backgroundColor !== 'red' && input_container.children[i].style.backgroundColor !== 'orange') { // only clears previous value if it's not disabled, if it it leave it alone, prevents deletion of correct values, or red / amber values
-                  input_container.children[prev_input].value = ''; // removes the previous value too, game breaking bug fixed
+                  input_container.children[prev_input].value = ''; // removes the previous value too
                 }
               }, 5);
             }
@@ -132,6 +132,16 @@ function input_guess(name, formatted_name) {
               let length = previous_input.value.length;
               previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
             }, 10); // in a set timeout to ensure the cursor is set after the focus is set
+          } else {
+            // if there is no previous input box, move to the next one that is red or amber
+            for (let i = 0; i < input_container.children.length; i++) {
+              console.log('test')
+              let child = input_container.children[i];
+              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                child.focus();
+                break;
+              }
+            }
           }
         } else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
@@ -142,6 +152,15 @@ function input_guess(name, formatted_name) {
           // if there's a next input box, focus on it
           if (next_input < input_container.children.length) {
             input_container.children[next_input].focus();
+          } else {
+            // if there is no next input box, move to the next one that is red or amber
+            for (let i = 0; i < input_container.children.length; i++) {
+              let child = input_container.children[i];
+              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                child.focus();
+                break;
+              }
+            }
           }
         }
       });
