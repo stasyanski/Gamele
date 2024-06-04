@@ -13,4 +13,4 @@
 - cleanup everything after done
 
 ### Bugs:
-- when using arrow keys for focus, the focus moves behind the letter not in front of the letter
+- when wrong answer and there is two letters in between a green letter, cant move to next or previous using arrow keys

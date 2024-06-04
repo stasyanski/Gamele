@@ -126,7 +126,12 @@ function input_guess(name, formatted_name) {
           }
           // if there's a previous input box, focus on it
           if (prev_input >= 0) {
-            input_container.children[prev_input].focus();
+            let previous_input = input_container.children[prev_input];
+            previous_input.focus();
+            setTimeout(() => {
+              let length = previous_input.value.length;
+              previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
+            }, 10); // in a set timeout to ensure the cursor is set after the focus is set
           }
         } else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
