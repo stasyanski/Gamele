@@ -13,4 +13,4 @@
 - cleanup everything after done
 
 ### Bugs:
-- when wrong answer and there is two letters in between a green letter, cant move to next or previous using arrow keys
+- No known

@@ -9,21 +9,21 @@
 
 
 // DOM elements
-const container       = document.querySelector('.character_container');
+const container = document.querySelector('.character_container');
 const input_container = document.querySelector('.input_container');
-const main            = document.querySelector('.score');
-const score           = document.querySelector('.score_txt');
-const extra_lives     = document.querySelector('.lives');
-const img             = document.createElement('img');
+const main = document.querySelector('.score');
+const score = document.querySelector('.score_txt');
+const extra_lives = document.querySelector('.lives');
+const img = document.createElement('img');
 
 // game state variables
 let input;
 let game_over_state = false;
-let user_input      = null;
+let user_input = null;
 let dot_interval;           // used to cancel the interval making sure its only called once
-let score_num       = 0;
-let current_choice  = null; // current game mode
-let answer_enabled  = true; // enables or disables the ability to get an answer right 
+let score_num = 0;
+let current_choice = null; // current game mode
+let answer_enabled = true; // enables or disables the ability to get an answer right 
 
 // game mode variables
 const gamemode1 = 'Best time';
@@ -125,7 +125,7 @@ function input_guess(name, formatted_name) {
             prev_input--;
           }
           // if there's a previous input box, focus on it
-          if (prev_input >= 0) {
+          if (prev_input >= 0 && input_container.children[prev_input].disabled === false) {
             let previous_input = input_container.children[prev_input];
             previous_input.focus();
             setTimeout(() => {
@@ -134,11 +134,14 @@ function input_guess(name, formatted_name) {
             }, 10); // in a set timeout to ensure the cursor is set after the focus is set
           } else {
             // if there is no previous input box, move to the next one that is red or amber
-            for (let i = 0; i < input_container.children.length; i++) {
-              console.log('test')
-              let child = input_container.children[i];
+            for (let j = i - 1; j >= 0; j--) {
+              let child = input_container.children[j];
               if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
                 child.focus();
+                setTimeout(() => {
+                  let length = child.value.length;
+                  child.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
+                }, 10); // in a set timeout to ensure the cursor is set after the focus is set
                 break;
               }
             }
@@ -150,12 +153,12 @@ function input_guess(name, formatted_name) {
             next_input++;
           }
           // if there's a next input box, focus on it
-          if (next_input < input_container.children.length) {
+          if (next_input < input_container.children.length && input_container.children[next_input].disabled === false) {
             input_container.children[next_input].focus();
           } else {
             // if there is no next input box, move to the next one that is red or amber
-            for (let i = 0; i < input_container.children.length; i++) {
-              let child = input_container.children[i];
+            for (let j = i + 1; j < input_container.children.length; j++) {
+              let child = input_container.children[j];
               if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
                 child.focus();
                 break;
