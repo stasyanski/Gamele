@@ -92,7 +92,7 @@ body.light_theme {
 
     overflow: auto;
     background-color: var(--darken-bg-color-dark);
-    z-index: 998;
+    z-index: 999;
 }
 
 body.light_theme .darken_bg {
@@ -221,23 +221,6 @@ body.light_theme .splash_h1_txt {
 
 body.light_theme .splash_label_txt {
     color: var(--splash-h1-text-light);
-}
-
-/* The css below is for 
- * score, shows the user their streak
-*/
-.score {
-    display: none;
-}
-
-.score_txt {
-    font-size: 2rem;
-    color: var(--score-text-color-dark);
-    font-family: 'Roboto', sans-serif;
-}
-
-body.light_theme .score_txt {
-    color: var(--score-text-color-light);
 }
 
 
@@ -383,6 +366,44 @@ body.light_theme .choice_overlay {
     box-shadow: var(--choice-overlay-shadow-light);
 }
 
+/* The css below is for the user interface, which holds input field,
+ * score, lives, time, and the ui buttons
+*/
+.user_interface{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: 998;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ui_elements_container {
+    width: 100%;
+}
+
+/* The css below is for 
+ * score, shows the user their streak
+*/
+.score {
+    display: none;
+}
+
+.score_txt {
+    font-size: 2rem;
+    color: var(--score-text-color-dark);
+    font-family: 'Roboto', sans-serif;
+}
+
+body.light_theme .score_txt {
+    color: var(--score-text-color-light);
+}
 
 
 /* The CSS below is for the input
@@ -433,7 +454,6 @@ body.light_theme .input_one_char {
     width: 70px;
     display: inline-block;
 }
-
 
 
 /* The css below is for the lives
