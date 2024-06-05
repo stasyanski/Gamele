@@ -232,15 +232,21 @@ body.light_theme .splash_label_txt {
     justify-content: center;
     align-items: center;
     display: flex;
-    height: auto;
+    height: 100vh;
     width: 100vw;
+
     flex-direction: column;
     overflow: auto;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 997;
 }
 
 .character_container img {
-    height: 80vh;
     width: auto;
+    height: 90vh;
 }
 
 .character_container p {
