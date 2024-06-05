@@ -99,7 +99,6 @@ body.light_theme .darken_bg {
     background-color: var(--darken-bg-color-light);
 }
 
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -112,6 +111,56 @@ body.light_theme .darken_bg {
     }
 }
 
+/* The css below is for displaying
+ * the navbar of the game
+*/
+
+header {
+    width: 40%;
+    height: 100%;
+    padding: 0.5rem;
+    border-bottom: var(--border-bottom-dark);
+}
+
+body.light_theme header {
+    border-bottom: var(--border-bottom-light);
+}
+
+header>nav>ul,
+.btns,
+.title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    list-style-type: none;
+}
+
+.btns {
+    margin-left: auto;
+}
+
+.parag,
+.anchor {
+    text-decoration: none;
+    color: var(--anchor-parag-color-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+body.light_theme .parag,
+body.light_theme .anchor {
+    color: var(--anchor-parag-color-light);
+}
+
+.title {
+    text-decoration: none;
+}
+
+
+/* The css below is for the settings / leaderboard splash
+ * screen, e.g. line creation
+*/
 .splash_content {
     background-color: var(--splash-bg-color-dark);
     padding: 20px;
@@ -124,12 +173,6 @@ body.light_theme .darken_bg {
 body.light_theme splash_content {
     background-color: var(--splash-bg-color-light);
 }
-
-
-
-/* The css below is for the settings / leaderboard splash
- * screen, e.g. line creation
-*/
 
 .close_container {
     width: 20px;
@@ -180,52 +223,6 @@ body.light_theme .splash_label_txt {
     color: var(--splash-h1-text-light);
 }
 
-/* The css below is for displaying
- * the navbar of the game
-*/
-
-header {
-    width: 40%;
-    height: 100%;
-    padding: 0.5rem;
-    border-bottom: var(--border-bottom-dark);
-}
-
-body.light_theme header {
-    border-bottom: var(--border-bottom-light);
-}
-
-header>nav>ul,
-.btns,
-.title {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    list-style-type: none;
-}
-
-.btns {
-    margin-left: auto;
-}
-
-.parag,
-.anchor {
-    text-decoration: none;
-    color: var(--anchor-parag-color-dark);
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: 'Roboto', sans-serif;
-}
-
-body.light_theme .parag,
-body.light_theme .anchor {
-    color: var(--anchor-parag-color-light);
-}
-
-.title {
-    text-decoration: none;
-}
-
 /* The css below is for 
  * score, shows the user their streak
 */
@@ -274,19 +271,9 @@ body.light_theme .character_container p {
     color: var(--character-container-p-color-light);
 }
 
-.input_container {
-    position: absolute;
-    width: 100%;
-    top: 60%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 
 /* The css below is for the splash screen that
- * that appears on game load
+ * that appears on game load / on open settings, stats
 */
 .game_desc {
     font-size: 1rem;
@@ -401,6 +388,16 @@ body.light_theme .choice_overlay {
 /* The CSS below is for the input
  * field(s) when guessing
 */
+.input_container {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .input_one_char {
     width: 70px;
     height: 70px;
