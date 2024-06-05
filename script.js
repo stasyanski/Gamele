@@ -118,61 +118,75 @@ function input_guess(name, formatted_name) {
           }
         } else if (event.key === 'ArrowLeft') {
           // move focus to the left input box on arrowleft
-          let prev_input = i - 1;
-          while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
-            prev_input--;
-          }
-          // if there's a previous input box, focus on it
-          if (prev_input >= 0 && input_container.children[prev_input].disabled === false) {
-            let previous_input = input_container.children[prev_input];
-            previous_input.focus();
-            setTimeout(() => {
-              let length = previous_input.value.length;
-              previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
-            }, 10); // in a set timeout to ensure the cursor is set after the focus is set
-          } else {
-            // if there is no previous input box, move to the next one that is red or amber
-            for (let j = i - 1; j >= 0; j--) {
-              let child = input_container.children[j];
-              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                child.focus();
-                setTimeout(() => {
-                  let length = child.value.length;
-                  child.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
-                }, 10); // in a set timeout to ensure the cursor is set after the focus is set
-                break;
-              }
-            }
-          }
+          inputMovement('left')
+          
         } else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
-          let next_input = i + 1;
-          while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
-            next_input++;
+          inputMovement('right')
+        }
+        function inputMovement(direction){
+          if (direction === 'left'){
+            let prev_input = i - 1;
+                  while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
+                    prev_input--;
+                  }
+                  // if there's a previous input box, focus on it
+                  if (prev_input >= 0 && input_container.children[prev_input].disabled === false) {
+                    let previous_input = input_container.children[prev_input];
+                    previous_input.focus();
+                    setTimeout(() => {
+                      let length = previous_input.value.length;
+                      previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
+                    }, 10); // in a set timeout to ensure the cursor is set after the focus is set
+                  } else {
+                    // if there is no previous input box, move to the next one that is red or amber
+                    for (let j = i - 1; j >= 0; j--) {
+                      let child = input_container.children[j];
+                      if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                        child.focus();
+                        setTimeout(() => {
+                          let length = child.value.length;
+                          child.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
+                        }, 10); // in a set timeout to ensure the cursor is set after the focus is set
+                        break;
+                      }
+                    }
+                  }
           }
-          // if there's a next input box, focus on it
-          if (next_input < input_container.children.length && input_container.children[next_input].disabled === false) {
-            input_container.children[next_input].focus();
-          } else {
-            // if there is no next input box, move to the next one that is red or amber
-            for (let j = i + 1; j < input_container.children.length; j++) {
-              let child = input_container.children[j];
-              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                child.focus();
-                break;
-              }
-            }
+          else if(direction === 'right'){
+            let next_input = i + 1;
+                  while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
+                    next_input++;
+                  }
+                  // if there's a next input box, focus on it
+                  if (next_input < input_container.children.length && input_container.children[next_input].disabled === false) {
+                    input_container.children[next_input].focus();
+                  } else {
+                    // if there is no next input box, move to the next one that is red or amber
+                    for (let j = i + 1; j < input_container.children.length; j++) {
+                      let child = input_container.children[j];
+                      if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                        child.focus();
+                        break;
+                      }
+                    }
+                  }
+                  
           }
         }
       });
     }
     input_container.appendChild(element);
   }
+  
   const first_element = input_container.children[0];
   if (first_element) {
     first_element.focus();  // automatically focuses on the first input box, saving user a few clicks.
   }
+  
 }
+
+
 
 // check answer and related functions
 function check_answer(formatted_name) {

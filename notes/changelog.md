@@ -6,7 +6,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 
 ### Added
 
-- 
+-- put the arrow key input movement in a function but its causing an erro when the arrow buttons are clicked 
 
 
 
