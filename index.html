@@ -24,16 +24,17 @@
                 </div>
 
                 <div class="btns">
-                    <li class="list"><a onclick="open_splash('info')" class="anchor">ℹ️</a></li> <!-- the emoji is not supported by vscode / my font but it is a info emoji -->
+                    <li class="list"><a onclick="open_splash('info')" class="anchor">ℹ️</a></li>
+                    <!-- the emoji is not supported by vscode / my font but it is a info emoji -->
                     <li class="list"><a onclick="open_splash('settings')" class="anchor"">⚙️</a></li>
-                    <li class="list"><a onclick="open_splash('stats')" class="anchor">📈</a></li>
+                    <li class=" list"><a onclick="open_splash('stats')" class="anchor">📈</a></li>
                 </div>
             </ul>
         </nav>
     </header>
 
     <div class="score">
-        <p class="score_txt">Score: 0</p>    
+        <p class="score_txt">Score: 0</p>
     </div>
 
     <div class="darken_bg">
@@ -42,7 +43,8 @@
                 GAMELE
             </h1>
             <p class="game_desc">
-                Test your knowledge by guessing as many characters in a row as possible! Choose your preferred game mode and start playing!
+                Test your knowledge by guessing as many characters in a row as possible! Choose your preferred game mode
+                and start playing!
             </p>
             <div class="choose_mode_div">
                 <button class="choice" id="ch1" value="Choice 1">Best time</button>
@@ -61,21 +63,49 @@
         </section>
 
         <section class="user_interface">
+
             <section class="input_container">
                 <!-- container that hold input created in script.js -->
             </section>
 
             <section class="ui_elements_container">
-                <div>
-                    <ul class='lives'>
-                        <!-- lives displated in 3rd gamemode -->
-                    </ul>
-                </div>
+                <p class="score">
+                    SCORE: 0
+                </p>
+
+                <!-- depending on gamemode, either timer or lives displayed -->
+                <p class="timer">
+                    TIME:
+                </p>
+
+                <ul class='lives'>
+                    <!-- lives displated in 3rd gamemode -->
+                </ul>
+
+                <button class="left_arrow">
+                    <p>
+                        ← 
+                    </p>
+                </button>
+
+                <button class="right_arrow">
+                    <p>
+                        →
+                    </p>
+                </button>
+
+                <button class="enter_bttn">
+                    <p>
+                        ENTER
+                    </p>
+                </button>
+
             </section>
+            
         </section>
     </main>
 
-    
+
 </body>
 
 </html>

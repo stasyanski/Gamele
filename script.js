@@ -11,8 +11,6 @@
 // DOM elements
 const container = document.querySelector('.character_container');
 const input_container = document.querySelector('.input_container');
-const main = document.querySelector('.score');
-const score = document.querySelector('.score_txt');
 const extra_lives = document.querySelector('.lives');
 const img = document.createElement('img');
 
@@ -22,8 +20,8 @@ let game_over_state = false;
 let user_input = null;
 let dot_interval;           // used to cancel the interval making sure its only called once
 let score_num = 0;
-let current_choice = null; // current game mode
-let answer_enabled = true; // enables or disables the ability to get an answer right 
+let current_choice = null;  // current game mode
+let answer_enabled = true;  // enables or disables the ability to get an answer right 
 
 // game mode variables
 const gamemode1 = 'Best time';
@@ -176,10 +174,6 @@ function input_guess(name, formatted_name) {
   }
 }
 
-// check answer stuff, to be improved
-const ptag = document.createElement('p');
-container.appendChild(ptag);
-
 // check answer and related functions
 function check_answer(formatted_name) {
 
@@ -227,7 +221,6 @@ function check_answer(formatted_name) {
   // checks if the user input is correct, and if it is in the correct position
   if (user_input.toUpperCase() === formatted_name) {
     answer_enabled = false;
-    ptag.textContent = 'Correct!';
 
     //disables the user input when right 
     for (let i = 0, index = 0; i < input_container.children.length; i++) {
@@ -235,11 +228,10 @@ function check_answer(formatted_name) {
       child.disabled = true;
     }
     score_num++;
-    score.textContent = `Score: ${score_num}`;
+    // SCORE.textContent = `Score: ${score_num}`;
 
     setTimeout(retrieve_characters, input_container.children.length * 200);
   } else {
-    ptag.textContent = 'Incorrect!';
     if (gamemode3 === current_choice.textContent) {
       remove_life()
 
@@ -319,11 +311,6 @@ async function retrieve_characters() {
 
 //start game function 
 function start_game() {
-  main.appendChild(score);
-  console.log('Starting game');
-  const display_score = document.querySelector('.score');
-  display_score.style.display = 'flex';
-
   const start_btn = document.querySelector('.start');
   start_btn.style.display = 'none';
   retrieve_characters();
@@ -333,7 +320,6 @@ function start_game() {
 function game_over() {
   game_over_state = true;
   answer_enabled = false;
-  ptag.textContent = 'Game Over !';
   // CREATES  an input box for the user to enter  their username when they lose 
   input.value = '';
   input.placeholder = 'Enter Username';
