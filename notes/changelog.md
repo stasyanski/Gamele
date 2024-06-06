@@ -10,15 +10,9 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [6/6/2024] @stasyanski    added animation to character_img
 - [6/6/2024] @stasyanski    fixed z index of navbar
 
-
-
-
-
 ### Changed
 
 - 
-
-
 
 
 ### Removed

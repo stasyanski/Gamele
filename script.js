@@ -117,13 +117,10 @@ function input_guess(name, formatted_name) {
               }, 5);
             }
           }
-        }
-
-        else if (event.key === 'ArrowLeft') {
+        } else if (event.key === 'ArrowLeft') {
           // move focus to the left input box on arrowleft
           input_movement('left')
-        }
-        else if (event.key === 'ArrowRight') {
+        } else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
           input_movement('right')
         }
@@ -131,7 +128,6 @@ function input_guess(name, formatted_name) {
         function input_movement(direction) {
           console.log(direction)
           if (direction === 'left') {
-
             let prev_input = i - 1;
             while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
               prev_input--;
@@ -158,9 +154,7 @@ function input_guess(name, formatted_name) {
                 }
               }
             }
-          }
-          else if (direction === 'right') {
-
+          } else if (direction === 'right') {
             let next_input = i + 1;
             while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
               next_input++;
