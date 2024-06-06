@@ -35,6 +35,7 @@ const gamemode3 = 'Three lives';
 
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
+
 function input_guess(name, formatted_name) {
   const input_container = document.querySelector('.input_container');
 
@@ -116,16 +117,23 @@ function input_guess(name, formatted_name) {
               }, 5);
             }
           }
-        } else if (event.key === 'ArrowLeft') {
+        }
+         
+        else if (event.key === 'ArrowLeft') {
           // move focus to the left input box on arrowleft
           inputMovement('left')
           
-        } else if (event.key === 'ArrowRight') {
+        } 
+        
+        else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
           inputMovement('right')
         }
+        
         function inputMovement(direction){
+          console.log(direction)
           if (direction === 'left'){
+            
             let prev_input = i - 1;
                   while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
                     prev_input--;
@@ -154,6 +162,7 @@ function input_guess(name, formatted_name) {
                   }
           }
           else if(direction === 'right'){
+            
             let next_input = i + 1;
                   while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
                     next_input++;
@@ -173,8 +182,19 @@ function input_guess(name, formatted_name) {
                   }
                   
           }
+          
         }
+        
+        document.querySelector('.left_arrow').addEventListener('click', function() {
+          inputMovement('left');
+        });
+        
+        document.querySelector('.right_arrow').addEventListener('click', function() {
+          inputMovement('right');
+        });
+        
       });
+      
     }
     input_container.appendChild(element);
   }
