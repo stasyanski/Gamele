@@ -99,7 +99,7 @@ body.light_theme .darken_bg {
     background-color: var(--darken-bg-color-light);
 }
 
-@keyframes fadeIn {
+@keyframes fade_in {
     0% {
         opacity: 0;
         transform: translateY(-50px);
@@ -109,6 +109,19 @@ body.light_theme .darken_bg {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes fade_in_2 {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
 }
 
 /* The css below is for displaying
@@ -166,7 +179,7 @@ body.light_theme .anchor {
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
-    animation: fadeIn 1s;
+    animation: fade_in 1s;
     position: relative;
 }
 
@@ -247,6 +260,8 @@ body.light_theme .splash_label_txt {
 .character_container img {
     width: auto;
     height: 90vh;
+
+    animation: fade_in_2 1s;
 }
 
 .character_container p {
