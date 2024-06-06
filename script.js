@@ -121,16 +121,16 @@ function input_guess(name, formatted_name) {
          
         else if (event.key === 'ArrowLeft') {
           // move focus to the left input box on arrowleft
-          inputMovement('left')
+          input_movement('left')
           
         } 
         
         else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
-          inputMovement('right')
+          input_movement('right')
         }
         
-        function inputMovement(direction){
+        function input_movement(direction){
           console.log(direction)
           if (direction === 'left'){
             
@@ -186,11 +186,11 @@ function input_guess(name, formatted_name) {
         }
         
         document.querySelector('.left_arrow').addEventListener('click', function() {
-          inputMovement('left');
+          input_movement('left');
         });
         
         document.querySelector('.right_arrow').addEventListener('click', function() {
-          inputMovement('right');
+          input_movement('right');
         });
         
       });
