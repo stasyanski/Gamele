@@ -398,16 +398,20 @@ body.light_theme .choice_overlay {
     align-items: center;
 
     width: 100vw;
-    height: 100vh;
+    height: fit-content;
     z-index: 998;
 
     position: absolute;
-    top: 0;
+    top: 60%;
     left: 0;
 }
 
 .ui_elements_container {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 /* The css below is for 
