@@ -54,41 +54,41 @@ function input_guess(name, formatted_name) {
 
   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
   for (let i = 0; i < name.length; i++) {
-      let element;
-      if (name[i] === '_') {
-        element = document.createElement('div');
-        element.classList.add('input_one_char_spacing');
-      } else {
-        element = document.createElement('input');
-        element.size = 1;
-        element.maxLength = 1;
-        element.classList.add('input_one_char');
+    let element;
+    if (name[i] === '_') {
+      element = document.createElement('div');
+      element.classList.add('input_one_char_spacing');
+    } else {
+      element = document.createElement('input');
+      element.size = 1;
+      element.maxLength = 1;
+      element.classList.add('input_one_char');
 
-        element.addEventListener('input', function () {
-          element.value = element.value.toUpperCase(); // convert input to uppercase, show on user end
-          user_input = get_user_input();
+      element.addEventListener('input', function () {
+        element.value = element.value.toUpperCase(); // convert input to uppercase, show on user end
+        user_input = get_user_input();
 
-          if (element.value) {
-            // find the next input box, skipping over any divs
-            let next_input = i + 1;
-            while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') {
-              next_input++;
-            }
-            // if there's a next input box, focus on it
-            if (next_input < input_container.children.length) {
-              input_container.children[next_input].focus();
-            } else {
-              // if there is no next input box, move to the next one that is red or amber
-              for (let i = 0; i < input_container.children.length; i++) {
-                let child = input_container.children[i];
-                if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                  child.focus();
-                  break;
-                }
+        if (element.value) {
+          // find the next input box, skipping over any divs
+          let next_input = i + 1;
+          while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') {
+            next_input++;
+          }
+          // if there's a next input box, focus on it
+          if (next_input < input_container.children.length) {
+            input_container.children[next_input].focus();
+          } else {
+            // if there is no next input box, move to the next one that is red or amber
+            for (let i = 0; i < input_container.children.length; i++) {
+              let child = input_container.children[i];
+              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                child.focus();
+                break;
               }
             }
           }
-        });
+        }
+      });
 
       // add keydown event listener for Enter, Delete or Backspace
       element.addEventListener('keydown', function (event) {
@@ -118,92 +118,83 @@ function input_guess(name, formatted_name) {
             }
           }
         }
-         
+
         else if (event.key === 'ArrowLeft') {
           // move focus to the left input box on arrowleft
           input_movement('left')
-          
-        } 
-        
+        }
         else if (event.key === 'ArrowRight') {
           // move focus to the right input box on arrowright
           input_movement('right')
         }
-        
-        function input_movement(direction){
+
+        function input_movement(direction) {
           console.log(direction)
-          if (direction === 'left'){
-            
+          if (direction === 'left') {
+
             let prev_input = i - 1;
-                  while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
-                    prev_input--;
-                  }
-                  // if there's a previous input box, focus on it
-                  if (prev_input >= 0 && input_container.children[prev_input].disabled === false) {
-                    let previous_input = input_container.children[prev_input];
-                    previous_input.focus();
-                    setTimeout(() => {
-                      let length = previous_input.value.length;
-                      previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
-                    }, 10); // in a set timeout to ensure the cursor is set after the focus is set
-                  } else {
-                    // if there is no previous input box, move to the next one that is red or amber
-                    for (let j = i - 1; j >= 0; j--) {
-                      let child = input_container.children[j];
-                      if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                        child.focus();
-                        setTimeout(() => {
-                          let length = child.value.length;
-                          child.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
-                        }, 10); // in a set timeout to ensure the cursor is set after the focus is set
-                        break;
-                      }
-                    }
-                  }
+            while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
+              prev_input--;
+            }
+            // if there's a previous input box, focus on it
+            if (prev_input >= 0 && input_container.children[prev_input].disabled === false) {
+              let previous_input = input_container.children[prev_input];
+              previous_input.focus();
+              setTimeout(() => {
+                let length = previous_input.value.length;
+                previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
+              }, 10); // in a set timeout to ensure the cursor is set after the focus is set
+            } else {
+              // if there is no previous input box, move to the next one that is red or amber
+              for (let j = i - 1; j >= 0; j--) {
+                let child = input_container.children[j];
+                if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                  child.focus();
+                  setTimeout(() => {
+                    let length = child.value.length;
+                    child.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
+                  }, 10); // in a set timeout to ensure the cursor is set after the focus is set
+                  break;
+                }
+              }
+            }
           }
-          else if(direction === 'right'){
-            
+          else if (direction === 'right') {
+
             let next_input = i + 1;
-                  while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
-                    next_input++;
-                  }
-                  // if there's a next input box, focus on it
-                  if (next_input < input_container.children.length && input_container.children[next_input].disabled === false) {
-                    input_container.children[next_input].focus();
-                  } else {
-                    // if there is no next input box, move to the next one that is red or amber
-                    for (let j = i + 1; j < input_container.children.length; j++) {
-                      let child = input_container.children[j];
-                      if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                        child.focus();
-                        break;
-                      }
-                    }
-                  }
-                  
+            while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
+              next_input++;
+            }
+            // if there's a next input box, focus on it
+            if (next_input < input_container.children.length && input_container.children[next_input].disabled === false) {
+              input_container.children[next_input].focus();
+            } else {
+              // if there is no next input box, move to the next one that is red or amber
+              for (let j = i + 1; j < input_container.children.length; j++) {
+                let child = input_container.children[j];
+                if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
+                  child.focus();
+                  break;
+                }
+              }
+            }
           }
-          
         }
-        
-        document.querySelector('.left_arrow').addEventListener('click', function() {
+        document.querySelector('.left_arrow').addEventListener('click', function () {
           input_movement('left');
         });
-        
-        document.querySelector('.right_arrow').addEventListener('click', function() {
+
+        document.querySelector('.right_arrow').addEventListener('click', function () {
           input_movement('right');
         });
-        
       });
-      
     }
     input_container.appendChild(element);
   }
-  
   const first_element = input_container.children[0];
   if (first_element) {
     first_element.focus();  // automatically focuses on the first input box, saving user a few clicks.
   }
-  
 }
 
 
@@ -421,7 +412,6 @@ document.querySelector('.start').addEventListener('click', start_game);
       }
     });
     start.addEventListener('click', () => {
-
       if (current_choice.textContent == gamemode3) {
         for (let i = 0; i < 3; i++) {
           let lives = document.createElement('li');

@@ -66,6 +66,8 @@ function create_label(txt) {
 
 // opens splash, either settings or stats depending on the argument
 function open_splash(arg) {
+    console.log('open_splash()');
+
     // get the viewport width
     const vw = window.innerWidth;                             // get the viewport width
 
