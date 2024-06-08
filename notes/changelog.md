@@ -11,6 +11,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [6/6/2024] @stasyanski    fixed z index of navbar
 - [7/6/2024] @kambains226   adding some padding to the user interface -- REVERSED
 - [8/6/2024] @kambains226   made the on screen enter button  work
+- [8/6/2024] @stasyanski    made the arrow keys GUI functional, the error was that the event listener was defined multiple times causing it to execute multiple times
 
 ### Changed
 

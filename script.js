@@ -13,12 +13,18 @@ const container = document.querySelector('.character_container');
 const input_container = document.querySelector('.input_container');
 const extra_lives = document.querySelector('.lives');
 const img = document.createElement('img');
-let formatted_name;
+const left_arrow = document.querySelector('.left_arrow');
+const right_arrow = document.querySelector('.right_arrow');
+const enter_button = document.querySelector('.enter_bttn');
+
+
 // game state variables
 let input;
+let formatted_name;
+let last_input = null;
+let input_movement;
 let game_over_state = false;
 let user_input = null;
-let dot_interval;           // used to cancel the interval making sure its only called once
 let score_num = 0;
 let current_choice = null;  // current game mode
 let answer_enabled = true;  // enables or disables the ability to get an answer right 
@@ -35,7 +41,6 @@ const gamemode3 = 'Three lives';
 
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
-
 function input_guess(name, formatted_name) {
   const input_container = document.querySelector('.input_container');
 
@@ -51,10 +56,9 @@ function input_guess(name, formatted_name) {
     }
     return user_input;
   }
-  
+
   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
   for (let i = 0; i < name.length; i++) {
-    
     let element;
     if (name[i] === '_') {
       element = document.createElement('div');
@@ -90,58 +94,38 @@ function input_guess(name, formatted_name) {
           }
         }
       });
-      
-      function input_movement(direction) {
-        console.log(direction)
-        if (direction === 'left') {
-          
-          let prev_input = i - 1;
-          while (prev_input >= 0 && input_container.children[prev_input].tagName !== 'INPUT') {
-            prev_input--;
-          }
-          // if there's a previous input box, focus on it
-          if (prev_input >= 0 && input_container.children[prev_input].disabled === false) {
-            let previous_input = input_container.children[prev_input];
-            previous_input.focus();
-            setTimeout(() => {
-              let length = previous_input.value.length;
-              previous_input.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
-            }, 10); // in a set timeout to ensure the cursor is set after the focus is set
-          } else {
-            // if there is no previous input box, move to the next one that is red or amber
-            for (let j = i - 1; j >= 0; j--) {
-              let child = input_container.children[j];
-              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                child.focus();
-                setTimeout(() => {
-                  let length = child.value.length;
-                  child.setSelectionRange(length, length); // sets the cursor to end of the input bot when moving with arrow keys
-                }, 10); // in a set timeout to ensure the cursor is set after the focus is set
-                break;
-              }
+
+      input_movement = function input_movement(direction) {
+        // getting the last input box that was focused on, for the gui arrow keys to properly work
+        if (!last_input) return;
+        const inputs = Array.from(input_container.querySelectorAll('input'));
+        const current_index = inputs.indexOf(last_input);
+
+        console.log(last_input, current_index, inputs.length)
+
+        if (direction === 'left' && current_index > 0) {
+          // find the previous input that is not disabled and either has no special color or is red/orange
+          for (let j = current_index - 1; j >= 0; j--) {
+            if (!inputs[j].disabled && (inputs[j].style.backgroundColor === '' || inputs[j].style.backgroundColor === 'red' || inputs[j].style.backgroundColor === 'orange')) {
+              inputs[j].focus();
+              setTimeout(() => {
+                let length = inputs[j].value.length;
+                inputs[j].setSelectionRange(length, length);
+              }, 10);
+              break;
             }
           }
-        } else if (direction === 'right') {
-          let next_input = i + 1;
-          while (next_input < input_container.children.length && input_container.children[next_input].tagName !== 'INPUT') { // same approach as for delete and bacspace
-            next_input++;
-          }
-          // if there's a next input box, focus on it
-          if (next_input < input_container.children.length && input_container.children[next_input].disabled === false) {
-            input_container.children[next_input].focus();
-          } else {
-            // if there is no next input box, move to the next one that is red or amber
-            for (let j = i + 1; j < input_container.children.length; j++) {
-              let child = input_container.children[j];
-              if (child.style.backgroundColor === 'red' || child.style.backgroundColor === 'orange') {
-                child.focus();
-                break;
-              }
+        } else if (direction === 'right' && current_index < inputs.length - 1) {
+          // find the next input that is not disabled and either has no special color or is red/orange
+          for (let j = current_index + 1; j < inputs.length; j++) {
+            if (!inputs[j].disabled && (inputs[j].style.backgroundColor === '' || inputs[j].style.backgroundColor === 'red' || inputs[j].style.backgroundColor === 'orange')) {
+              inputs[j].focus();
+              break;
             }
           }
         }
       }
-      
+
       // add keydown event listener for Enter, Delete or Backspace
       element.addEventListener('keydown', function (event) {
         if (event.key === 'Enter' && answer_enabled) {
@@ -176,20 +160,7 @@ function input_guess(name, formatted_name) {
           // move focus to the right input box on arrowright
           input_movement('right')
         }
-        
-
-        
-
-        
-        
       });
-      left_arrow.addEventListener('click', function () {
-        input_movement('left');
-      });
-     right_arrow.addEventListener('click', function ()
-     {
-        input_movement('right');
-     });
     }
     input_container.appendChild(element);
   }
@@ -200,12 +171,17 @@ function input_guess(name, formatted_name) {
 }
 
 
+left_arrow.addEventListener('click', function () {
+  input_movement('left');
+});
+
+right_arrow.addEventListener('click', function () {
+  input_movement('right');
+});
+
 
 // check answer and related functions
-
-//does the enter functionalith 
-let enterbutton=document.querySelector('.enter_bttn');
-enterbutton.addEventListener('click',function(){
+enter_button.addEventListener('click', function () {
   check_answer(formatted_name);
 });
 
@@ -257,18 +233,15 @@ function check_answer(formatted_name) {
     answer_enabled = false;
 
     //disables the user input when right 
-    for (let i = 0, index = 0; i < input_container.children.length; i++) {
+    for (let i = 0; i < input_container.children.length; i++) {
       let child = input_container.children[i];
       child.disabled = true;
     }
     score_num++;
-    // SCORE.textContent = `Score: ${score_num}`;
-
     setTimeout(retrieve_characters, input_container.children.length * 200);
   } else {
     if (gamemode3 === current_choice.textContent) {
       remove_life()
-
     }
   }
 }
@@ -465,8 +438,9 @@ document.querySelector('.start').addEventListener('click', start_game);
   });
 })();
 
-
-
-let left_arrow = document.querySelector('.left_arrow');
-let right_arrow = document.querySelector('.right_arrow');
-
+document.addEventListener('focusin', function (event) {
+  if (event.target.tagName === 'INPUT') {
+    last_input = event.target;
+  }
+  console.log(last_input);
+});

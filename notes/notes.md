@@ -15,5 +15,3 @@
     check_answer http://127.0.0.1:5500/script.js:206
     onclick http://127.0.0.1:5500/:1
 Unknown how to recreate
-
-- the arrow keys btns dont work
