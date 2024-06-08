@@ -404,6 +404,7 @@ body.light_theme .choice_overlay {
     position: absolute;
     top: 60%;
     left: 0;
+    
 }
 
 .ui_elements_container {
@@ -412,6 +413,8 @@ body.light_theme .choice_overlay {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    padding: 4em;
+    
 }
 
 /* The css below is for 
@@ -579,4 +582,5 @@ input:where([type="checkbox"][role="switch"]):checked::before {
     color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
+    display: none;
 }
