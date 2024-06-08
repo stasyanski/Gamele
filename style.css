@@ -415,6 +415,25 @@ body.light_theme .choice_overlay {
     flex-direction: row;
 }
 
+.left_arrow, .right_arrow, .enter_bttn {
+    margin: 10px;
+    width: 80px;
+    height: 35px;
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: rgba(128, 128, 128, 0.795);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: var(--start-box-shadow-dark);
+}
+
+.enter_bttn {
+    font-size: 1rem;
+}
+
 /* The css below is for 
  * score, shows the user their streak
 */
