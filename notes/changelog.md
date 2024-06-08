@@ -9,7 +9,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [6/6/2024] @kambains226   put the arrow key input movement in a function but its causing an erro when the arrow buttons are clicked 
 - [6/6/2024] @stasyanski    added animation to character_img
 - [6/6/2024] @stasyanski    fixed z index of navbar
-- [7/6/2024] @kambains226   adding some padding to the user interface 
+- [7/6/2024] @kambains226   adding some padding to the user interface -- REVERSED
 - [8/6/2024] @kambains226   made the on screen enter button  work
 
 ### Changed
@@ -19,5 +19,5 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 
 ### Removed
 
-- 
+- [8/6/2024] @stasyanski    deleted the padding added to user interface as it was causing overflow
 
