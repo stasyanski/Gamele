@@ -415,10 +415,11 @@ body.light_theme .choice_overlay {
     flex-direction: row;
 }
 
-.left_arrow, .right_arrow, .enter_bttn {
+.left_arrow, .right_arrow, .enter_bttn, .lives, .timer {
     margin: 10px;
     margin-top: -10px;
-    width: 80px;
+    width: fit-content;
+    padding: 5px;
     height: 35px;
     font-size: 1.5rem;
     font-family: 'Roboto', sans-serif;
@@ -599,11 +600,8 @@ input:where([type="checkbox"][role="switch"]):checked::before {
  * in best time gamemode
 */
 .timer {
-    padding-top: 1em;
     color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
-    font-size: 1.5em;
+    font-size: 1em;
     display: none;
-    
-    margin-bottom: 40px;
 }
