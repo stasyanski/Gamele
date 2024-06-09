@@ -15,6 +15,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [9/6/2024] @kambains226   fixed the timer for the best time mode and postioned it , also fixed the splash content for the bestime mode 
 - [9/6/2024] @stasyanski    fixed the user interface elements, positioned properly under the input container as planned
 - [9/6/2024] @stasyanski    added blur effect to UI, hover effect on gui elements
+- [9/6/2024] @stasyanski    prevent TypeError - Uncaught TypeError: user_input is null 192 and 210 lines by checking user input in check answer before logic
 
 ### Changed
 

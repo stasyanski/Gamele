@@ -186,10 +186,14 @@ enter_button.addEventListener('click', function () {
 });
 
 function check_answer(formatted_name) {
+  // ensure user_input is not null before proceeding
+  if (user_input === null) {
+    return; // rxit the function early if user_input is null
+  }
 
   // the main function variables 
   formatted_name = formatted_name.toUpperCase();
-  let userinput_array = user_input.split('');
+  let userinput_array = user_input.split(''); // It's now safe to split user_input
   let formatted_name_array = formatted_name.split('');
 
   // function to update the element, changes the colour of the input boxes, and disables them if needed, used in the for loop below
@@ -208,7 +212,7 @@ function check_answer(formatted_name) {
       setTimeout(() => update_element(child, 'green'), i * 150);
     } else if (user_input.length === formatted_name.length) {
       if (formatted_name_array[index] === userinput_array[index]) {
-        update_element(child, 'green', true);                                // disables the input box if the user input is correct          
+        update_element(child, 'green', true); // disables the input box if the user input is correct          
       } else if (formatted_name.includes(userinput_array[index])) {
         update_element(child, 'orange');
       } else {
