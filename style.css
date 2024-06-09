@@ -33,7 +33,7 @@
 
     --choice-overlay-shadow-dark: inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
 
-    --guess-input-color-dark: rgba(70, 70, 70, 0.5);
+    --guess-input-color-dark: rgba(70, 70, 70, 0.75);
     --lives-color-dark: rgb(255, 255, 255);
 
 
@@ -63,7 +63,7 @@
 
     --choice-overlay-shadow-light: inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
 
-    --guess-input-color-light: rgba(210, 210, 210, 0.5);
+    --guess-input-color-light: rgba(210, 210, 210, 0.75);
     --lives-color-light: rgb(0, 0, 0);
 }
 
@@ -397,14 +397,18 @@ body.light_theme .choice_overlay {
     justify-content: center;
     align-items: center;
 
-    width: 100vw;
+    width: fit-content;
     height: fit-content;
     z-index: 998;
 
     position: absolute;
-    top: 60%;
-    left: 0;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
+    padding: 30px;
+    border-radius: 60px;
+    backdrop-filter: blur(3px);
 }
 
 .ui_elements_container {
@@ -434,6 +438,10 @@ body.light_theme .choice_overlay {
 
     align-items: center;
     justify-content: center;
+}
+
+.left_arrow:hover, .right_arrow:hover, .enter_bttn:hover {
+    transform: scale(1.1);
 }
 
 .enter_bttn {

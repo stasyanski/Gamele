@@ -14,6 +14,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [8/6/2024] @stasyanski    made the arrow keys GUI functional, the error was that the event listener was defined multiple times causing it to execute multiple times
 - [9/6/2024] @kambains226   fixed the timer for the best time mode and postioned it , also fixed the splash content for the bestime mode 
 - [9/6/2024] @stasyanski    fixed the user interface elements, positioned properly under the input container as planned
+- [9/6/2024] @stasyanski    added blur effect to UI, hover effect on gui elements
 
 ### Changed
 
