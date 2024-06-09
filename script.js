@@ -10,12 +10,13 @@
 
 // DOM elements
 const container = document.querySelector('.character_container');
-const input_container = document.querySelector('.input_container');
 const extra_lives = document.querySelector('.lives');
 const img = document.createElement('img');
 const left_arrow = document.querySelector('.left_arrow');
 const right_arrow = document.querySelector('.right_arrow');
 const enter_button = document.querySelector('.enter_bttn');
+const ui_elements_container = document.querySelector('.ui_elements_container');
+const input_container = document.querySelector('.input_container');
 
 
 // game state variables
@@ -43,10 +44,6 @@ const gamemode3 = 'Three lives';
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
 function input_guess(name, formatted_name) {
-
-
-  const input_container = document.querySelector('.input_container');
-
   // reset the container for each input_guess call so there wont be duplicates
   input_container.innerHTML = '';
 
@@ -454,3 +451,4 @@ document.addEventListener('focusin', function (event) {
   }
   console.log(last_input);
 });
+
