@@ -8,7 +8,7 @@
 ### To do:
 - make the 3 gamemodes
 - make settings and stats
-- cleanup everything after done
+- cleanup everything after done / recode everything and modularise
 
 ### Bugs:
 - Uncaught TypeError: formatted_name is undefined
