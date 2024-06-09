@@ -43,6 +43,8 @@ const gamemode3 = 'Three lives';
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
 function input_guess(name, formatted_name) {
+
+
   const input_container = document.querySelector('.input_container');
 
   // reset the container for each input_guess call so there wont be duplicates
@@ -321,6 +323,11 @@ async function retrieve_characters() {
 function start_game() {
   const start_btn = document.querySelector('.start');
   start_btn.style.display = 'none';
+
+  left_arrow.style.display = 'flex';
+  right_arrow.style.display = 'flex';
+  enter_button.style.display = 'flex';
+
   retrieve_characters();
 }
 
@@ -398,6 +405,7 @@ document.querySelector('.start').addEventListener('click', start_game);
       if (current_choice.textContent == gamemode3) {
         for (let i = 0; i < 3; i++) {
           let lives = document.createElement('li');
+          extra_lives.style.display = 'flex';
           extra_lives.appendChild(lives);
         }
       }
@@ -412,7 +420,7 @@ document.querySelector('.start').addEventListener('click', start_game);
         user_interface.appendChild(timer_label);
         
         let timer = document.querySelector('.timer');
-        timer.style.display = 'block';//makes the timer appear when its the best time mode
+        timer.style.display = 'flex';//makes the timer appear when its the best time mode
         let time = setInterval(() => {
           milliseconds--;
           if (milliseconds < 0) {
@@ -433,7 +441,7 @@ document.querySelector('.start').addEventListener('click', start_game);
           let display_sec = String(seconds).padStart(2, '0');
           let display_ms = String(milliseconds).padStart(2, '0');
 
-          timer_label.textContent = 'Timer: ' + display_mins + '.' + display_sec + "." + display_ms;
+          timer_label.textContent = 'TIMER: ' + display_mins + '.' + display_sec + "." + display_ms;
         }, 10);
       }
     });

@@ -416,10 +416,12 @@ body.light_theme .choice_overlay {
 }
 
 .left_arrow, .right_arrow, .enter_bttn, .lives, .timer {
+    display: none;
     margin: 10px;
     margin-top: -10px;
     width: fit-content;
-    padding: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
     height: 35px;
     font-size: 1.5rem;
     font-family: 'Roboto', sans-serif;
@@ -430,17 +432,31 @@ body.light_theme .choice_overlay {
     border-radius: 5px;
     cursor: pointer;
     box-shadow: var(--start-box-shadow-dark);
+
+    align-items: center;
+    justify-content: center;
 }
 
 .enter_bttn {
     font-size: 1rem;
 }
 
+/* The css below is for the timer 
+ * in best time gamemode
+*/
+.timer {
+    color: var(--score-text-color-dark);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
 /* The css below is for 
  * score, shows the user their streak
 */
 .score {
-    display: none;
+    
 }
 
 .score_txt {
@@ -451,6 +467,32 @@ body.light_theme .choice_overlay {
 
 body.light_theme .score_txt {
     color: var(--score-text-color-light);
+}
+
+/* The css below is for the lives
+ * of the user, shows how many lives
+ * they have left
+*/
+.lives {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.lives li {
+    background-color: var(--lives-color-dark);
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    text-decoration: none;
+    list-style: none;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+body.light_theme .lives li {
+    background-color: var(--lives-color-light);
 }
 
 
@@ -503,33 +545,6 @@ body.light_theme .input_one_char {
     display: inline-block;
 }
 
-
-/* The css below is for the lives
- * of the user, shows how many lives
- * they have left
-*/
-.lives {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.lives li {
-    background-color: var(--lives-color-dark);
-    border-radius: 50%;
-    width: 1em;
-    height: 1em;
-    text-decoration: none;
-    list-style: none;
-    margin: 1.5em;
-}
-
-body.light_theme .lives li {
-    background-color: var(--lives-color-light);
-}
-
-
-
 /* Below is the settings for css, including the switch 
 */
 .stats_settings_div {
@@ -574,6 +589,7 @@ input:where([type="checkbox"][role="switch"]) {
 body.light_theme input:where([type="checkbox"][role="switch"]) {
     color: var(--main-bg-color-light);
 }
+
 input:where([type="checkbox"][role="switch"])::before {
     content: "";
     position: absolute;
@@ -592,16 +608,4 @@ input:where([type="checkbox"][role="switch"])::before {
 
 input:where([type="checkbox"][role="switch"]):checked::before {
     left: 1em;
-}
-
-
-
-/* The css below is for the timer 
- * in best time gamemode
-*/
-.timer {
-    color: var(--score-text-color-dark);
-    font-family: 'Roboto', sans-serif;
-    font-size: 1em;
-    display: none;
 }
