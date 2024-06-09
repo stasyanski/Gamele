@@ -26,6 +26,7 @@ let input_movement;
 let game_over_state = false;
 let user_input = null;
 let score_num = 0;
+
 let current_choice = null;  // current game mode
 let answer_enabled = true;  // enables or disables the ability to get an answer right 
 
@@ -405,10 +406,11 @@ document.querySelector('.start').addEventListener('click', start_game);
         let minute = 1;
         let seconds = 59;
         let milliseconds = 99;
-        let timer_label = document.createElement('span')
-
-        timer_label.classList.add('timer');
-        document.body.appendChild(timer_label);
+        let timer_label = document.querySelector('.timer');
+        const user_interface =document.querySelector('.ui_elements_container')
+        // timer_label.classList.add('timer');
+        user_interface.appendChild(timer_label);
+        
         let timer = document.querySelector('.timer');
         timer.style.display = 'block';//makes the timer appear when its the best time mode
         let time = setInterval(() => {

@@ -184,7 +184,7 @@ body.light_theme .anchor {
     position: relative;
 }
 
-body.light_theme splash_content {
+body.light_theme .splash_content {
     background-color: var(--splash-bg-color-light);
 }
 
@@ -417,6 +417,7 @@ body.light_theme .choice_overlay {
 
 .left_arrow, .right_arrow, .enter_bttn {
     margin: 10px;
+    margin-top: -10px;
     width: 80px;
     height: 35px;
     font-size: 1.5rem;
@@ -566,9 +567,12 @@ input:where([type="checkbox"][role="switch"]) {
     border-radius: 1.5em;
     vertical-align: text-bottom;
     margin-left: auto;
-    color: inherit;
+    color: var(--main-bg-color-dark);
 }
 
+body.light_theme input:where([type="checkbox"][role="switch"]) {
+    color: var(--main-bg-color-light);
+}
 input:where([type="checkbox"][role="switch"])::before {
     content: "";
     position: absolute;
@@ -600,4 +604,6 @@ input:where([type="checkbox"][role="switch"]):checked::before {
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     display: none;
+    
+    margin-bottom: 40px;
 }

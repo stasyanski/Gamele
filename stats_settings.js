@@ -67,6 +67,7 @@ function create_label(txt) {
 // opens splash, either settings or stats depending on the argument
 function open_splash(arg) {
     console.log('open_splash()');
+    
 
     // get the viewport width
     const vw = window.innerWidth;                             // get the viewport width
@@ -113,7 +114,7 @@ function open_splash(arg) {
 
 
     } else if (arg === 'bestTime') {
-        label_txt = 'Your Score:' + { scoreNum };
+        label_txt = 'Your Score:' +  score_num ;
         const label = create_label(label_txt);
         splash.appendChild(label);
 
