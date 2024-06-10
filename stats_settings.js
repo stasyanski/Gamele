@@ -148,15 +148,19 @@ function open_splash(arg) {
         input_switch_div.appendChild(light_input);
 
         document.querySelector('.lightswitch').addEventListener('change', function () {
-
+            
             if (this.checked) {
+                
+                //changes the colour of the heart depending on the theme 
+                lives_colour('black');
                 document.getElementsByClassName('lightswitch')[0].checked = true;
-
+            
                 document.body.classList.add('light_theme'); //adds the light theme class if the switch is checked 
                 localStorage.setItem('light_theme', 1); //saves the users choice 
             } else {
                 document.body.classList.remove('light_theme');
                 localStorage.setItem('light_theme', 0); //sets local storage to 0 when light_switch is off
+                lives_colour('white');
             }
         });
 
@@ -170,6 +174,22 @@ function open_splash(arg) {
             document.body.classList.remove('light_theme');
             light_switch.checked = false;
         }
+    }
+    else if(arg==='gameover'){
+        const heading = create_heading('Game Over !');
+        splash.appendChild(heading);
+        const leaderboardDiv = document.createElement('div');
+        const leaderboard_input =  document.createElement('input');
+        leaderboard_input.placeholder = 'Enter your name';
+
+
+        leaderboard_input.type = 'text';
+        leaderboard_input.maxLength =15;
+        splash.appendChild(leaderboardDiv);
+
+        leaderboardDiv.appendChild(leaderboard_input);
+        leaderboardDiv.classList.add('leaderboard_div');
+        leaderboard_input.classList.add('leaderboard_input');
     }
 
     // window resize - remove splash - keep it in this function - causes Uncaught DOMException: Node.removeChild: Uncaught ReferenceError:

@@ -11,6 +11,7 @@
 // DOM elements
 const container = document.querySelector('.character_container');
 const extra_lives = document.querySelector('.lives');
+let lives;
 const img = document.createElement('img');
 const left_arrow = document.querySelector('.left_arrow');
 const right_arrow = document.querySelector('.right_arrow');
@@ -244,6 +245,7 @@ function check_answer(formatted_name) {
     score_num++;
     setTimeout(retrieve_characters, input_container.children.length * 200);
   } else {
+    console.log(current_choice.textContent);
     if (gamemode3 === current_choice.textContent) {
       remove_life()
     }
@@ -253,9 +255,10 @@ function check_answer(formatted_name) {
 // removing a life function from the lives count
 const remove_life = () => {
   let lives = extra_lives.children;
-  if (lives.length > 0) {
+  if (lives.length > 1) {
     lives[0].remove();
   } else {
+    extra_lives.style.display = 'none';
     game_over();
   }
 }
@@ -337,11 +340,10 @@ function game_over() {
   game_over_state = true;
   answer_enabled = false;
   // CREATES  an input box for the user to enter  their username when they lose 
-  input.value = '';
-  input.placeholder = 'Enter Username';
+  
 
-  localStorage.setItem(input.value, score_num);
-  console.log(localStorage.getItem(input.value));
+  //makes the splash screen pop up with the game over state
+  open_splash('gameover');
 }
 document.querySelector('.start').addEventListener('click', start_game);
 
@@ -405,12 +407,23 @@ document.querySelector('.start').addEventListener('click', start_game);
     start.addEventListener('click', () => {
       if (current_choice.textContent == gamemode3) {
         for (let i = 0; i < 3; i++) {
-          let lives = document.createElement('li');
+
+          lives = document.createElement('li');
+          // if the body is in light theme change the colour of the hearts at the start of the game 
+          if(document.body.classList.contains('light_theme')){
+            lives.textContent ='🖤';
+            
+          }
+          else{
+            lives.textContent = '🤍';
+          }
           extra_lives.style.display = 'flex';
           extra_lives.appendChild(lives);
+          
+          
         }
       }
-
+      
       if (current_choice.textContent == gamemode1) { //starts the best time mode
         let minute = 1;
         let seconds = 59;
@@ -449,10 +462,22 @@ document.querySelector('.start').addEventListener('click', start_game);
   });
 })();
 
+function lives_colour(color){
+  const lives_colour =extra_lives.querySelectorAll('li');
+  for (let i=0; i<lives_colour.length; i++) {
+    
+    if (color == 'black'){
+      lives_colour[i].textContent ='🖤';
+    }
+    else if (color == 'white'){
+      lives_colour[i].textContent ='🤍';
+    }
+}
+}
 document.addEventListener('focusin', function (event) {
   if (event.target.tagName === 'INPUT') {
     last_input = event.target;
   }
-  console.log(last_input);
+  
 });
 
