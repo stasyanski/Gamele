@@ -11,7 +11,6 @@
 // DOM elements
 const container = document.querySelector('.character_container');
 const extra_lives = document.querySelector('.lives');
-let lives;
 const img = document.createElement('img');
 const left_arrow = document.querySelector('.left_arrow');
 const right_arrow = document.querySelector('.right_arrow');
@@ -21,6 +20,7 @@ const input_container = document.querySelector('.input_container');
 
 
 // game state variables
+let lives;
 let input;
 let formatted_name;
 let last_input = null;
@@ -412,15 +412,11 @@ document.querySelector('.start').addEventListener('click', start_game);
           // if the body is in light theme change the colour of the hearts at the start of the game 
           if(document.body.classList.contains('light_theme')){
             lives.textContent ='🖤';
-            
-          }
-          else{
+          } else {
             lives.textContent = '🤍';
           }
           extra_lives.style.display = 'flex';
           extra_lives.appendChild(lives);
-          
-          
         }
       }
       
