@@ -409,12 +409,8 @@ document.querySelector('.start').addEventListener('click', start_game);
         for (let i = 0; i < 3; i++) {
 
           lives = document.createElement('li');
-          // if the body is in light theme change the colour of the hearts at the start of the game 
-          if(document.body.classList.contains('light_theme')){
-            lives.textContent ='🖤';
-          } else {
-            lives.textContent = '🤍';
-          }
+          lives.textContent = '♡';
+          
           extra_lives.style.display = 'flex';
           extra_lives.appendChild(lives);
         }
@@ -458,22 +454,9 @@ document.querySelector('.start').addEventListener('click', start_game);
   });
 })();
 
-function lives_colour(color){
-  const lives_colour =extra_lives.querySelectorAll('li');
-  for (let i=0; i<lives_colour.length; i++) {
-    
-    if (color == 'black'){
-      lives_colour[i].textContent ='🖤';
-    }
-    else if (color == 'white'){
-      lives_colour[i].textContent ='🤍';
-    }
-}
-}
 document.addEventListener('focusin', function (event) {
   if (event.target.tagName === 'INPUT') {
     last_input = event.target;
   }
-  
 });
 
