@@ -455,6 +455,14 @@ body.light_theme .choice_overlay {
     justify-content: center;
 }
 
+.left_arrow {
+    margin-right: 5px;
+}
+
+.right_arrow {
+    margin-left: 5px;
+}
+
 .left_arrow:hover, .right_arrow:hover, .enter_bttn:hover {
     transform: scale(1.1);
 }
