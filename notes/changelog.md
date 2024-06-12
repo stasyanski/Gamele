@@ -22,6 +22,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 ### Changed
 
 - [10/6/2024] @stasyanski   changed the info emoji in navbar to something more recognisable by modern browsers
+- [12/6/2024] @stasyanski   changed and better positioned the heart in lives mode
 
 
 ### Removed
