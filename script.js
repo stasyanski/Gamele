@@ -190,15 +190,15 @@ enter_button.addEventListener('click', function () {
 
 function check_answer(formatted_name) {
   // only increments the guess for that specific gamemode
-  if (current_choice.textContent === gamemode1) {
+  // if (current_choice.textContent === gamemode1) {
     
-  }
-  else if (current_choice.textContent === gamemode2) {
-    guess ++;
-  }
-  else if (current_choice.textContent === gamemode3) {
-    guess ++;
-  }
+  // }
+  // else if (current_choice.textContent === gamemode2) {
+  //   guess ++;
+  // }
+  // else if (current_choice.textContent === gamemode3) {
+  //   guess ++;
+  // }
 
   // gets the guess and stores it in local storage
 

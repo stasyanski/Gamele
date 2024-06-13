@@ -185,9 +185,7 @@ body.light_theme .anchor {
     /* display: flex; */
 }
 
-body.light_theme .splash_content {
-    background-color: var(--splash-bg-color-light);
-}
+
 
 .close_container {
     width: 20px;
