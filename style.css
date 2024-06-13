@@ -434,7 +434,7 @@ body.light_theme .choice_overlay {
     flex-direction: row;
 }
 
-.left_arrow, .right_arrow, .enter_bttn, .lives, .timer {
+.left_arrow, .right_arrow, .enter_bttn, .lives, .timer ,.score{
     display: none;
     width: fit-content;
 
@@ -468,7 +468,7 @@ body.light_theme .choice_overlay {
     margin-left: 5px;
 }
 
-.left_arrow:hover, .right_arrow:hover, .enter_bttn:hover {
+.left_arrow:hover, .right_arrow:hover, .enter_bttn:hover{
     transform: scale(1.1);
 }
 

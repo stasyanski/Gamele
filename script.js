@@ -15,6 +15,7 @@ const img = document.createElement('img');
 const left_arrow = document.querySelector('.left_arrow');
 const right_arrow = document.querySelector('.right_arrow');
 const enter_button = document.querySelector('.enter_bttn');
+const score = document.querySelector('.score');
 const ui_elements_container = document.querySelector('.ui_elements_container');
 const input_container = document.querySelector('.input_container');
 
@@ -22,6 +23,7 @@ const input_container = document.querySelector('.input_container');
 // game state variables
 let lives;
 let input;
+let guess = 0; // keeps track of the user gusses 
 let formatted_name;
 let last_input = null;
 let input_movement;
@@ -187,6 +189,24 @@ enter_button.addEventListener('click', function () {
 });
 
 function check_answer(formatted_name) {
+  // only increments the guess for that specific gamemode
+  if (current_choice.textContent === gamemode1) {
+    
+  }
+  else if (current_choice.textContent === gamemode2) {
+    guess ++;
+  }
+  else if (current_choice.textContent === gamemode3) {
+    guess ++;
+  }
+
+  // gets the guess and stores it in local storage
+
+  const guessStorage = (gamemode)=>{
+    localStorage.setItem(gamemode,guess);
+    console.log(localStorage.getItem(gamemode));
+  }
+
   // ensure user_input is not null before proceeding
   if (user_input === null) {
     return; // rxit the function early if user_input is null
@@ -243,6 +263,8 @@ function check_answer(formatted_name) {
       child.disabled = true;
     }
     score_num++;
+    
+    
     setTimeout(retrieve_characters, input_container.children.length * 200);
   } else {
     console.log(current_choice.textContent);
@@ -290,6 +312,7 @@ function format(name) {
 
 // retrieve random character  
 async function retrieve_characters() {
+  score.textContent = 'Score: ' + score_num;
   answer_enabled = true;
   try {
     // fetch image data
@@ -331,6 +354,7 @@ function start_game() {
   left_arrow.style.display = 'flex';
   right_arrow.style.display = 'flex';
   enter_button.style.display = 'flex';
+  score.style.display = 'flex';
 
   retrieve_characters();
 }

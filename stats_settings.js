@@ -106,6 +106,9 @@ function open_splash(arg) {
         // stats content
         const heading = create_heading('Stats')
         splash.appendChild(heading);
+        
+
+        
 
     } else if (arg === 'info') {
         // info content
