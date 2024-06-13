@@ -151,9 +151,7 @@ function open_splash(arg) {
         input_switch_div.appendChild(light_input);
 
         document.querySelector('.lightswitch').addEventListener('change', function () {
-            
             if (this.checked) {
-                
                 //changes the colour of the heart depending on the theme 
                 // lives_colour('black');
                 document.getElementsByClassName('lightswitch')[0].checked = true;
@@ -178,21 +176,9 @@ function open_splash(arg) {
             light_switch.checked = false;
         }
     }
-    else if(arg==='gameover'){
-        const heading = create_heading('Game Over !');
+    else if (arg==='gameover') {
+        const heading = create_heading('Game over!');
         splash.appendChild(heading);
-        const leaderboardDiv = document.createElement('div');
-        const leaderboard_input =  document.createElement('input');
-        leaderboard_input.placeholder = 'Enter your name';
-
-
-        leaderboard_input.type = 'text';
-        leaderboard_input.maxLength =15;
-        splash.appendChild(leaderboardDiv);
-
-        leaderboardDiv.appendChild(leaderboard_input);
-        leaderboardDiv.classList.add('leaderboard_div');
-        leaderboard_input.classList.add('leaderboard_input');
     }
 
     // window resize - remove splash - keep it in this function - causes Uncaught DOMException: Node.removeChild: Uncaught ReferenceError:

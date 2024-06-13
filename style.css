@@ -226,21 +226,6 @@ body.light_theme .line {
     text-align: center;
     padding: 5em
 }
-.leaderboard_div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-}
-.leaderboard_input{
-    text-align: center;
-    height: 2em;
-    font-family: 'Roboto', sans-serif;
-    border-radius: 5%;
-    
-}
 
 body.light_theme .splash_h1_txt {
     color: var(--splash-h1-text-light);
