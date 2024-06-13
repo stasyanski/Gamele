@@ -152,7 +152,7 @@ function open_splash(arg) {
             if (this.checked) {
                 
                 //changes the colour of the heart depending on the theme 
-                lives_colour('black');
+                // lives_colour('black');
                 document.getElementsByClassName('lightswitch')[0].checked = true;
             
                 document.body.classList.add('light_theme'); //adds the light theme class if the switch is checked 
@@ -160,7 +160,7 @@ function open_splash(arg) {
             } else {
                 document.body.classList.remove('light_theme');
                 localStorage.setItem('light_theme', 0); //sets local storage to 0 when light_switch is off
-                lives_colour('white');
+                // lives_colour('white');
             }
         });
 
