@@ -383,9 +383,7 @@ body.light_theme .start {
     font-weight: 600;
 }
 
-body.light_theme .start_bttn_txt {
-    color: var(--start-bttn-text-color-light);
-}
+
 
 .choice_overlay {
     position: absolute;
@@ -616,9 +614,6 @@ input:where([type="checkbox"][role="switch"]) {
     color: var(--main-bg-color-dark);
 }
 
-body.light_theme input:where([type="checkbox"][role="switch"]) {
-    color: var(--main-bg-color-light);
-}
 
 input:where([type="checkbox"][role="switch"])::before {
     content: "";
