@@ -19,11 +19,14 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [10/6/2024] @kambains226  added different colour hearts depending on the theme 
 - [10/6/2024] @kambains226  fixed the game move error , created a splash screen with an input
 - [13/6/2024] @kambains226 fixed the error when the user clicks the switch and display the score to the screen 
+
+
 ### Changed
 
 - [10/6/2024] @stasyanski   changed the info emoji in navbar to something more recognisable by modern browsers
 - [12/6/2024] @stasyanski   changed and better positioned the heart in lives mode
-
+- [12/6/2024] @stasyanski   reworking the game over splash
+- [12/6/2024] @stasyanski   updated the lives and score css to be more consistent
 
 ### Removed
 

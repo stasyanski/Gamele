@@ -415,7 +415,7 @@ body.light_theme .choice_overlay {
     flex-direction: row;
 }
 
-.left_arrow, .right_arrow, .enter_bttn, .lives, .timer ,.score{
+.left_arrow, .right_arrow, .enter_bttn, .lives, .timer, .score{
     display: none;
     width: fit-content;
 
@@ -472,13 +472,7 @@ body.light_theme .choice_overlay {
  * score, shows the user their streak
 */
 .score {
-    /* placeholder */
-}
-
-.score_txt {
-    font-size: 2rem;
-    color: var(--score-text-color-dark);
-    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
 }
 
 body.light_theme .score_txt {
@@ -494,6 +488,10 @@ body.light_theme .score_txt {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.lives_txt {
+    font-size: 1rem;
 }
 
 .lives li {

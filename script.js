@@ -312,7 +312,7 @@ function format(name) {
 
 // retrieve random character  
 async function retrieve_characters() {
-  score.textContent = 'Score: ' + score_num;
+  score.textContent = 'SCORE: ' + score_num;
   answer_enabled = true;
   try {
     // fetch image data
