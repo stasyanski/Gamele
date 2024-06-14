@@ -188,8 +188,6 @@ body.light_theme .anchor {
     flex-direction: column;
 }
 
-
-
 .close_container {
     width: 20px;
     height: 20px;
@@ -372,8 +370,8 @@ body.light_theme .start {
     font-weight: 600;
 }
 
-.restart{
-    background-color: VAR(--restart-color-dark)
+.restart {
+    background-color: var(--restart-color-dark)
 }
 
 .choice_overlay {

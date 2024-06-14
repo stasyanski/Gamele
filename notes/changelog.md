@@ -18,9 +18,8 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [9/6/2024] @stasyanski    prevent TypeError - Uncaught TypeError: user_input is null 192 and 210 lines by checking user input in check answer before logic
 - [10/6/2024] @kambains226  added different colour hearts depending on the theme 
 - [10/6/2024] @kambains226  fixed the game move error , created a splash screen with an input
-- [13/6/2024] @kambains226 fixed the error when the user clicks the switch and display the score to the screen 
-- [14/6/2024] @kambains226 added the guesses to the stats screen and implement a restart button 
-
+- [13/6/2024] @kambains226  fixed the error when the user clicks the switch and display the score to the screen 
+- [14/6/2024] @kambains226  added the guesses to the stats screen and implement a restart button 
 
 ### Changed
 

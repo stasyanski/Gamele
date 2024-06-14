@@ -62,27 +62,30 @@ function create_label(txt) {
     label.classList.add('splash_label_txt');
     return label;
 }
-function display_guesses(){
 
-    let best_guesses= 'Best time:' + localStorage.getItem(gamemode1) +' '+ 'guesses';
-    let infinte_gusses ='Inifinte: ' + localStorage.getItem(gamemode2)+' ' + 'guesses';
-    let lives_guesses = 'Three Lives: ' + localStorage.getItem(gamemode3) +' '+ 'guesses';
+function display_guesses() {
+    if (localStorage.getItem(gamemode1)) {
+        let best_guesses = 'Best time: ' + localStorage.getItem(gamemode1) + ' ' + 'guesses';
+        const label1 = create_label(best_guesses);
+        splash.appendChild(label1);
+    }
 
-    const label1 = create_label(best_guesses);
-    const label2 = create_label(infinte_gusses);
-    const label3 = create_label(lives_guesses);
+    if (localStorage.getItem(gamemode2)) {
+        let infinite_guesses = 'Infinite: ' + localStorage.getItem(gamemode2) + ' ' + 'guesses';
+        const label2 = create_label(infinite_guesses);
+        splash.appendChild(label2);
+    }
 
-    splash.appendChild(label1);
-    splash.appendChild(label2);
-    splash.appendChild(label3);
+    if (localStorage.getItem(gamemode3)) {
+        let lives_guesses = 'Three lives: ' + localStorage.getItem(gamemode3) + ' ' + 'guesses';
+        const label3 = create_label(lives_guesses);
+        splash.appendChild(label3);
+    }
 }
 //when the game is over a restart button will be displayed 
 
 // opens splash, either settings or stats depending on the argument
 function open_splash(arg) {
-    
-    
-
     // get the viewport width
     const vw = window.innerWidth;                             // get the viewport width
 
@@ -121,25 +124,18 @@ function open_splash(arg) {
         const heading = create_heading('Stats')
         splash.appendChild(heading);
         //creates the labeles and prints the guesses for each of the modes 
-        
         display_guesses();
-        
-
-
-        
 
     } else if (arg === 'info') {
         // info content
         const heading = create_heading('Info')
         splash.appendChild(heading);
 
-
     } else if (arg === 'bestTime') {
         label_txt = 'Your Score:' +  score_num ;
         const label = create_label(label_txt);
         splash.appendChild(label);
-
-
+    
     } else if (arg === 'settings') {
         // settings content
         const heading = create_heading('Settings')

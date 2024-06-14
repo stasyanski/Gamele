@@ -195,6 +195,7 @@ modes.forEach(function (mode) {
     localStorage.setItem(mode, '0');
   }
 });
+
 function check_answer(formatted_name) {
   // only increments the guess for that specific gamemode
   const guessStorage = (gamemode)=>{
