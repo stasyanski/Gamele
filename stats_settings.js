@@ -22,12 +22,12 @@ light_input.className = 'lightswitch'; //ads the light switch class to the input
 let splash;
 // set container size based on viewport size, reference vw to properly set the container size; mobile responsive
 const viewport_sizes = [
-    { max: 768, width: '90%', height: '80%' },         // set the container size based on the viewport size, 768 is mobile
-    { max: 1024, width: '80%', height: '70%' },        // 1024 is tablet
-    { max: 1366, width: '70%', height: '60%' },        // 1366 is laptop
-    { max: 1920, width: '60%', height: '50%' },        // 1920 is desktop
-    { max: 2560, width: '50%', height: '40%' },        // 2560 is large
-    { max: Infinity, width: '40%', height: '30%' }     // greater than 2560 
+    { max: 768, width: '90%', height: 'auto' },         // set the container size based on the viewport size, 768 is mobile
+    { max: 1024, width: '80%', height: 'auto' },        // 1024 is tablet
+    { max: 1366, width: '70%', height: 'auto' },        // 1366 is laptop
+    { max: 1920, width: '60%', height: 'auto' },        // 1920 is desktop
+    { max: 2560, width: '50%', height: 'auto' },        // 2560 is large
+    { max: Infinity, width: '40%', height: 'auto' }     // greater than 2560 
 ]
 
 
@@ -64,33 +64,33 @@ function create_label(txt) {
 }
 
 function display_guesses() {
-    const gameModes = [
+    const game_modes = [
         { key: gamemode1, label: 'Best time - 120 seconds' },
         { key: gamemode2, label: "Infinite - guess until you're tired" },
         { key: gamemode3, label: 'Three lives - three wrong guesses' }
     ];
 
-    gameModes.forEach(mode => {
+    game_modes.forEach(mode => {
         if (localStorage.getItem(mode.key)) {
-            const statsSettingsDiv = document.createElement('div');
-            statsSettingsDiv.classList.add('stats_settings_div');
+            const stats_settings_div = document.createElement('div');
+            stats_settings_div.classList.add('stats_settings_div');
 
-            const leftLabelDiv = document.createElement('div');
-            leftLabelDiv.classList.add('left_label_div');
+            const left_label_div = document.createElement('div');
+            left_label_div.classList.add('left_label_div');
 
-            const leftLabel = document.createElement('label');
-            leftLabel.classList.add('left_label');
-            leftLabel.textContent = mode.label;
+            const left_label = document.createElement('label');
+            left_label.classList.add('left_label');
+            left_label.textContent = mode.label;
 
-            const inputSwitchDiv = document.createElement('div');
-            inputSwitchDiv.classList.add('left_label');
-            inputSwitchDiv.textContent = localStorage.getItem(mode.key);
+            const input_switch_div = document.createElement('div');
+            input_switch_div.classList.add('left_label');
+            input_switch_div.textContent = localStorage.getItem(mode.key);
 
-            statsSettingsDiv.appendChild(leftLabelDiv);
-            statsSettingsDiv.appendChild(inputSwitchDiv);
-            leftLabelDiv.appendChild(leftLabel);
+            stats_settings_div.appendChild(left_label_div);
+            stats_settings_div.appendChild(input_switch_div);
+            left_label_div.appendChild(left_label);
 
-            splash.appendChild(statsSettingsDiv);
+            splash.appendChild(stats_settings_div);
         }
     });
 }
@@ -140,8 +140,33 @@ function open_splash(arg) {
 
     } else if (arg === 'info') {
         // info content
-        const heading = create_heading('Info')
+        const heading = create_heading('Info');
         splash.appendChild(heading);
+    
+        // info disclaimers
+        const disclaimers = [
+            'This project is strictly for educational purposes only, no commercial use is intended, not for profit. Any of the images used are NOT owned by us. This project is open source and can be found on GitHub.',
+            'This project is covered by the MIT License.',
+            'Repository link: https://github.com/stasyanski/Gamele',
+            'Developed with ♡ by stasyanski and kambains226'
+        ];
+    
+        disclaimers.forEach(disclaimer => {
+            const stats_settings_div = document.createElement('div');
+            stats_settings_div.classList.add('stats_settings_div');
+    
+            const left_label_div = document.createElement('div');
+            left_label_div.classList.add('left_label_div');
+    
+            const left_label = document.createElement('label');
+            left_label.classList.add('left_label');
+            left_label.textContent = disclaimer;
+    
+            stats_settings_div.appendChild(left_label_div);
+            left_label_div.appendChild(left_label);
+    
+            splash.appendChild(stats_settings_div);
+        });
 
     } else if (arg === 'bestTime') {
         label_txt = 'Your Score:' +  score_num ;

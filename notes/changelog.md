@@ -21,6 +21,8 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [13/6/2024] @kambains226  fixed the error when the user clicks the switch and display the score to the screen 
 - [14/6/2024] @kambains226  added the guesses to the stats screen and implement a restart button 
 - [14/6/2024] @stasyanski   fixed retrieval from localstorage when null
+- [14/6/2024] @stasyanski   added content to info splash screen
+- [14/6/2024] @stasyanski   fixed overflow issue by settings height of splash screen to auto
 
 ### Changed
 

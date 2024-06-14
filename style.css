@@ -568,6 +568,7 @@ body.light_theme .input_one_char {
     padding: 5px;
     width: 100%;
     border-bottom: 1px solid var(--guess-input-color-light);
+    margin-bottom: 12px;
 }
 
 .left_label_div {
