@@ -64,23 +64,35 @@ function create_label(txt) {
 }
 
 function display_guesses() {
-    if (localStorage.getItem(gamemode1)) {
-        let best_guesses = 'Best time: ' + localStorage.getItem(gamemode1) + ' ' + 'guesses';
-        const label1 = create_label(best_guesses);
-        splash.appendChild(label1);
-    }
+    const gameModes = [
+        { key: gamemode1, label: 'Best time - 120 seconds' },
+        { key: gamemode2, label: "Infinite - guess until you're tired" },
+        { key: gamemode3, label: 'Three lives - three wrong guesses' }
+    ];
 
-    if (localStorage.getItem(gamemode2)) {
-        let infinite_guesses = 'Infinite: ' + localStorage.getItem(gamemode2) + ' ' + 'guesses';
-        const label2 = create_label(infinite_guesses);
-        splash.appendChild(label2);
-    }
+    gameModes.forEach(mode => {
+        if (localStorage.getItem(mode.key)) {
+            const statsSettingsDiv = document.createElement('div');
+            statsSettingsDiv.classList.add('stats_settings_div');
 
-    if (localStorage.getItem(gamemode3)) {
-        let lives_guesses = 'Three lives: ' + localStorage.getItem(gamemode3) + ' ' + 'guesses';
-        const label3 = create_label(lives_guesses);
-        splash.appendChild(label3);
-    }
+            const leftLabelDiv = document.createElement('div');
+            leftLabelDiv.classList.add('left_label_div');
+
+            const leftLabel = document.createElement('label');
+            leftLabel.classList.add('left_label');
+            leftLabel.textContent = mode.label;
+
+            const inputSwitchDiv = document.createElement('div');
+            inputSwitchDiv.classList.add('left_label');
+            inputSwitchDiv.textContent = localStorage.getItem(mode.key);
+
+            statsSettingsDiv.appendChild(leftLabelDiv);
+            statsSettingsDiv.appendChild(inputSwitchDiv);
+            leftLabelDiv.appendChild(leftLabel);
+
+            splash.appendChild(statsSettingsDiv);
+        }
+    });
 }
 //when the game is over a restart button will be displayed 
 

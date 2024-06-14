@@ -397,12 +397,8 @@ function restart_game(splash){
 function game_over() {
   game_over_state = true;
   answer_enabled = false;
-  // CREATES  an input box for the user to enter  their username when they lose 
-  
-
   //makes the splash screen pop up with the game over state
   open_splash('gameover');
-
 }
 document.querySelector('.start').addEventListener('click', start_game);
 
