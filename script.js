@@ -187,25 +187,43 @@ right_arrow.addEventListener('click', function () {
 enter_button.addEventListener('click', function () {
   check_answer(formatted_name);
 });
+//if the user has never made a guess automatically assign it to 0
+const modes= [gamemode1,gamemode2,gamemode3];
 
+modes.forEach(function (mode) {
+  if (localStorage.getItem(mode) == null) {
+    localStorage.setItem(mode, '0');
+  }
+});
 function check_answer(formatted_name) {
   // only increments the guess for that specific gamemode
-  // if (current_choice.textContent === gamemode1) {
-    
-  // }
-  // else if (current_choice.textContent === gamemode2) {
-  //   guess ++;
-  // }
-  // else if (current_choice.textContent === gamemode3) {
-  //   guess ++;
-  // }
+  const guessStorage = (gamemode)=>{
+    guess++;
+    console.log(localStorage.getItem(gamemode1));
+    if (localStorage.getItem(gamemode) == null){
+      localStorage.setItem(gamemode,'0');
+    }
+    else if (localStorage.getItem(gamemode) < guess){
+      localStorage.setItem(gamemode,guess);
+      display_guesses();//changes the guess label when a new guess has occured
+
+    }
+
+  }
+
+  if (current_choice.textContent === gamemode1) {
+    guessStorage(gamemode1);
+  }
+  else if (current_choice.textContent === gamemode2) {
+    guessStorage(gamemode2);
+  }
+  else if (current_choice.textContent === gamemode3) {
+    guessStorage(gamemode3);
+  }
 
   // gets the guess and stores it in local storage
 
-  const guessStorage = (gamemode)=>{
-    localStorage.setItem(gamemode,guess);
-    console.log(localStorage.getItem(gamemode));
-  }
+  
 
   // ensure user_input is not null before proceeding
   if (user_input === null) {
@@ -277,7 +295,7 @@ function check_answer(formatted_name) {
 // removing a life function from the lives count
 const remove_life = () => {
   let lives = extra_lives.children;
-  if (lives.length > 1) {
+  if (lives.length > 1 ) {
     lives[0].remove();
   } else {
     extra_lives.style.display = 'none';
@@ -356,7 +374,22 @@ function start_game() {
   enter_button.style.display = 'flex';
   score.style.display = 'flex';
 
+
   retrieve_characters();
+}
+function restart_game(splash){
+  const restart =document.createElement('button');
+  restart.textContent = 'Try Again';
+  restart.classList.add('restart');
+  restart.classList.add('start');
+
+  splash.appendChild(restart);
+
+  restart.addEventListener('click', function () {
+    start_game(); // calls the start function to start the game again
+    //need to make splash screen disappaer 
+  });
+  
 }
 
 // game over function
@@ -368,6 +401,7 @@ function game_over() {
 
   //makes the splash screen pop up with the game over state
   open_splash('gameover');
+
 }
 document.querySelector('.start').addEventListener('click', start_game);
 

@@ -19,7 +19,7 @@ let label = document.createElement('label');
 light_input.type = 'checkbox';
 light_input.role = 'switch';
 light_input.className = 'lightswitch'; //ads the light switch class to the input
-
+let splash;
 // set container size based on viewport size, reference vw to properly set the container size; mobile responsive
 const viewport_sizes = [
     { max: 768, width: '90%', height: '80%' },         // set the container size based on the viewport size, 768 is mobile
@@ -62,11 +62,25 @@ function create_label(txt) {
     label.classList.add('splash_label_txt');
     return label;
 }
+function display_guesses(){
 
+    let best_guesses= 'Best time:' + localStorage.getItem(gamemode1) +' '+ 'guesses';
+    let infinte_gusses ='Inifinte: ' + localStorage.getItem(gamemode2)+' ' + 'guesses';
+    let lives_guesses = 'Three Lives: ' + localStorage.getItem(gamemode3) +' '+ 'guesses';
+
+    const label1 = create_label(best_guesses);
+    const label2 = create_label(infinte_gusses);
+    const label3 = create_label(lives_guesses);
+
+    splash.appendChild(label1);
+    splash.appendChild(label2);
+    splash.appendChild(label3);
+}
+//when the game is over a restart button will be displayed 
 
 // opens splash, either settings or stats depending on the argument
 function open_splash(arg) {
-    console.log('open_splash()');
+    
     
 
     // get the viewport width
@@ -89,7 +103,7 @@ function open_splash(arg) {
     if (darken_bg.firstChild) {
         darken_bg.removeChild(darken_bg.firstChild);       // remove the previous splash, allowing only one splas at a time, for reusal
     }
-    const splash = document.body.appendChild(darken_bg).appendChild(container); // append the container to the darken_bg
+    splash = document.body.appendChild(darken_bg).appendChild(container); // append the container to the darken_bg
 
     // create the close btn
     const close_container = document.createElement('div');
@@ -106,7 +120,11 @@ function open_splash(arg) {
         // stats content
         const heading = create_heading('Stats')
         splash.appendChild(heading);
+        //creates the labeles and prints the guesses for each of the modes 
         
+        display_guesses();
+        
+
 
         
 
@@ -179,6 +197,7 @@ function open_splash(arg) {
     else if (arg==='gameover') {
         const heading = create_heading('Game over!');
         splash.appendChild(heading);
+        restart_game(splash);
     }
 
     // window resize - remove splash - keep it in this function - causes Uncaught DOMException: Node.removeChild: Uncaught ReferenceError:
