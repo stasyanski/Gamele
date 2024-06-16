@@ -1,222 +1,250 @@
 [
   {
-    "name": "ada_wong.png",
-    "path": "characters\\ada_wong.png"
-  },
-  {
-    "name": "alex_mercer.png",
-    "path": "characters\\alex_mercer.png"
-  },
-  {
-    "name": "arthur_morgan.png",
-    "path": "characters\\arthur_morgan.png"
-  },
-  {
-    "name": "bandi.png",
-    "path": "characters\\bandi.png"
-  },
-  {
-    "name": "batman.png",
-    "path": "characters\\batman.png"
-  },
-  {
-    "name": "bowser.webp",
-    "path": "characters\\bowser.webp"
-  },
-  {
-    "name": "cammy.webp",
-    "path": "characters\\cammy.webp"
-  },
-  {
-    "name": "captain_price.png",
-    "path": "characters\\captain_price.png"
-  },
-  {
-    "name": "cayde.webp",
-    "path": "characters\\cayde.webp"
-  },
-  {
-    "name": "chun_li.webp",
-    "path": "characters\\chun_li.webp"
-  },
-  {
-    "name": "ciri.png",
-    "path": "characters\\ciri.png"
-  },
-  {
-    "name": "claire_redfield.png",
-    "path": "characters\\claire_redfield.png"
-  },
-  {
-    "name": "clank.webp",
-    "path": "characters\\clank.webp"
-  },
-  {
-    "name": "cloud_strife.webp",
-    "path": "characters\\cloud_strife.webp"
-  },
-  {
-    "name": "donkey_kong.png",
-    "path": "characters\\donkey_kong.png"
-  },
-  {
-    "name": "doom_slayer.webp",
-    "path": "characters\\doom_slayer.webp"
-  },
-  {
-    "name": "ellie_williams.png",
-    "path": "characters\\ellie_williams.png"
-  },
-  {
     "name": "ezio.webp",
-    "path": "characters\\ezio.webp"
-  },
-  {
-    "name": "geralt_of_rivia.png",
-    "path": "characters\\geralt_of_rivia.png"
-  },
-  {
-    "name": "gordon_freeman.png",
-    "path": "characters\\gordon_freeman.png"
-  },
-  {
-    "name": "jill_valentine.png",
-    "path": "characters\\jill_valentine.png"
+    "path": "characters\\assassins-creed\\ezio.webp"
   },
   {
     "name": "kassandra.webp",
-    "path": "characters\\kassandra.webp"
+    "path": "characters\\assassins-creed\\kassandra.webp"
   },
   {
-    "name": "kazuma_kiryu.webp",
-    "path": "characters\\kazuma_kiryu.webp"
-  },
-  {
-    "name": "kratos.png",
-    "path": "characters\\kratos.png"
-  },
-  {
-    "name": "lara_croft.png",
-    "path": "characters\\lara_croft.png"
-  },
-  {
-    "name": "leon_kennedy.png",
-    "path": "characters\\leon_kennedy.png"
-  },
-  {
-    "name": "luigi.png",
-    "path": "characters\\luigi.png"
-  },
-  {
-    "name": "mario.png",
-    "path": "characters\\mario.png"
-  },
-  {
-    "name": "max_payne.png",
-    "path": "characters\\max_payne.png"
-  },
-  {
-    "name": "nathan_drake.webp",
-    "path": "characters\\nathan_drake.webp"
-  },
-  {
-    "name": "niko_bellic.png",
-    "path": "characters\\niko_bellic.png"
-  },
-  {
-    "name": "pac_man.png",
-    "path": "characters\\pac_man.png"
-  },
-  {
-    "name": "pikachu.png",
-    "path": "characters\\pikachu.png"
-  },
-  {
-    "name": "princess_peach.png",
-    "path": "characters\\princess_peach.png"
-  },
-  {
-    "name": "pyramid_head.png",
-    "path": "characters\\pyramid_head.png"
-  },
-  {
-    "name": "ratchet.webp",
-    "path": "characters\\ratchet.webp"
-  },
-  {
-    "name": "ryu.png",
-    "path": "characters\\ryu.png"
-  },
-  {
-    "name": "sackboy.webp",
-    "path": "characters\\sackboy.webp"
-  },
-  {
-    "name": "samus_aran.webp",
-    "path": "characters\\samus_aran.webp"
-  },
-  {
-    "name": "scorpion.png",
-    "path": "characters\\scorpion.png"
+    "name": "batman.png",
+    "path": "characters\\batman\\batman.png"
   },
   {
     "name": "shadowheart.png",
-    "path": "characters\\shadowheart.png"
+    "path": "characters\\baldurs-gate\\shadowheart.png"
   },
   {
-    "name": "solid_snake.webp",
-    "path": "characters\\solid_snake.webp"
+    "name": "captain_price.png",
+    "path": "characters\\cod\\captain_price.png"
   },
   {
-    "name": "sonic.png",
-    "path": "characters\\sonic.png"
+    "name": "bandi.png",
+    "path": "characters\\crash-bandi\\bandi.png"
   },
   {
-    "name": "spiderman.png",
-    "path": "characters\\spiderman.png"
+    "name": "vincent.png",
+    "path": "characters\\cyberpunk\\vincent.png"
   },
   {
-    "name": "spyro.png",
-    "path": "characters\\spyro.png"
+    "name": "cayde.webp",
+    "path": "characters\\destiny\\cayde.webp"
   },
   {
-    "name": "steve.png",
-    "path": "characters\\steve.png"
+    "name": "donkey_kong.png",
+    "path": "characters\\donkey-kong\\donkey_kong.png"
   },
   {
-    "name": "subzero.png",
-    "path": "characters\\subzero.png"
+    "name": "doom_slayer.webp",
+    "path": "characters\\doom\\doom_slayer.webp"
   },
   {
-    "name": "tifa_lockhart.webp",
-    "path": "characters\\tifa_lockhart.webp"
+    "name": "malenia.webp",
+    "path": "characters\\elden-ring\\malenia.webp"
   },
   {
-    "name": "vaas.png",
-    "path": "characters\\vaas.png"
+    "name": "melina.webp",
+    "path": "characters\\elden-ring\\melina.webp"
+  },
+  {
+    "name": "queen_marika.png",
+    "path": "characters\\elden-ring\\queen_marika.png"
+  },
+  {
+    "name": "ranni_the_witch.png",
+    "path": "characters\\elden-ring\\ranni_the_witch.png"
   },
   {
     "name": "vault_boy.png",
-    "path": "characters\\vault_boy.png"
+    "path": "characters\\fallout\\vault_boy.png"
+  },
+  {
+    "name": "vaas.png",
+    "path": "characters\\far-cry\\vaas.png"
+  },
+  {
+    "name": "cloud_strife.webp",
+    "path": "characters\\final-fantasy\\cloud_strife.webp"
+  },
+  {
+    "name": "tifa_lockhart.webp",
+    "path": "characters\\final-fantasy\\tifa_lockhart.webp"
+  },
+  {
+    "name": "kratos.png",
+    "path": "characters\\gow\\kratos.png"
+  },
+  {
+    "name": "niko_bellic.png",
+    "path": "characters\\gta\\niko_bellic.png"
+  },
+  {
+    "name": "gordon_freeman.png",
+    "path": "characters\\half-life\\gordon_freeman.png"
+  },
+  {
+    "name": "delsin_rowe.webp",
+    "path": "characters\\infamous\\delsin_rowe.webp"
+  },
+  {
+    "name": "bowser.webp",
+    "path": "characters\\mario\\bowser.webp"
+  },
+  {
+    "name": "luigi.png",
+    "path": "characters\\mario\\luigi.png"
+  },
+  {
+    "name": "mario.png",
+    "path": "characters\\mario\\mario.png"
+  },
+  {
+    "name": "princess_peach.png",
+    "path": "characters\\mario\\princess_peach.png"
   },
   {
     "name": "wario.webp",
-    "path": "characters\\wario.webp"
-  },
-  {
-    "name": "yorha_2b.webp",
-    "path": "characters\\yorha_2b.webp"
-  },
-  {
-    "name": "yorha_9s.webp",
-    "path": "characters\\yorha_9s.webp"
-  },
-  {
-    "name": "yorha_a2.png",
-    "path": "characters\\yorha_a2.png"
+    "path": "characters\\mario\\wario.webp"
   },
   {
     "name": "yoshi.webp",
-    "path": "characters\\yoshi.webp"
+    "path": "characters\\mario\\yoshi.webp"
+  },
+  {
+    "name": "max_payne.png",
+    "path": "characters\\max-payne\\max_payne.png"
+  },
+  {
+    "name": "solid_snake.webp",
+    "path": "characters\\metal-gear\\solid_snake.webp"
+  },
+  {
+    "name": "samus_aran.webp",
+    "path": "characters\\metroid\\samus_aran.webp"
+  },
+  {
+    "name": "steve.png",
+    "path": "characters\\minecraft\\steve.png"
+  },
+  {
+    "name": "scorpion.png",
+    "path": "characters\\mortal-kombat\\scorpion.png"
+  },
+  {
+    "name": "subzero.png",
+    "path": "characters\\mortal-kombat\\subzero.png"
+  },
+  {
+    "name": "yorha_2b.webp",
+    "path": "characters\\nier\\yorha_2b.webp"
+  },
+  {
+    "name": "yorha_9s.webp",
+    "path": "characters\\nier\\yorha_9s.webp"
+  },
+  {
+    "name": "yorha_a2.png",
+    "path": "characters\\nier\\yorha_a2.png"
+  },
+  {
+    "name": "pac_man.png",
+    "path": "characters\\pac-man\\pac_man.png"
+  },
+  {
+    "name": "pikachu.png",
+    "path": "characters\\pokemon\\pikachu.png"
+  },
+  {
+    "name": "alex_mercer.png",
+    "path": "characters\\prototype\\alex_mercer.png"
+  },
+  {
+    "name": "clank.webp",
+    "path": "characters\\ratchet-clank\\clank.webp"
+  },
+  {
+    "name": "ratchet.webp",
+    "path": "characters\\ratchet-clank\\ratchet.webp"
+  },
+  {
+    "name": "arthur_morgan.png",
+    "path": "characters\\red-dead\\arthur_morgan.png"
+  },
+  {
+    "name": "ada_wong.png",
+    "path": "characters\\resident-evil\\ada_wong.png"
+  },
+  {
+    "name": "chris_redfield.webp",
+    "path": "characters\\resident-evil\\chris_redfield.webp"
+  },
+  {
+    "name": "claire_redfield.png",
+    "path": "characters\\resident-evil\\claire_redfield.png"
+  },
+  {
+    "name": "jill_valentine.png",
+    "path": "characters\\resident-evil\\jill_valentine.png"
+  },
+  {
+    "name": "leon_kennedy.png",
+    "path": "characters\\resident-evil\\leon_kennedy.png"
+  },
+  {
+    "name": "sackboy.webp",
+    "path": "characters\\sackboy\\sackboy.webp"
+  },
+  {
+    "name": "pyramid_head.png",
+    "path": "characters\\silent-hill\\pyramid_head.png"
+  },
+  {
+    "name": "sonic.png",
+    "path": "characters\\sonic\\sonic.png"
+  },
+  {
+    "name": "spiderman.png",
+    "path": "characters\\spiderman\\spiderman.png"
+  },
+  {
+    "name": "spyro.png",
+    "path": "characters\\spyro\\spyro.png"
+  },
+  {
+    "name": "cammy.webp",
+    "path": "characters\\street-fighter\\cammy.webp"
+  },
+  {
+    "name": "chun_li.webp",
+    "path": "characters\\street-fighter\\chun_li.webp"
+  },
+  {
+    "name": "ryu.png",
+    "path": "characters\\street-fighter\\ryu.png"
+  },
+  {
+    "name": "ellie_williams.png",
+    "path": "characters\\tlou\\ellie_williams.png"
+  },
+  {
+    "name": "nathan_drake.webp",
+    "path": "characters\\uncharted\\nathan_drake.webp"
+  },
+  {
+    "name": "lara_croft.png",
+    "path": "characters\\tomb-raider\\lara_croft.png"
+  },
+  {
+    "name": "ciri.png",
+    "path": "characters\\witcher\\ciri.png"
+  },
+  {
+    "name": "geralt_of_rivia.png",
+    "path": "characters\\witcher\\geralt_of_rivia.png"
+  },
+  {
+    "name": "kazuma_kiryu.webp",
+    "path": "characters\\yakuza\\kazuma_kiryu.webp"
   }
 ]

@@ -33,6 +33,8 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [12/6/2024] @stasyanski   reworking the game over splash
 - [12/6/2024] @stasyanski   updated the lives and score css to be more consistent
 - [14/6/2024] @stasyanski   reused the settings css for stats screen
+- [16/6/2024] @stasyanski   sorted all png, webp, etc by game name / franchise
+- [16/6/2024] @stasyanski   changed fetch.js to account for subfolders when generating images.json
 
 ### Removed
 
