@@ -23,6 +23,7 @@ Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with t
 - [14/6/2024] @stasyanski   fixed retrieval from localstorage when null
 - [14/6/2024] @stasyanski   added content to info splash screen
 - [14/6/2024] @stasyanski   fixed overflow issue by settings height of splash screen to auto
+- [16/6/2024] @stasyanski   fixed current choice is null on line 212 
 
 ### Changed
 

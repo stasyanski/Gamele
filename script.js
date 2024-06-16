@@ -31,7 +31,7 @@ let game_over_state = false;
 let user_input = null;
 let score_num = 0;
 
-let current_choice = null;  // current game mode
+let current_choice = 'Infinite';  // current game mode
 let answer_enabled = true;  // enables or disables the ability to get an answer right 
 
 // game mode variables
@@ -206,10 +206,7 @@ function check_answer(formatted_name) {
     }
     else if (localStorage.getItem(gamemode) < guess){
       localStorage.setItem(gamemode,guess);
-      display_guesses();//changes the guess label when a new guess has occured
-
     }
-
   }
 
   if (current_choice.textContent === gamemode1) {
@@ -282,8 +279,6 @@ function check_answer(formatted_name) {
       child.disabled = true;
     }
     score_num++;
-    
-    
     setTimeout(retrieve_characters, input_container.children.length * 200);
   } else {
     console.log(current_choice.textContent);
@@ -456,7 +451,6 @@ document.querySelector('.start').addEventListener('click', start_game);
     window.addEventListener('resize', () => {
       if (current_choice) {
         choice_overlay.style.display = 'none';
-        current_choice = null;
       }
     });
     start.addEventListener('click', () => {

@@ -64,6 +64,7 @@ function create_label(txt) {
 }
 
 function display_guesses() {
+    console.log('display_guesses() called');
     const game_modes = [
         { key: gamemode1, label: 'Best time - 120 seconds' },
         { key: gamemode2, label: "Infinite - guess until you're tired" },
