@@ -291,8 +291,8 @@ function check_answer(formatted_name) {
 // removing a life function from the lives count
 const remove_life = () => {
   let lives = extra_lives.children;
-  if (lives.length > 1 ) {
-    lives[0].remove();
+  if (lives.length > 2 ) {
+    lives[lives.length - 1].remove(); 
   } else {
     extra_lives.style.display = 'none';
     game_over();
