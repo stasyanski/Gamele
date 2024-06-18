@@ -9,15 +9,16 @@
 
 
 // DOM elements
-const container = document.querySelector('.character_container');
-const extra_lives = document.querySelector('.lives');
-const img = document.createElement('img');
-const left_arrow = document.querySelector('.left_arrow');
-const right_arrow = document.querySelector('.right_arrow');
-const enter_button = document.querySelector('.enter_bttn');
-const score = document.querySelector('.score');
-const ui_elements_container = document.querySelector('.ui_elements_container');
-const input_container = document.querySelector('.input_container');
+const container               = document.querySelector('.character_container');
+const extra_lives             = document.querySelector('.lives');
+const img                     = document.createElement('img');
+const left_arrow              = document.querySelector('.left_arrow');
+const right_arrow             = document.querySelector('.right_arrow');
+const enter_button            = document.querySelector('.enter_bttn');
+const score                   = document.querySelector('.score');
+const ui_elements_container   = document.querySelector('.ui_elements_container');
+const input_container         = document.querySelector('.input_container');
+const start_btn               = document.querySelector('.start');
 
 
 // game state variables
@@ -27,9 +28,8 @@ let guess = 0; // keeps track of the user gusses
 let formatted_name;
 let last_input = null;
 let input_movement;
-let game_over_state = false;
 let user_input = null;
-let score_num = 0;
+let score_num = 1;
 
 let current_choice = 'Infinite';  // current game mode
 let answer_enabled = true;  // enables or disables the ability to get an answer right 
@@ -173,7 +173,6 @@ function input_guess(name, formatted_name) {
   }
 }
 
-
 left_arrow.addEventListener('click', function () {
   input_movement('left');
 });
@@ -246,6 +245,7 @@ function check_answer(formatted_name) {
 
     // checks if the user input is correct, and if it is in the correct position
     if (user_input.toUpperCase() === formatted_name) {
+      score.textContent = 'SCORE: ' + score_num;
       setTimeout(() => update_element(child, 'green'), i * 150);
     } else if (user_input.length === formatted_name.length) {
       if (formatted_name_array[index] === userinput_array[index]) {
@@ -279,7 +279,7 @@ function check_answer(formatted_name) {
       child.disabled = true;
     }
     score_num++;
-    setTimeout(retrieve_characters, input_container.children.length * 200);
+    setTimeout(display_new_character, input_container.children.length * 200);
   } else {
     console.log(current_choice.textContent);
     if (gamemode3 === current_choice.textContent) {
@@ -313,8 +313,8 @@ async function fetch_images() {
 
 // gets a random image from the data
 function get_random_img(data) {
-  const randomIndex = Math.floor(Math.random() * data.length);
-  return data[randomIndex];
+  const random_index = Math.floor(Math.random() * data.length);
+  return data[random_index];
 }
 
 // formats the name of the image
@@ -325,8 +325,7 @@ function format(name) {
 }
 
 // retrieve random character  
-async function retrieve_characters() {
-  score.textContent = 'SCORE: ' + score_num;
+async function display_new_character() {
   answer_enabled = true;
   try {
     // fetch image data
@@ -341,7 +340,7 @@ async function retrieve_characters() {
 
     // extract the name and type from the image name
     const source = image.name;
-    const [name, type] = source.split('.');
+    const [name, type] = source.split('.'); // split requires two variables to assign to, even if one is not used, avoid error (.png, .webp not needed)
 
     // format the name
     formatted_name = format(name);
@@ -360,37 +359,35 @@ async function retrieve_characters() {
 */
 
 
-//start game function 
+// start game function 
 function start_game() {
-  const start_btn = document.querySelector('.start');
+  // hide the splash
   start_btn.style.display = 'none';
 
-  left_arrow.style.display = 'flex';
-  right_arrow.style.display = 'flex';
-  enter_button.style.display = 'flex';
-  score.style.display = 'flex';
+  // dom elements to be displayed
+  [left_arrow, right_arrow, enter_button, score].forEach(element => element.style.display = 'flex');
 
-
-  retrieve_characters();
+  // retrieves a random image from the json file and displays it
+  display_new_character();
 }
+
 function restart_game(splash){
-  const restart =document.createElement('button');
-  restart.textContent = 'Try Again';
-  restart.classList.add('restart');
+  const restart = document.createElement('button');
+  restart.textContent = 'TRY AGAIN';
   restart.classList.add('start');
+  restart.classList.add('restart');
 
   splash.appendChild(restart);
 
   restart.addEventListener('click', function () {
-    start_game(); // calls the start function to start the game again
-    //need to make splash screen disappaer 
+    document.body.removeChild(darken_bg);
+    splash.style.display = 'none';
+    start_game();
   });
-  
 }
 
 // game over function
 function game_over() {
-  game_over_state = true;
   answer_enabled = false;
   //makes the splash screen pop up with the game over state
   open_splash('gameover');

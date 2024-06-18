@@ -357,6 +357,10 @@ body.light_theme .choice {
     box-shadow: var(--start-box-shadow-dark);
 
     animation: pulse 2s infinite;
+
+    font-size: 2rem;
+    color: var(--start-bttn-text-color-dark);
+    font-weight: 600;
 }
 
 body.light_theme .start {
@@ -364,14 +368,9 @@ body.light_theme .start {
     box-shadow: var(--start-box-shadow-light);
 }
 
-.start_bttn_txt {
-    font-size: 2rem;
-    color: var(--start-bttn-text-color-dark);
-    font-weight: 600;
-}
-
 .restart {
-    background-color: var(--restart-color-dark)
+    background-color: var(--restart-color-dark);
+    margin-top: -20px;
 }
 
 .choice_overlay {

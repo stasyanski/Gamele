@@ -250,7 +250,7 @@ function open_splash(arg) {
 */
 
 
-//applies the users choice of theme when the page is loaded
+// applies the users choice of theme when the page is loaded
 (() => {
     if (localStorage.getItem('light_theme') == 1) {
         document.body.classList.add('light_theme');
