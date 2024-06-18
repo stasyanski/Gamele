@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The documentation is from 6/4/2024 onwards, whereas project in development for longer.
 Add all relevant changes to either ADDED, CHANGED, REMOVED or FIXED along with the date in DD/MM/YYYY format and @user.
 
+### In progress
+- [18/6/2024] RE-CODING started by @kambains226 and @stasyanski using liveshare
+
 ### Added / fixed
 
 - [6/6/2024] @kambains226   put the arrow key input movement in a function but its causing an erro when the arrow buttons are clicked 
