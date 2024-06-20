@@ -200,6 +200,14 @@
     "path": "characters\\half-life\\g_man.png"
   },
   {
+    "name": "aloy.png",
+    "path": "characters\\horizon\\aloy.png"
+  },
+  {
+    "name": "erend.webp",
+    "path": "characters\\horizon\\erend.webp"
+  },
+  {
     "name": "abigail_walker.png",
     "path": "characters\\infamous\\abigail_walker.png"
   },
@@ -324,6 +332,46 @@
     "path": "characters\\nier\\yorha_a2.png"
   },
   {
+    "name": "ashe.webp",
+    "path": "characters\\overwatch\\ashe.webp"
+  },
+  {
+    "name": "brigitte.png",
+    "path": "characters\\overwatch\\brigitte.png"
+  },
+  {
+    "name": "doomfist.webp",
+    "path": "characters\\overwatch\\doomfist.webp"
+  },
+  {
+    "name": "dva.webp",
+    "path": "characters\\overwatch\\dva.webp"
+  },
+  {
+    "name": "reaper.webp",
+    "path": "characters\\overwatch\\reaper.webp"
+  },
+  {
+    "name": "roadhog.png",
+    "path": "characters\\overwatch\\roadhog.png"
+  },
+  {
+    "name": "sombra.webp",
+    "path": "characters\\overwatch\\sombra.webp"
+  },
+  {
+    "name": "tracer.webp",
+    "path": "characters\\overwatch\\tracer.webp"
+  },
+  {
+    "name": "widowmaker.webp",
+    "path": "characters\\overwatch\\widowmaker.webp"
+  },
+  {
+    "name": "winston.webp",
+    "path": "characters\\overwatch\\winston.webp"
+  },
+  {
     "name": "pac_man.png",
     "path": "characters\\pac-man\\pac_man.png"
   },
@@ -352,6 +400,14 @@
     "path": "characters\\prototype\\alex_mercer.png"
   },
   {
+    "name": "clank.webp",
+    "path": "characters\\ratchet-clank\\clank.webp"
+  },
+  {
+    "name": "ratchet.webp",
+    "path": "characters\\ratchet-clank\\ratchet.webp"
+  },
+  {
     "name": "arthur_morgan.png",
     "path": "characters\\red-dead\\arthur_morgan.png"
   },
@@ -362,14 +418,6 @@
   {
     "name": "john_marston.png",
     "path": "characters\\red-dead\\john_marston.png"
-  },
-  {
-    "name": "clank.webp",
-    "path": "characters\\ratchet-clank\\clank.webp"
-  },
-  {
-    "name": "ratchet.webp",
-    "path": "characters\\ratchet-clank\\ratchet.webp"
   },
   {
     "name": "sackboy.webp",
