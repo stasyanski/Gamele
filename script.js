@@ -229,7 +229,6 @@ function check_answer(formatted_name) {
   // only increments the guess for that specific gamemode
   const guessStorage = (gamemode) => {
     guess++;
-    console.log(localStorage.getItem(gamemode1));
     if (localStorage.getItem(gamemode) == null) {
       localStorage.setItem(gamemode, "0");
     } else if (localStorage.getItem(gamemode) < guess) {
@@ -245,11 +244,9 @@ function check_answer(formatted_name) {
     guessStorage(gamemode3);
   }
 
-  // gets the guess and stores it in local storage
-
   // ensure user_input is not null before proceeding
   if (user_input === null) {
-    return; // rxit the function early if user_input is null
+    return; // exit the function early if user_input is null
   }
 
   // the main function variables
@@ -381,7 +378,7 @@ async function display_new_character() {
     const formatted_name = format(name);
 
     // call input_guess function with formatted_name and name as params
-    input_guess(formatted_name, name); 
+    input_guess(name, formatted_name); 
   } catch (error) {
     console.error("Error fetching images:", error);
   }
