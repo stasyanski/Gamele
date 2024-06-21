@@ -1,5 +1,7 @@
 ### Ideas:
-- none at the moment
+- clear storage / score button
+- stop button in infinite
+
 
 ### To do:
 - cleanup everything after done / recode everything and modularise

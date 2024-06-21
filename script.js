@@ -22,14 +22,13 @@ const darken_bg_var = document.querySelector(".darken_bg");
 const timer_div = document.querySelector(".timer");
 
 // game state variables
-let lives;
 let input;
 let guess = 0; // keeps track of the user gusses
 let formatted_name;
 let last_input = null;
 let input_movement;
 let user_input = null;
-let score_num = 1;
+let score_num = 0;
 
 let choice_overlay;
 
@@ -46,7 +45,7 @@ const gamemode3 = "Three lives";
  */
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
-function input_guess(name, formatted_name) {
+function input_guess(name) {
   // reset the container for each input_guess call so there wont be duplicates
   input_container.innerHTML = "";
 
@@ -149,6 +148,7 @@ function input_guess(name, formatted_name) {
       // add keydown event listener for Enter, Delete or Backspace
       element.addEventListener("keydown", function (event) {
         if (event.key === "Enter" && answer_enabled) {
+          
           user_input = get_user_input();
           check_answer(formatted_name);
         } else if (event.key === "Delete" || event.key === "Backspace") {
@@ -214,115 +214,128 @@ right_arrow.addEventListener("click", function () {
 
 // check answer and related functions
 enter_button.addEventListener("click", function () {
-  check_answer(formatted_name);
+  check_answer();
 });
-//if the user has never made a guess automatically assign it to 0
-const modes = [gamemode1, gamemode2, gamemode3];
 
-modes.forEach(function (mode) {
+
+
+
+
+
+
+
+
+
+
+
+// if the user has never made a guess automatically assign it to 0
+[gamemode1, gamemode2, gamemode3].forEach(function (mode) {
   if (localStorage.getItem(mode) == null) {
     localStorage.setItem(mode, "0");
   }
 });
 
-function check_answer(formatted_name) {
+function check_answer() {
+  if (!user_input) return; // exit the function early if user_input is null
+  
   // only increments the guess for that specific gamemode
-  const guessStorage = (gamemode) => {
-    guess++;
-    if (localStorage.getItem(gamemode) == null) {
-      localStorage.setItem(gamemode, "0");
-    } else if (localStorage.getItem(gamemode) < guess) {
-      localStorage.setItem(gamemode, guess);
-    }
-  };
-
-  if (current_choice.textContent === gamemode1) {
-    guessStorage(gamemode1);
-  } else if (current_choice.textContent === gamemode2) {
-    guessStorage(gamemode2);
-  } else if (current_choice.textContent === gamemode3) {
-    guessStorage(gamemode3);
+  switch(current_choice.textContent) {
+    case gamemode1:
+      guess_storage(gamemode1);
+      break;
+    case gamemode2:
+      guess_storage(gamemode2);
+      break;
+    case gamemode3:
+      guess_storage(gamemode3);
+      break;
   }
 
-  // ensure user_input is not null before proceeding
-  if (user_input === null) {
-    return; // exit the function early if user_input is null
-  }
-
-  // the main function variables
-  formatted_name = formatted_name.toUpperCase();
-  let userinput_array = user_input.split(""); // It's now safe to split user_input
-  let formatted_name_array = formatted_name.split("");
-
-  // function to update the element, changes the colour of the input boxes, and disables them if needed, used in the for loop below
-  function update_element(element, color, disabled = false) {
-    element.style.backgroundColor = color;
-    element.disabled = disabled;
-  }
-
-  // for loop to go through the input boxes, and check if the user input is correct, and if it is in the correct position
-  for (let i = 0, index = 0; i < input_container.children.length; i++) {
-    let child = input_container.children[i];
-    if (child.tagName !== "INPUT") continue;
-
-    // checks if the user input is correct, and if it is in the correct position
-    if (user_input.toUpperCase() === formatted_name) {
-      score.textContent = "SCORE: " + score_num;
-      setTimeout(() => update_element(child, "green"), i * 150);
-    } else if (user_input.length === formatted_name.length) {
-      if (formatted_name_array[index] === userinput_array[index]) {
-        update_element(child, "green", true); // disables the input box if the user input is correct
-      } else if (formatted_name.includes(userinput_array[index])) {
-        update_element(child, "orange");
-      } else {
-        update_element(child, "red");
-      }
-      index++;
-    }
-  }
-
-  // focus on the first amber / red box if the user input is incorrect
-  for (let i = 0; i < input_container.children.length; i++) {
-    let child = input_container.children[i];
-    if (child.tagName !== "INPUT") continue;
-    if (
-      child.style.backgroundColor === "red" ||
-      child.style.backgroundColor === "orange"
-    ) {
-      child.focus();
-      break; // break ensures no going to next amber/red but stopping on first found element
-    }
-  }
-
-  // checks if the user input is correct, and if it is in the correct position
+  // call function for correct or wrong answer
   if (user_input.toUpperCase() === formatted_name) {
-    answer_enabled = false;
+    handle_correct_answer();
+  } else if (user_input.length === formatted_name.length) {
+    handle_wrong_answer();
+  }
+}
 
-    //disables the user input when right
-    for (let i = 0; i < input_container.children.length; i++) {
-      let child = input_container.children[i];
-      child.disabled = true;
+function guess_storage(gamemode) {
+  guess++;
+  if (localStorage.getItem(gamemode) == null) {
+    localStorage.setItem(gamemode, "0");
+  } else if (localStorage.getItem(gamemode) < guess) {
+    localStorage.setItem(gamemode, guess);
+  }
+};
+
+function handle_wrong_answer () {
+  if (current_choice.textContent === gamemode3) {
+    // remove the last life
+    extra_lives.lastElementChild.remove();
+    
+    // if no lives are left, hide the lives container and end the game
+    if (extra_lives.children.length === 0) {
+      extra_lives.style.display = "none";
+      game_over();
     }
-    score_num++;
-    setTimeout(display_new_character, input_container.children.length * 200);
-  } else {
-    console.log(current_choice.textContent);
-    if (gamemode3 === current_choice.textContent) {
-      remove_life();
+  }
+  
+  // variables to be used in the function, split into array as we check each character
+  const user_input_array = user_input.split(""); 
+  const formatted_name_array = formatted_name.split("");
+  
+  // loop through the input container children and check if the user input is correct
+  Array.from(input_container.children).forEach((child, index) => {
+    if (child.tagName !== "INPUT") return;
+
+    // check character by character for partial correctness
+    if (formatted_name_array[index] === user_input_array[index]) {
+      update_element(child, "green", true); // correct character in correct position
+    } else if (formatted_name.includes(user_input_array[index])) {
+      update_element(child, "orange"); // correct character in wrong position
+    } else {
+      update_element(child, "red"); // incorrect character
+    }
+  });
+
+  // focus on the first amber / red box if the user input is incorrect, makes it more intuitive
+  for (const child of Array.from(input_container.children)) {
+    if (child.tagName === "INPUT" && ["red", "orange"].includes(child.style.backgroundColor)) {
+      child.focus();
+      break; // stops at the first input with red or orange background
     }
   }
 }
 
-// removing a life function from the lives count
-const remove_life = () => {
-  let lives = extra_lives.children;
-  if (lives.length > 2) {
-    lives[lives.length - 1].remove();
-  } else {
-    extra_lives.style.display = "none";
-    game_over();
+function handle_correct_answer() {
+  // loop through the input container children and check if the user input is correct
+  Array.from(input_container.children).forEach((child, index) => {
+    if (child.tagName !== "INPUT") return;
+  
+    // check if the entire user input matches the formatted name
+    if (user_input.toUpperCase() === formatted_name) {
+      child.disabled = true; // disable the input field
+      setTimeout(() => update_element(child, "green"), index * 150);
+      
+      // if this is the last iteration, disable all inputs and prepare for the next character
+      if (index === input_container.children.length - 1) {
+        answer_enabled = false;
+        score_num++;
+        score.textContent = "SCORE: " + score_num; // update the score text
+        setTimeout(display_new_character, input_container.children.length * 200);
+      }
+    } 
+  });
+}
+
+// update the element color and the disabled state after a guess is made
+function update_element(element, color, disabled = false) {
+  if (element) {
+    element.style.backgroundColor = color;
+    element.disabled = disabled;
   }
-};
+}
+
 
 /*
  * ----- FETCHING FROM STORAGE RELATED FUNCTIONS -----
@@ -350,7 +363,7 @@ function get_random_img(data) {
 function format(name) {
   // replaces all underscores with nothing, as user input will not have spaces
   // (images saved with _ to not cause issues with spaces)
-  return name.replace(/_/g, " "); // changed to replace underscores with spaces for readability
+  return name.replace(/_/g, "").toUpperCase(); // changed to replace underscores with spaces for readability and uppercase for comparing
 }
 
 // retrieve random character
@@ -375,10 +388,10 @@ async function display_new_character() {
     const [name, type] = image.name.split("."); // split requires two variables to assign to, even if one is not used, avoid error (.png, .webp not needed)
 
     // format the name
-    const formatted_name = format(name);
+    formatted_name = format(name);
 
     // call input_guess function with formatted_name and name as params
-    input_guess(name, formatted_name); 
+    input_guess(name); 
   } catch (error) {
     console.error("Error fetching images:", error);
   }
@@ -466,7 +479,7 @@ function add_lives() {
 
     // append the life to the extra_lives div
     extra_lives.style.display = "flex"; // displays the div that contains lives, which are usually hidden
-    extra_lives.appendChild(lives);
+    extra_lives.appendChild(life );
   }
 }
 
