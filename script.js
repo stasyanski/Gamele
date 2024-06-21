@@ -333,8 +333,14 @@ const remove_life = () => {
 
 // fetches the images from the json file
 async function fetch_images() {
-  const response = await fetch("images.json");
-  return response.json();
+  try {
+    const response = await fetch("images.json");
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    throw error; // rethrow to handle it in the calling function
+  }
 }
 
 // gets a random image from the data
@@ -347,12 +353,12 @@ function get_random_img(data) {
 function format(name) {
   // replaces all underscores with nothing, as user input will not have spaces
   // (images saved with _ to not cause issues with spaces)
-  return name.replace(/_/g, "");
+  return name.replace(/_/g, " "); // changed to replace underscores with spaces for readability
 }
 
 // retrieve random character
 async function display_new_character() {
-  answer_enabled = true;
+  answer_enabled = true; // ensure variables are declared with let or const
   try {
     // fetch image data
     const data = await fetch_images();
@@ -360,27 +366,32 @@ async function display_new_character() {
     // get a random image to display
     const image = get_random_img(data);
 
+    // ensure img and container are defined or accessible in this scope
+    if (!window.img) window.img = new Image(); // create img if it doesn't exist
+    if (!window.container) window.container = document.querySelector('#image-container'); // assuming a container with id 'image-container'
+
     // set the image source and append it to the container
     img.src = image.path;
-    container.appendChild(img);
+    if (!img.parentNode) container.appendChild(img); // append only if img is not already appended
 
     // extract the name and type from the image name
-    const source = image.name;
-    const [name, type] = source.split("."); // split requires two variables to assign to, even if one is not used, avoid error (.png, .webp not needed)
+    const [name, type] = image.name.split("."); // split requires two variables to assign to, even if one is not used, avoid error (.png, .webp not needed)
 
     // format the name
-    formatted_name = format(name);
+    const formatted_name = format(name);
 
     // call input_guess function with formatted_name and name as params
-    input_guess(name, formatted_name);
+    input_guess(formatted_name, name); 
   } catch (error) {
     console.error("Error fetching images:", error);
   }
 }
 
+
 /*
  * ----- START GAME AND GAME OVER FUNCTIONS -----
  */
+
 
 // start game function
 function start_game() {
@@ -443,7 +454,7 @@ function splash_screen_func() {
     }, 1010);
   });
 }
-splash_screen_func(); // instead of an iife resulting
+splash_screen_func(); // instead of an iife, so we can pass the current_choice variable anywhere
 
 
 /*
