@@ -120,7 +120,7 @@ function focus_next_input(index) {
 }
 
 function focus_previous_input(index) {
-  // Find the previous input box, skipping over any divs
+  // find the previous input box, skipping over any divs
   let prev_input = index - 1;
   while (
     prev_input >= 0 &&
@@ -128,7 +128,7 @@ function focus_previous_input(index) {
   ) {
     prev_input--;
   }
-  // If there's a previous input box, focus on it
+  // if there's a previous input box, focus on it
   if (prev_input >= 0) {
     setTimeout(() => {
       if (
@@ -137,28 +137,19 @@ function focus_previous_input(index) {
       ) {
         input_container.children[prev_input].focus();
       }
-      if (
-        input_container.children[prev_input].disabled === false &&
-        input_container.children[index].style.backgroundColor !== "red" &&
-        input_container.children[index].style.backgroundColor !== "orange"
-      ) {
-        // only clears previous value if it's not disabled, prevents deletion of correct values, or red / amber values
-        input_container.children[prev_input].value = ""; // removes the previous value too
-      }
     }, 5);
   }
 }
 
 function handle_backspace(index) {
+  focus_previous_input(index);
   // if it's the last child, only delete the current value and don't switch focus
   if (
     index === input_container.children.length - 1 &&
     input_container.children[index].value !== ""
   ) {
     input_container.children[index].value = "";
-  } else {
-    focus_previous_input(index);
-  }
+  } 
 }
 
 function input_movement(direction) {
