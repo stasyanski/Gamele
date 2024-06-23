@@ -7,32 +7,30 @@
  */
 
 // DOM elements
-const container             = document.querySelector(".character_container");
-const extra_lives           = document.querySelector(".lives");
 const img                   = document.createElement("img");
+const score                 = document.querySelector(".score");
+const choices               = document.querySelectorAll(".choice");
+const container             = document.querySelector(".character_container");
+const start_btn             = document.querySelector(".start");
+const timer_div             = document.querySelector(".timer");
 const left_arrow            = document.querySelector(".left_arrow");
+const extra_lives           = document.querySelector(".lives");
 const right_arrow           = document.querySelector(".right_arrow");
 const enter_button          = document.querySelector(".enter_bttn");
-const score                 = document.querySelector(".score");
-const ui_elements_container = document.querySelector(".ui_elements_container");
-const input_container       = document.querySelector(".input_container");
-const start_btn             = document.querySelector(".start");
-const choices               = document.querySelectorAll(".choice");
 const darken_bg_var         = document.querySelector(".darken_bg");
-const timer_div             = document.querySelector(".timer");
+const input_container       = document.querySelector(".input_container");
+const ui_elements_container = document.querySelector(".ui_elements_container");
 
 // game state variables
-let guess = 0; // keeps track of the user gusses
+let guess               = 0; // keeps track of the user gusses
+let score_num           = 0;
+let last_input          = null;
+let user_input          = null;
 let formatted_name;
-let last_input = null;
 let input_movement;
-let user_input = null;
-let score_num = 0;
-
+let current_choice      = "Infinite"; // current game mode
+let answer_enabled      = true; // enables or disables the ability to get an answer right
 let choice_overlay;
-
-let current_choice = "Infinite"; // current game mode
-let answer_enabled = true; // enables or disables the ability to get an answer right
 
 // game mode variables
 const gamemode1 = "Best time";
