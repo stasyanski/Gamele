@@ -56,8 +56,8 @@ function input_guess(name) { // name is the exact name of the image, for example
       element.setAttribute("maxlength", "1");
       element.setAttribute("type", "text");
       element.classList.add("input_one_char");
-      element.oninput = () => handle_input(element, index, name);
-      element.onkeydown = (event) => handle_keydown(event, index);
+      element.addEventListener("input", (event) => handle_event(event, element, index));
+      element.addEventListener("keydown", (event) => handle_event(event, element, index));
     }
     input_container.appendChild(element);
   });
@@ -73,23 +73,24 @@ function get_user_input () {
   .map(input => input.value.toUpperCase()).join("");
 }
 
-function handle_input(element, index) {
-  element.value = element.value.toUpperCase(); // convert input to uppercase, for easier comparison
-  user_input = get_user_input(); // get the user input with the function
-  focus_next_input(index); // focus on the next input
-}
-
-function handle_keydown(event, index) {
-  if (event.key === "Enter" && answer_enabled) {
-    user_input = get_user_input();
-    check_answer();
-  } else if (event.key === "Delete" || event.key === "Backspace") {
-    handle_backspace(index);
-  } else if (event.key === "ArrowLeft") {
-    focus_previous_input(index);
-  } else if (event.key === "ArrowRight") {
-    focus_next_input(index);
-  } 
+function handle_event(event, element, index) {
+  // prevent focusing on the next input for specific keys
+  if (event.type === "input") {
+    element.value = element.value.toUpperCase(); // Convert input to uppercase
+    focus_next_input(index);                     // focus on the next input for input event
+  } else if (event.type === "keydown") {
+    // handle special keys for keydown event
+    if (event.key === "Enter" && answer_enabled) {
+      user_input = get_user_input();
+      check_answer();
+    } else if (event.key === "Delete" || event.key === "Backspace") {
+      handle_backspace(index);
+    } else if (event.key === "ArrowLeft") {
+      focus_previous_input(index);
+    } else if (event.key === "ArrowRight") {
+      focus_next_input(index);
+    }
+  }
 }
 
 function focus_next_input(index) {
@@ -101,7 +102,7 @@ function focus_next_input(index) {
   ) {
     next_input++;
   }
-  // If there's a next input box, focus on it
+  // if there's a next input box, focus on it
   if (next_input < input_container.children.length) {
     input_container.children[next_input].focus();
   } else {
@@ -142,7 +143,6 @@ function focus_previous_input(index) {
 }
 
 function handle_backspace(index) {
-  focus_previous_input(index);
   // if it's the last child, only delete the current value and don't switch focus
   if (
     index === input_container.children.length - 1 &&
@@ -150,6 +150,7 @@ function handle_backspace(index) {
   ) {
     input_container.children[index].value = "";
   } 
+  focus_previous_input(index);
 }
 
 function input_movement(direction) {
