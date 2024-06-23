@@ -420,10 +420,6 @@
     "path": "characters\\red-dead\\john_marston.png"
   },
   {
-    "name": "sackboy.webp",
-    "path": "characters\\sackboy\\sackboy.webp"
-  },
-  {
     "name": "ada_wong.png",
     "path": "characters\\resident-evil\\ada_wong.png"
   },
@@ -442,6 +438,10 @@
   {
     "name": "leon_kennedy.png",
     "path": "characters\\resident-evil\\leon_kennedy.png"
+  },
+  {
+    "name": "sackboy.webp",
+    "path": "characters\\sackboy\\sackboy.webp"
   },
   {
     "name": "cybil_bennett.webp",
@@ -476,12 +476,12 @@
     "path": "characters\\sonic\\knuckles.png"
   },
   {
-    "name": "sonic.png",
-    "path": "characters\\sonic\\sonic.png"
+    "name": "shadow.webp",
+    "path": "characters\\sonic\\shadow.webp"
   },
   {
-    "name": "sonic_the_hedgehog.webp",
-    "path": "characters\\sonic\\sonic_the_hedgehog.webp"
+    "name": "sonic.png",
+    "path": "characters\\sonic\\sonic.png"
   },
   {
     "name": "tails.webp",
