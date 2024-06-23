@@ -27,7 +27,6 @@ let score_num           = 0;
 let last_input          = null;
 let user_input          = null;
 let formatted_name;
-let input_movement;
 let current_choice      = "Infinite"; // current game mode
 let answer_enabled      = true; // enables or disables the ability to get an answer right
 let choice_overlay;
@@ -41,176 +40,350 @@ const gamemode3 = "Three lives";
  * ----- INPUT HANDLING, GUESSING, CHECKING ANSWER ETC RELATED FUNCTIONS -----
 */
 
-// creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
-function input_guess(name) {
-  // reset the container for each input_guess call so there wont be duplicates
-  input_container.innerHTML = "";
-
-  function get_user_input() {
-    // checks the actual elemeents innerHTML to compare to the formatted name, much better and ensure the user input is correct
-    let user_input = "";
-    for (let i = 0; i < input_container.children.length; i++) {
-      if (input_container.children[i].tagName === "INPUT") {
-        user_input += input_container.children[i].value;
-      }
-    }
-    return user_input;
-  }
+function input_guess(name) { // name is the exact name of the image, for example " michael_de_santa " but without the extension
+  // reset the container after each guess so there wont be div duplicates
+  input_container.innerHTML="";
 
   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
-  for (let i = 0; i < name.length; i++) {
+  name.split("").forEach((char, index) => {
     let element;
-    if (name[i] === "_") {
+    if (char === "_") {
       element = document.createElement("div");
       element.classList.add("input_one_char_spacing");
     } else {
       element = document.createElement("input");
-      element.size = 1;
-      element.maxLength = 1;
+      element.setAttribute("size", "1");
+      element.setAttribute("maxlength", "1");
+      element.setAttribute("type", "text");
       element.classList.add("input_one_char");
-
-      element.addEventListener("input", function () {
-        element.value = element.value.toUpperCase(); // convert input to uppercase, show on user end
-        user_input = get_user_input();
-
-        if (element.value) {
-          // find the next input box, skipping over any divs
-          let next_input = i + 1;
-          while (
-            next_input < input_container.children.length &&
-            input_container.children[next_input].tagName !== "INPUT"
-          ) {
-            next_input++;
-          }
-          // if there's a next input box, focus on it
-          if (next_input < input_container.children.length) {
-            input_container.children[next_input].focus();
-          } else {
-            // if there is no next input box, move to the next one that is red or amber
-            for (let i = 0; i < input_container.children.length; i++) {
-              let child = input_container.children[i];
-              if (
-                child.style.backgroundColor === "red" ||
-                child.style.backgroundColor === "orange"
-              ) {
-                child.focus();
-                break;
-              }
-            }
-          }
-        }
-      });
-
-      input_movement = function input_movement(direction) {
-        // getting the last input box that was focused on, for the gui arrow keys to properly work
-        if (!last_input) return;
-        const inputs = Array.from(input_container.querySelectorAll("input"));
-        const current_index = inputs.indexOf(last_input);
-
-        if (direction === "left" && current_index > 0) {
-          // find the previous input that is not disabled and either has no special color or is red/orange
-          for (let j = current_index - 1; j >= 0; j--) {
-            if (
-              !inputs[j].disabled &&
-              (inputs[j].style.backgroundColor === "" ||
-                inputs[j].style.backgroundColor === "red" ||
-                inputs[j].style.backgroundColor === "orange")
-            ) {
-              inputs[j].focus();
-              setTimeout(() => {
-                let length = inputs[j].value.length;
-                inputs[j].setSelectionRange(length, length);
-              }, 10);
-              break;
-            }
-          }
-        } else if (direction === "right" && current_index < inputs.length - 1) {
-          // find the next input that is not disabled and either has no special color or is red/orange
-          for (let j = current_index + 1; j < inputs.length; j++) {
-            if (
-              !inputs[j].disabled &&
-              (inputs[j].style.backgroundColor === "" ||
-                inputs[j].style.backgroundColor === "red" ||
-                inputs[j].style.backgroundColor === "orange")
-            ) {
-              inputs[j].focus();
-              break;
-            }
-          }
-        }
-      };
-
-      // add keydown event listener for Enter, Delete or Backspace
-      element.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" && answer_enabled) {
-          
-          user_input = get_user_input();
-          check_answer(formatted_name);
-        } else if (event.key === "Delete" || event.key === "Backspace") {
-          // if it's the last child, only delete the current value and don't switch focus
-          if (
-            i === input_container.children.length - 1 &&
-            input_container.children[i].value !== ""
-          ) {
-            input_container.children[i].value = "";
-          } else {
-            // find the previous input box, skipping over any divs
-            let prev_input = i - 1;
-            while (
-              prev_input >= 0 &&
-              input_container.children[prev_input].tagName !== "INPUT"
-            ) {
-              prev_input--;
-            }
-            // if there's a previous input box, focus on it
-            if (prev_input >= 0) {
-              setTimeout(() => {
-                if (
-                  input_container.children[i].style.backgroundColor !== "red" &&
-                  input_container.children[i].style.backgroundColor !== "orange"
-                ) {
-                  input_container.children[prev_input].focus();
-                }
-                if (
-                  input_container.children[prev_input].disabled === false &&
-                  input_container.children[i].style.backgroundColor !== "red" &&
-                  input_container.children[i].style.backgroundColor !== "orange"
-                ) {
-                  // only clears previous value if it's not disabled, if it it leave it alone, prevents deletion of correct values, or red / amber values
-                  input_container.children[prev_input].value = ""; // removes the previous value too
-                }
-              }, 5);
-            }
-          }
-        } else if (event.key === "ArrowLeft") {
-          // move focus to the left input box on arrowleft
-          input_movement("left");
-        } else if (event.key === "ArrowRight") {
-          // move focus to the right input box on arrowright
-          input_movement("right");
-        }
-      });
+      element.oninput = () => handle_input(element, index, name);
+      element.onkeydown = (event) => handle_keydown(event, index);
     }
     input_container.appendChild(element);
-  }
-  const first_element = input_container.children[0];
-  if (first_element) {
-    first_element.focus(); // automatically focuses on the first input box, saving user a few clicks.
+  });
+  // focus on the first input box saving the user a few clicks
+  if (input_container.firstChild) {
+    input_container.firstChild.focus();
   }
 }
 
-left_arrow.addEventListener("click", function () {
-  input_movement("left");
-});
+// gets the user input, joins the inputs from the array of inputs into a string
+function get_user_input () {
+  return Array.from(input_container.querySelectorAll("input")) 
+  .map(input => input.value.toUpperCase()).join("");
+}
 
-right_arrow.addEventListener("click", function () {
-  input_movement("right");
-});
+function handle_input(element, index) {
+  element.value = element.value.toUpperCase(); // convert input to uppercase, for easier comparison
+  user_input = get_user_input(); // get the user input with the function
+  focus_next_input(index); // focus on the next input
+}
 
-// check answer and related functions
-enter_button.addEventListener("click", function () {
-  check_answer();
-});
+function handle_keydown(event, index) {
+  if (event.key === "Enter" && answer_enabled) {
+    user_input = get_user_input();
+    check_answer();
+  } else if (event.key === "Delete" || event.key === "Backspace") {
+    handle_backspace(index);
+  } else if (event.key === "ArrowLeft") {
+    focus_previous_input(index);
+  } else if (event.key === "ArrowRight") {
+    focus_next_input(index);
+  } 
+}
+
+function focus_next_input(index) {
+  // find the next input box, skipping over any divs
+  let next_input = index + 1;
+  while (
+    next_input < input_container.children.length &&
+    input_container.children[next_input].tagName !== "INPUT"
+  ) {
+    next_input++;
+  }
+  // If there's a next input box, focus on it
+  if (next_input < input_container.children.length) {
+    input_container.children[next_input].focus();
+  } else {
+    // If there is no next input box, move to the next one that is red or amber
+    for (let i = 0; i < input_container.children.length; i++) {
+      let child = input_container.children[i];
+      if (
+        child.style.backgroundColor === "red" ||
+        child.style.backgroundColor === "orange"
+      ) {
+        child.focus();
+        break;
+      }
+    }
+  }
+}
+
+function focus_previous_input(index) {
+  // Find the previous input box, skipping over any divs
+  let prev_input = index - 1;
+  while (
+    prev_input >= 0 &&
+    input_container.children[prev_input].tagName !== "INPUT"
+  ) {
+    prev_input--;
+  }
+  // If there's a previous input box, focus on it
+  if (prev_input >= 0) {
+    setTimeout(() => {
+      if (
+        input_container.children[index].style.backgroundColor !== "red" &&
+        input_container.children[index].style.backgroundColor !== "orange"
+      ) {
+        input_container.children[prev_input].focus();
+      }
+      if (
+        input_container.children[prev_input].disabled === false &&
+        input_container.children[index].style.backgroundColor !== "red" &&
+        input_container.children[index].style.backgroundColor !== "orange"
+      ) {
+        // only clears previous value if it's not disabled, prevents deletion of correct values, or red / amber values
+        input_container.children[prev_input].value = ""; // removes the previous value too
+      }
+    }, 5);
+  }
+}
+
+function handle_backspace(index) {
+  // if it's the last child, only delete the current value and don't switch focus
+  if (
+    index === input_container.children.length - 1 &&
+    input_container.children[index].value !== ""
+  ) {
+    input_container.children[index].value = "";
+  } else {
+    focus_previous_input(index);
+  }
+}
+
+function input_movement(direction) {
+  // getting the last input box that was focused on, for the GUI arrow keys to properly work
+  if (!last_input) return;
+  const inputs = Array.from(input_container.querySelectorAll("input"));
+  const current_index = inputs.indexOf(last_input);
+
+  if (direction === "left" && current_index > 0) {
+    // find the previous input that is not disabled and either has no special color or is red/orange
+    for (let j = current_index - 1; j >= 0; j--) {
+      if (
+        !inputs[j].disabled &&
+        (inputs[j].style.backgroundColor === "" ||
+          inputs[j].style.backgroundColor === "red" ||
+          inputs[j].style.backgroundColor === "orange")
+      ) {
+        inputs[j].focus();
+        setTimeout(() => {
+          let length = inputs[j].value.length;
+          inputs[j].setSelectionRange(length, length);
+        }, 10);
+        break;
+      }
+    }
+  } else if (direction === "right" && current_index < inputs.length - 1) {
+    // find the next input that is not disabled and either has no special color or is red/orange
+    for (let j = current_index + 1; j < inputs.length; j++) {
+      if (
+        !inputs[j].disabled &&
+        (inputs[j].style.backgroundColor === "" ||
+          inputs[j].style.backgroundColor === "red" ||
+          inputs[j].style.backgroundColor === "orange")
+      ) {
+        inputs[j].focus();
+        break;
+      }
+    }
+  }
+}
+
+left_arrow.addEventListener("click", () => input_movement("left"));
+right_arrow.addEventListener("click", () => input_movement("right"));
+enter_button.addEventListener("click", check_answer);
+
+
+
+
+
+
+
+
+
+
+
+// // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
+// function input_guess(name) {  // name is the exact name of the image, for example " michael_de_santa " but without the extension
+//   // reset the container for each input_guess call so there wont be duplicates
+//   input_container.innerHTML = "";
+
+//   function get_user_input() {
+//     // checks the actual elemeents innerHTML to compare to the formatted name, much better and ensure the user input is correct
+//     let user_input = "";
+//     for (let i = 0; i < input_container.children.length; i++) {
+//       if (input_container.children[i].tagName === "INPUT") {
+//         user_input += input_container.children[i].value;
+//       }
+//     }
+//     return user_input;
+//   }
+
+//   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
+//   for (let i = 0; i < name.length; i++) {
+//     let element;
+//     if (name[i] === "_") {
+//       element = document.createElement("div");
+//       element.classList.add("input_one_char_spacing");
+//     } else {
+//       element = document.createElement("input");
+//       element.size = 1;
+//       element.maxLength = 1;
+//       element.classList.add("input_one_char");
+
+//       element.addEventListener("input", function () {
+//         element.value = element.value.toUpperCase(); // convert input to uppercase, show on user end
+//         user_input = get_user_input();
+
+//         if (element.value) {
+//           // find the next input box, skipping over any divs
+//           let next_input = i + 1;
+//           while (
+//             next_input < input_container.children.length &&
+//             input_container.children[next_input].tagName !== "INPUT"
+//           ) {
+//             next_input++;
+//           }
+//           // if there's a next input box, focus on it
+//           if (next_input < input_container.children.length) {
+//             input_container.children[next_input].focus();
+//           } else {
+//             // if there is no next input box, move to the next one that is red or amber
+//             for (let i = 0; i < input_container.children.length; i++) {
+//               let child = input_container.children[i];
+//               if (
+//                 child.style.backgroundColor === "red" ||
+//                 child.style.backgroundColor === "orange"
+//               ) {
+//                 child.focus();
+//                 break;
+//               }
+//             }
+//           }
+//         }
+//       });
+
+//       input_movement = function input_movement(direction) {
+//         // getting the last input box that was focused on, for the gui arrow keys to properly work
+//         if (!last_input) return;
+//         const inputs = Array.from(input_container.querySelectorAll("input"));
+//         const current_index = inputs.indexOf(last_input);
+
+//         if (direction === "left" && current_index > 0) {
+//           // find the previous input that is not disabled and either has no special color or is red/orange
+//           for (let j = current_index - 1; j >= 0; j--) {
+//             if (
+//               !inputs[j].disabled &&
+//               (inputs[j].style.backgroundColor === "" ||
+//                 inputs[j].style.backgroundColor === "red" ||
+//                 inputs[j].style.backgroundColor === "orange")
+//             ) {
+//               inputs[j].focus();
+//               setTimeout(() => {
+//                 let length = inputs[j].value.length;
+//                 inputs[j].setSelectionRange(length, length);
+//               }, 10);
+//               break;
+//             }
+//           }
+//         } else if (direction === "right" && current_index < inputs.length - 1) {
+//           // find the next input that is not disabled and either has no special color or is red/orange
+//           for (let j = current_index + 1; j < inputs.length; j++) {
+//             if (
+//               !inputs[j].disabled &&
+//               (inputs[j].style.backgroundColor === "" ||
+//                 inputs[j].style.backgroundColor === "red" ||
+//                 inputs[j].style.backgroundColor === "orange")
+//             ) {
+//               inputs[j].focus();
+//               break;
+//             }
+//           }
+//         }
+//       };
+
+//       // add keydown event listener for Enter, Delete or Backspace
+//       element.addEventListener("keydown", function (event) {
+//         if (event.key === "Enter" && answer_enabled) {
+          
+//           user_input = get_user_input();
+//           check_answer(formatted_name);
+//         } else if (event.key === "Delete" || event.key === "Backspace") {
+//           // if it's the last child, only delete the current value and don't switch focus
+//           if (
+//             i === input_container.children.length - 1 &&
+//             input_container.children[i].value !== ""
+//           ) {
+//             input_container.children[i].value = "";
+//           } else {
+//             // find the previous input box, skipping over any divs
+//             let prev_input = i - 1;
+//             while (
+//               prev_input >= 0 &&
+//               input_container.children[prev_input].tagName !== "INPUT"
+//             ) {
+//               prev_input--;
+//             }
+//             // if there's a previous input box, focus on it
+//             if (prev_input >= 0) {
+//               setTimeout(() => {
+//                 if (
+//                   input_container.children[i].style.backgroundColor !== "red" &&
+//                   input_container.children[i].style.backgroundColor !== "orange"
+//                 ) {
+//                   input_container.children[prev_input].focus();
+//                 }
+//                 if (
+//                   input_container.children[prev_input].disabled === false &&
+//                   input_container.children[i].style.backgroundColor !== "red" &&
+//                   input_container.children[i].style.backgroundColor !== "orange"
+//                 ) {
+//                   // only clears previous value if it's not disabled, if it it leave it alone, prevents deletion of correct values, or red / amber values
+//                   input_container.children[prev_input].value = ""; // removes the previous value too
+//                 }
+//               }, 5);
+//             }
+//           }
+//         } else if (event.key === "ArrowLeft") {
+//           // move focus to the left input box on arrowleft
+//           input_movement("left");
+//         } else if (event.key === "ArrowRight") {
+//           // move focus to the right input box on arrowright
+//           input_movement("right");
+//         }
+//       });
+//     }
+//     input_container.appendChild(element);
+//   }
+//   const first_element = input_container.children[0];
+//   if (first_element) {
+//     first_element.focus(); // automatically focuses on the first input box, saving user a few clicks.
+//   }
+// }
+
+// left_arrow.addEventListener("click", function () {
+//   input_movement("left");
+// });
+
+// right_arrow.addEventListener("click", function () {
+//   input_movement("right");
+// });
+
+// // check answer and related functions
+// enter_button.addEventListener("click", function () {
+//   check_answer();
+// });
 
 
 
