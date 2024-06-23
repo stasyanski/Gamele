@@ -22,7 +22,6 @@ const darken_bg_var         = document.querySelector(".darken_bg");
 const timer_div             = document.querySelector(".timer");
 
 // game state variables
-let input;
 let guess = 0; // keeps track of the user gusses
 let formatted_name;
 let last_input = null;
@@ -42,7 +41,7 @@ const gamemode3 = "Three lives";
 
 /*
  * ----- INPUT HANDLING, GUESSING, CHECKING ANSWER ETC RELATED FUNCTIONS -----
- */
+*/
 
 // creates input guess similar to wordle, helps the user by showing how many letters are in the word, and where spaces are
 function input_guess(name) {
@@ -339,7 +338,8 @@ function update_element(element, color, disabled = false) {
 
 /*
  * ----- FETCHING FROM STORAGE RELATED FUNCTIONS -----
- */
+*/
+
 
 // fetches the images from the json file
 async function fetch_images() {
@@ -400,7 +400,7 @@ async function display_new_character() {
 
 /*
  * ----- START GAME AND GAME OVER FUNCTIONS -----
- */
+*/
 
 
 // start game function
