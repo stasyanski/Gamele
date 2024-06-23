@@ -107,8 +107,6 @@ function input_guess(name) {
         const inputs = Array.from(input_container.querySelectorAll("input"));
         const current_index = inputs.indexOf(last_input);
 
-        console.log(last_input, current_index, inputs.length);
-
         if (direction === "left" && current_index > 0) {
           // find the previous input that is not disabled and either has no special color or is red/orange
           for (let j = current_index - 1; j >= 0; j--) {
