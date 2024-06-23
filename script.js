@@ -85,6 +85,7 @@ function handle_event(event, element, index) {
   function handle_input_event(element, index) {
     element.value = element.value.toUpperCase(); // convert input to uppercase
     focus_next_input(index);
+    console.log("input event")
   }
   
   function handle_keydown_event(event, index) {
@@ -106,6 +107,10 @@ function handle_event(event, element, index) {
       case "ArrowRight":
         focus_next_input(index);
         break;
+    }
+    // this if stamenet is used to check if the input is not empty, if it is not empty, it will focus on the next input, fixes the backspace issue
+    if (document.querySelectorAll("input")[index].value !== "") {
+      focus_next_input(index);
     }
   }
 }
@@ -156,8 +161,8 @@ function focus_next_input(index) {
   focus_input(index, "next");
 }
 
-function focus_previous_input(index, backspace = false) {
-  focus_input(index, "previous", backspace);
+function focus_previous_input(index) {
+  focus_input(index, "previous");
 }
 
 
@@ -165,8 +170,9 @@ function handle_backspace(index) {
   // if it's the last child, only delete the current value and don't switch focus
   if (input_container.children[index].value !== "") {
     input_container.children[index].value = "";
+  } else {
+    focus_previous_input(index);
   }
-  focus_previous_input(index, backspace = true);
 }
 
 function input_movement(direction) {
@@ -206,10 +212,6 @@ function input_movement(direction) {
   }
 }
 
-left_arrow.addEventListener("click", () => input_movement("left"));
-right_arrow.addEventListener("click", () => input_movement("right"));
-enter_button.addEventListener("click", check_answer);
-
 
 /*
  * ----- CHECKING ANSWER RELATED FUNCS -----
@@ -241,7 +243,7 @@ function check_answer() {
   }
 
   // call function for correct or wrong answer
-  console.log(user_input, formatted_name);
+  
   if (user_input.toUpperCase() === formatted_name) {
     handle_correct_answer();
 
@@ -275,12 +277,8 @@ function handle_wrong_answer() {
   const user_input_array = user_input.split("");
   const formatted_name_array = formatted_name.split("");
 
-  console.log(formatted_name_array, user_input_array)
-
   // loop through the input container children and check if the user input is correct
-  Array.from(input_container.children).forEach((child, index) => {
-    console.log(child.tagName, formatted_name_array[index] ,user_input_array[index])
-    if (child.tagName !== "INPUT") return;
+  Array.from(input_container.querySelectorAll("input")).forEach((child, index) => {
     // check character by character for partial correctness
     if (formatted_name_array[index] === user_input_array[index]) {
       update_element(child, "green", true); // correct character in correct position
@@ -292,7 +290,7 @@ function handle_wrong_answer() {
   });
 
   // focus on the first amber / red box if the user input is incorrect, makes it more intuitive
-  for (const child of Array.from(input_container.children)) {
+  for (const child of Array.from(input_container.querySelectorAll("input"))) {
     if (child.tagName === "INPUT" && ["red", "orange"].includes(child.style.backgroundColor)) {
       child.focus();
       break; // stops at the first input with red or orange background
@@ -302,8 +300,7 @@ function handle_wrong_answer() {
 
 function handle_correct_answer() {
   // loop through the input container children and check if the user input is correct
-  Array.from(input_container.children).forEach((child, index) => {
-    if (child.tagName !== "INPUT") return;
+  Array.from(input_container.querySelectorAll("input")).forEach((child, index) => {
     
     // check if the entire user input matches the formatted name
     if (user_input.toUpperCase() === formatted_name) {
@@ -544,3 +541,8 @@ window.addEventListener("resize", () => {
     choice_overlay.style.display = "none"; // hide choice_overlay if current_choice is set on resize
   }
 });
+
+// addevent listener for gui elements
+left_arrow.addEventListener("click", () => input_movement("left"));
+right_arrow.addEventListener("click", () => input_movement("right"));
+enter_button.addEventListener("click", check_answer);
