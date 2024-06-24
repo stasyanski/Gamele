@@ -46,7 +46,6 @@ function input_guess(name) { // name is the exact name of the image, for example
 
   // creates a input box, multiple boxes, with a max length of 1, and a size of 1, creates cool effect of the user typing in the boxes
   name.split("").forEach((char, index) => {
-    console.log(char, index);
     let element;
     if (char === "_") {
       element = document.createElement("div");
@@ -85,7 +84,6 @@ function handle_event(event, element, index) {
   function handle_input_event(element, index) {
     element.value = element.value.toUpperCase(); // convert input to uppercase
     focus_next_input(index);
-    console.log("input event")
   }
   
   function handle_keydown_event(event, index) {
