@@ -1,6 +1,7 @@
 ### Ideas:
 - clear storage / score button
 - stop button in infinite
+- choose gamemode on try again screen
 
 
 ### To do:
