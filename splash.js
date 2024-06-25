@@ -72,25 +72,25 @@ function display_guesses() {
     // loop through the game modes and display the stats
     game_modes.forEach(mode => {
         if (localStorage.getItem(mode.key)) {
-            const stats_settings_div = document.createElement('div');
-            stats_settings_div.classList.add('stats_settings_div');
+            const splash_div = document.createElement('div');
+            splash_div.classList.add('splash_div');
 
-            const left_label_div = document.createElement('div');
-            left_label_div.classList.add('left_label_div');
+            const splash_label_container = document.createElement('div');
+            splash_label_container.classList.add('splash_label_container');
 
-            const left_label = document.createElement('label');
-            left_label.classList.add('left_label');
-            left_label.textContent = mode.label;
+            const splash_label = document.createElement('label');
+            splash_label.classList.add('splash_label');
+            splash_label.textContent = mode.label;
 
             const input_switch_div = document.createElement('div');
-            input_switch_div.classList.add('left_label');
+            input_switch_div.classList.add('splash_label');
             input_switch_div.textContent = localStorage.getItem(mode.key);
 
-            stats_settings_div.appendChild(left_label_div);
-            stats_settings_div.appendChild(input_switch_div);
-            left_label_div.appendChild(left_label);
+            splash_div.appendChild(splash_label_container);
+            splash_div.appendChild(input_switch_div);
+            splash_label_container.appendChild(splash_label);
 
-            splash.appendChild(stats_settings_div);
+            splash.appendChild(splash_div);
         }
     });
 }
@@ -183,9 +183,9 @@ function add_info_content(splash) {
     ];
     disclaimers.forEach(disclaimer => {
         const div = document.createElement('div');
-        div.className = 'stats_settings_div';
+        div.className = 'splash_div';
         const label = document.createElement('label');
-        label.className = 'left_label';
+        label.className = 'splash_label';
         label.textContent = disclaimer;
         div.appendChild(label);
         splash.appendChild(div);
@@ -202,11 +202,11 @@ function add_best_time_content(splash, score) {
 function add_settings_content(splash) {
     splash.appendChild(create_heading('Settings'));
     const settings_div = document.createElement('div');
-    settings_div.className = 'stats_settings_div';
+    settings_div.className = 'splash_div';
     splash.appendChild(settings_div);
 
     const label_div = document.createElement('div');
-    label_div.className = 'left_label_div';
+    label_div.className = 'splash_label_container';
     settings_div.appendChild(label_div);
 
     const input_switch_div = document.createElement('div');
@@ -214,7 +214,7 @@ function add_settings_content(splash) {
     settings_div.appendChild(input_switch_div);
 
     const label = document.createElement('label');
-    label.className = 'left_label';
+    label.className = 'splash_label';
     label.textContent = 'Light Theme';
     label_div.appendChild(label);
     input_switch_div.appendChild(light_input);

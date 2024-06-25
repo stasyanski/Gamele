@@ -2,6 +2,8 @@
  * includes the background darkening effect on splash screen
  * and the splash screen itself
 */
+
+
 * {
     margin: 0;
     padding: 0;
@@ -126,9 +128,11 @@ body.light_theme .darken_bg {
 
 }
 
-/* The css below is for displaying
- * the navbar of the game
+
+/* 
+ * The css below is for displaying the navbar of the game
 */
+
 
 header {
     width: 40%;
@@ -174,9 +178,11 @@ body.light_theme .anchor {
 }
 
 
-/* The css below is for the settings / leaderboard splash
- * screen, e.g. line creation
+/* 
+ * The css below is for the settings / leaderboard splash screen, e.g. line creation
 */
+
+
 .splash_content {
     background-color: var(--splash-bg-color-dark);
     padding: 20px;
@@ -238,10 +244,11 @@ body.light_theme .splash_label_txt {
 }
 
 
-/* The css below is for character container, 
- * this is for playing the game generating the characters 
- * and input to enter the guesses 
+/* 
+ * The css below is for character container,  this is for playing the game generating the characters and input to enter the guesses 
 */
+
+
 .character_container {
     justify-content: center;
     align-items: center;
@@ -277,9 +284,11 @@ body.light_theme .character_container p {
 }
 
 
-/* The css below is for the splash screen that
- * that appears on game load / on open settings, stats
+/* 
+ * The css below is for the splash screen that that appears on game load and on game over, on settings etc
 */
+
+
 .game_desc {
     font-size: 1rem;
     color: var(--game-desc-text-color-dark);
@@ -387,9 +396,12 @@ body.light_theme .choice_overlay {
     box-shadow: var(--choice-overlay-shadow-light);
 }
 
-/* The css below is for the user interface, which holds input field,
- * score, lives, time, and the ui buttons
+
+/* 
+ * The css below is for the user interface, which holds input field, score, lives, time, and the ui buttons
 */
+
+
 .user_interface{
     display: flex;
     flex-direction: column;
@@ -460,9 +472,11 @@ body.light_theme .choice_overlay {
     font-size: 1rem;
 }
 
-/* The css below is for the timer 
- * in best time gamemode
+
+/* 
+ * The css below is for the timer  in best time gamemode
 */
+
 .timer {
     color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
@@ -471,10 +485,13 @@ body.light_theme .choice_overlay {
     justify-content: center;
 }
 
-/* The css below is for 
- * score, shows the user their streak
+
+/* 
+ * The css below is for score, shows the user their streak
 */
-.score {
+
+
+.score, .score_txt {
     font-size: 1rem;
 }
 
@@ -482,10 +499,12 @@ body.light_theme .score_txt {
     color: var(--score-text-color-light);
 }
 
-/* The css below is for the lives
- * of the user, shows how many lives
- * they have left
+
+/* 
+ * The css below is for the lives of the user, shows how many lives they have left
 */
+
+
 .lives {
     display: none;
     flex-direction: row;
@@ -511,11 +530,11 @@ body.light_theme .score_txt {
 }
 
 
-
-
-/* The CSS below is for the input
- * field(s) when guessing
+/* 
+ * The CSS below is for the input field(s) when guessing
 */
+
+
 .input_container {
     width: 100%;
     display: flex;
@@ -553,15 +572,20 @@ body.light_theme .input_one_char {
     /* here margin top is 0 px to counteract the margin top 10px from above, 80px-10px gives the original height and width px */
 }
 
+/* the spacing is used as empty space between words */
 .input_one_char_spacing {
     height: 70px;
     width: 70px;
     display: inline-block;
 }
 
-/* Below is the settings for css, including the switch 
+
+/* 
+ *Below is the splash.js for css, including the switch 
 */
-.stats_settings_div {
+
+
+.splash_div {
     display: flex;
     flex-direction: row;
     padding: 5px;
@@ -570,19 +594,18 @@ body.light_theme .input_one_char {
     margin-bottom: 12px;
 }
 
-.left_label_div {
+.splash_label_container {
     width: 100%;
+}
+
+.splash_label {
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    color: var(--splash-label-text-dark);
 }
 
 .input_switch_div {
     margin-left: auto;
-}
-
-.left_label {
-    padding-right: 1em;
-    font-size: 1.2rem;
-    font-family: 'Roboto', sans-serif;
-    color: var(--splash-label-text-dark);
 }
 
 input:where([type="checkbox"][role="switch"]) {
