@@ -107,10 +107,6 @@ function handle_event(event, element, index) {
         focus_next_input(index);
         break;
     }
-    // this if stamenet is used to check if the input is not empty, if it is not empty, it will focus on the next input, fixes the backspace issue
-    if (document.querySelectorAll("input")[index].value !== "") {
-      focus_next_input(index);
-    }
   }
 }
 
