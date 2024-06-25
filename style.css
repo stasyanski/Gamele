@@ -20,7 +20,6 @@
     --border-bottom-dark: 1px solid #eaeaea;
 
     --anchor-parag-color-dark: rgb(255, 255, 255);
-    --score-text-color-dark: white;
 
     --character-container-p-color-dark: rgb(255, 255, 255);
 
@@ -37,7 +36,6 @@
     --choice-overlay-shadow-dark: inset 0 0 10px rgb(150, 150, 150), 0 0 10px rgb(150, 150, 150);
 
     --guess-input-color-dark: rgba(70, 70, 70, 0.75);
-    --lives-color-dark: rgb(255, 255, 255);
 
 
     /* light theme colours */
@@ -51,7 +49,6 @@
     --border-bottom-light: 1px solid #0e0e0e;
 
     --anchor-parag-color-light: rgb(18, 18, 18);
-    --score-text-color-light: black;
 
     --character-container-p-color-light: rgb(0, 0, 0);
 
@@ -146,9 +143,7 @@ body.light_theme header {
     border-bottom: var(--border-bottom-light);
 }
 
-header>nav>ul,
-.btns,
-.title {
+header>nav>ul, .btns, .title {
     display: flex;
     justify-content: start;
     align-items: center;
@@ -159,8 +154,7 @@ header>nav>ul,
     margin-left: auto;
 }
 
-.parag,
-.anchor {
+.parag, .anchor {
     text-decoration: none;
     color: var(--anchor-parag-color-dark);
     font-size: 1.5rem;
@@ -168,8 +162,7 @@ header>nav>ul,
     font-family: 'Roboto', sans-serif;
 }
 
-body.light_theme .parag,
-body.light_theme .anchor {
+body.light_theme .parag, body.light_theme .anchor {
     color: var(--anchor-parag-color-light);
 }
 
@@ -226,6 +219,10 @@ body.light_theme .line {
     padding-bottom: 1em;
 }
 
+body.light_theme .splash_h1_txt {
+    color: var(--splash-h1-text-light);
+}
+
 .splash_label_txt {
     font-size: 1rem;
     color: var(--splash-h1-text-dark);
@@ -233,10 +230,6 @@ body.light_theme .line {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 1em
-}
-
-body.light_theme .splash_h1_txt {
-    color: var(--splash-h1-text-light);
 }
 
 body.light_theme .splash_label_txt {
@@ -477,8 +470,8 @@ body.light_theme .choice_overlay {
  * The css below is for the timer  in best time gamemode
 */
 
+
 .timer {
-    color: var(--score-text-color-dark);
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     align-items: center;
@@ -493,10 +486,6 @@ body.light_theme .choice_overlay {
 
 .score, .score_txt {
     font-size: 1rem;
-}
-
-body.light_theme .score_txt {
-    color: var(--score-text-color-light);
 }
 
 
@@ -516,9 +505,7 @@ body.light_theme .score_txt {
     font-size: 1rem;
 }
 
-.lives li {
-    color: var(--lives-color-dark);
-    
+.lives li {    
     text-decoration: none;
     list-style: none;
     margin-left: 3px;
