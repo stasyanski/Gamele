@@ -103,7 +103,7 @@ body.light_theme .darken_bg {
 @keyframes fade_in {
     0% {
         opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(-20px);
     }
 
     100% {
@@ -181,7 +181,7 @@ body.light_theme .parag, body.light_theme .anchor {
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
-    animation: fade_in 1s;
+    animation: fade_in 0.5s;
     position: relative;
     display: flex; 
     flex-direction: column;
@@ -391,7 +391,7 @@ body.light_theme .choice_overlay {
 
 
 /* 
- * The css below is for the user interface, which holds input field, score, lives, time, and the ui buttons
+ * The css below is for the user interface, which holds input field, score, lives, time, skips and stop,  and the ui buttons
 */
 
 
@@ -423,7 +423,7 @@ body.light_theme .choice_overlay {
     flex-direction: row;
 }
 
-.left_arrow, .right_arrow, .enter_bttn, .lives, .timer, .score{
+.left_arrow, .right_arrow, .enter_bttn, .lives, .timer, .score, .skip_stop {
     display: none;
     width: fit-content;
 
@@ -457,7 +457,7 @@ body.light_theme .choice_overlay {
     margin-left: 5px;
 }
 
-.left_arrow:hover, .right_arrow:hover, .enter_bttn:hover{
+.left_arrow:hover, .right_arrow:hover, .enter_bttn:hover, .skip_stop:hover{
     transform: scale(1.1);
 }
 
@@ -515,6 +515,16 @@ body.light_theme .choice_overlay {
     justify-content: center;
     align-items: center;
 }
+
+
+/* 
+ * The css below is for the skip stop in infinite gamemode
+*/
+
+.skip_stop {
+    font-size: 1rem;
+}
+
 
 
 /* 

@@ -14,6 +14,13 @@ let light_input = document.createElement('input');
 let global_arg = null; // for reopening the splash with the same content
 let splash;
 
+
+
+// used to cleart the stats page 
+
+let input_switch_div;
+let game_modes;
+
 // the light switch input
 light_input.type = 'checkbox';
 light_input.role = 'switch';
@@ -61,9 +68,24 @@ function create_label(txt) {
     label.classList.add('splash_label_txt');
     return label;
 }
+function clear_local_button(){
+    const local_button = document.createElement('button');
+    splash.appendChild(local_button);
+    local_button.classList.add('clear_button');
+    local_button.textContent = 'CLEAR YOUR STATS';
+
+    local_button.onclick = () =>
+
+        {
+            localStorage.clear();
+            display_guesses();
+        }
+}
+
 
 function display_guesses() {
-    const game_modes = [
+
+    game_modes = [
         { key: gamemode1, label: 'Best time - 120 seconds' },
         { key: gamemode2, label: "Infinite - guess until you're tired" },
         { key: gamemode3, label: 'Three lives - three wrong guesses' }
@@ -82,7 +104,7 @@ function display_guesses() {
             splash_label.classList.add('splash_label');
             splash_label.textContent = mode.label;
 
-            const input_switch_div = document.createElement('div');
+            input_switch_div = document.createElement('div');
             input_switch_div.classList.add('splash_label');
             input_switch_div.textContent = localStorage.getItem(mode.key);
 
@@ -169,6 +191,7 @@ function create_close_button() {
 // used to create the heading for the splash
 function add_stats_content(splash) {
     splash.appendChild(create_heading('Stats'));
+    clear_local_button();
     display_guesses();
 }
 

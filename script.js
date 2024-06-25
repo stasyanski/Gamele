@@ -18,8 +18,14 @@ const extra_lives                         = document.querySelector(".lives");
 const right_arrow                         = document.querySelector(".right_arrow");
 const enter_button                        = document.querySelector(".enter_bttn");
 const darken_bg_var                       = document.querySelector(".darken_bg");
+const skip_stop_btns                      = document.querySelector(".skip_stop");
 const input_container                     = document.querySelector(".input_container");
 const ui_elements_container               = document.querySelector(".ui_elements_container");
+
+// game mode variables
+const gamemode1 = "Best time";
+const gamemode2 = "Infinite";
+const gamemode3 = "Three lives";
 
 // game state variables
 let guess                 = 0; // keeps track of the user gusses
@@ -30,11 +36,6 @@ let formatted_name;
 let choice_overlay;
 let current_choice        = "Infinite"; // current game mode
 let answer_enabled        = true; // enables or disables the ability to input a guess
-
-// game mode variables
-const gamemode1 = "Best time";
-const gamemode2 = "Infinite";
-const gamemode3 = "Three lives";
 
 /*
  * ----- INPUT HANDLING, GUESSING, CHECKING ANSWER ETC RELATED FUNCTIONS -----
@@ -401,6 +402,7 @@ function start_game() {
   [left_arrow, right_arrow, enter_button, score].forEach(
     (element) => (element.style.display = "flex")
   );
+
   // retrieves a random image from the json file and displays it
   display_new_character();
 }
@@ -450,7 +452,7 @@ function splash_screen_func() {
       move_overlay(choices[1]); // makes the infinite mode selected by default
       // set the event listener after 1010 ms , wating for the fade in animation in .css applied to finish playing
       choice.addEventListener("click", () => move_overlay(choice));
-    }, 1010);
+    }, 510);
   });
 }
 splash_screen_func(); // instead of an iife, so we can pass the current_choice variable anywhere
@@ -505,6 +507,32 @@ function add_timer() {
   }, 10);
 }
 
+function add_skip_stop(called_by_click = false) {
+  skip_stop_btns.style.display = "flex"; // displays the div that contains skip and stop buttons, which are usually hidden
+
+  // only ran if called by click
+  if (called_by_click) {
+    let textContent = skip_stop_btns.querySelector('p').textContent;
+    let [text, num_of_skips] = textContent.split(":");
+
+    num_of_skips = parseInt(num_of_skips);
+
+    if (text.includes("SKIPS") && num_of_skips > 1) {
+      display_new_character();
+      num_of_skips -= 1; // Decrement the number of skips
+      skip_stop_btns.querySelector('p').textContent = text + ":" + " " + num_of_skips;
+
+    } else if (text.includes("SKIPS") && num_of_skips == 1) {
+      // if skips are 1, change the text to "STOP" and call game_over on next click
+      display_new_character()
+      skip_stop_btns.querySelector('p').textContent = "STOP";
+
+    } else if (text.includes("STOP")) {
+      game_over();
+    }
+  }
+}
+
 
 /*
  * ----- addEventListeners -----
@@ -519,19 +547,21 @@ document.addEventListener("focusin", function (event) {
 });
 
 // combined event listener for start_btn click
-start_btn.addEventListener("click", () => {
-  start_game(); // call start_game function
-  darken_bg_var.style.display = "none"; // hide darken_bg
-  choice_overlay.style.display = "none"; // hide choice_overlay
+setTimeout(() => {
+  start_btn.addEventListener("click", () => {
+    start_game(); // call start_game function
+    darken_bg_var.style.display = "none"; // hide darken_bg
+    choice_overlay.style.display = "none"; // hide choice_overlay
 
-  if (current_choice.textContent == gamemode3) {
-    add_lives(); // adds the lives to the game, only if the user has selected the three lives mode
-  }
-
-  if (current_choice.textContent == gamemode1) {
-    add_timer(); // adds the timer to the game, only if the user has selected the best time mode
-  }
-});
+    if (current_choice.textContent == gamemode3) {
+      add_lives(); // adds the lives to the game, only if the user has selected the three lives mode
+    } else  if (current_choice.textContent == gamemode1) {
+      add_timer(); // adds the timer to the game, only if the user has selected the best time mode
+    } else  if (current_choice.textContent == gamemode2) {
+      add_skip_stop(); // adds the skip and stop buttons to the game, only if the user has selected the infinite mode
+    }
+  });
+}, 510); // waits for the fade in animation in .css applied to finish playing
 
 // separate event listener for window resize
 window.addEventListener("resize", () => {
@@ -544,3 +574,7 @@ window.addEventListener("resize", () => {
 left_arrow.addEventListener("click", () => input_movement("left"));
 right_arrow.addEventListener("click", () => input_movement("right"));
 enter_button.addEventListener("click", check_answer);
+
+skip_stop_btns.addEventListener("click", () => {
+  add_skip_stop(true); // calls the function to handle skipping or stopping game
+});
