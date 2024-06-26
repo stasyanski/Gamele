@@ -68,23 +68,8 @@ function create_label(txt) {
     label.classList.add('splash_label_txt');
     return label;
 }
-function clear_local_button(){
-    const local_button = document.createElement('button');
-    splash.appendChild(local_button);
-    local_button.classList.add('clear_button');
-    local_button.textContent = 'CLEAR YOUR STATS';
-
-    local_button.onclick = () =>
-
-        {
-            localStorage.clear();
-            display_guesses();
-        }
-}
-
 
 function display_guesses() {
-
     game_modes = [
         { key: gamemode1, label: 'Best time - 120 seconds' },
         { key: gamemode2, label: "Infinite - guess until you're tired" },
@@ -191,7 +176,6 @@ function create_close_button() {
 // used to create the heading for the splash
 function add_stats_content(splash) {
     splash.appendChild(create_heading('Stats'));
-    clear_local_button();
     display_guesses();
 }
 
