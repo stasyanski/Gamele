@@ -205,27 +205,52 @@ function add_best_time_content(splash, score) {
     splash.appendChild(label);
 }
 
-// add settings content to the splash
+// refactored code for adding settings content to the splash using snake case
 function add_settings_content(splash) {
+    // helper function to create a div with a specified class name
+    function create_div_with_class(class_name) {
+        const div = document.createElement('div');
+        div.className = class_name;
+        return div;
+    }
+
+    // helper function to create a label with specified text
+    function create_label(text) {
+        const label = document.createElement('label');
+        label.className = 'splash_label';
+        label.textContent = text;
+        return label;
+    }
+
+    // append 'Settings' heading
     splash.appendChild(create_heading('Settings'));
-    const settings_div = document.createElement('div');
-    settings_div.className = 'splash_div';
-    splash.appendChild(settings_div);
 
-    const label_div = document.createElement('div');
-    label_div.className = 'splash_label_container';
-    settings_div.appendChild(label_div);
+    // create and append the first settings section
+    const settings_div_1 = create_div_with_class('splash_div');
+    splash.appendChild(settings_div_1);
 
-    const input_switch_div = document.createElement('div');
-    input_switch_div.className = 'input_switch_div';
-    settings_div.appendChild(input_switch_div);
+    const label_div_1 = create_div_with_class('splash_label_container');
+    settings_div_1.appendChild(label_div_1);
 
-    const label = document.createElement('label');
-    label.className = 'splash_label';
-    label.textContent = 'Light Theme';
-    label_div.appendChild(label);
+    const input_switch_div = create_div_with_class('input_switch_div');
+    settings_div_1.appendChild(input_switch_div);
+
+    const light_theme_label = create_label('Light Theme');
+    label_div_1.appendChild(light_theme_label);
+    // assuming light_input is defined elsewhere
     input_switch_div.appendChild(light_input);
 
+    // create and append the second settings section
+    const settings_div_2 = create_div_with_class('splash_div');
+    splash.appendChild(settings_div_2);
+
+    const label_div_2 = create_div_with_class('splash_label_container');
+    settings_div_2.appendChild(label_div_2);
+
+    const clear_stats_label = create_label('Clear Stats');
+    label_div_2.appendChild(clear_stats_label);
+
+    // setup the light switch in the splash
     setup_light_switch();
 }
 
