@@ -132,7 +132,7 @@ body.light_theme .darken_bg {
 
 
 header {
-    width: 40%;
+    width: 50%;
     height: 100%;
     padding: 0.5rem;
     border-bottom: var(--border-bottom-dark);
@@ -141,6 +141,18 @@ header {
 
 body.light_theme header {
     border-bottom: var(--border-bottom-light);
+}
+
+@media (max-width: 1195px) {
+    header {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        width: 90%;
+    }
 }
 
 header>nav>ul, .btns, .title {
@@ -179,8 +191,8 @@ body.light_theme .parag, body.light_theme .anchor {
 .splash_content {
     background-color: var(--splash-bg-color-dark);
     padding: 20px;
+    margin: 7px;
     border-radius: 10px;
-    max-width: 500px;
     animation: fade_in 0.5s;
     position: relative;
     display: flex; 
@@ -334,7 +346,7 @@ body.light_theme .game_desc_title {
 }
 
 .choice {
-    width: 30%;
+    width: 33%;
     height: 50px;
     border: none;
     font-weight: 500;
@@ -409,9 +421,6 @@ body.light_theme .choice_overlay {
     top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
-    padding: 30px;
-    border-radius: 60px;
     backdrop-filter: blur(3px);
 }
 
@@ -659,5 +668,7 @@ input:where([type="checkbox"][role="switch"]):checked::before {
 .clear_stats_div:hover {
     cursor: pointer;
 }
+
+
 
 

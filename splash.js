@@ -23,12 +23,12 @@ light_input.className = 'lightswitch'; //ads the light switch class to the input
 
 // set container size based on viewport size, reference vw to properly set the container size; mobile responsive
 const viewport_sizes = [
-    { max: 768, width: '90%', height: 'auto' },         // set the container size based on the viewport size, 768 is mobile
-    { max: 1024, width: '80%', height: 'auto' },        // 1024 is tablet
-    { max: 1366, width: '70%', height: 'auto' },        // 1366 is laptop
-    { max: 1920, width: '60%', height: 'auto' },        // 1920 is desktop
-    { max: 2560, width: '50%', height: 'auto' },        // 2560 is large
-    { max: Infinity, width: '40%', height: 'auto' }     // greater than 2560 
+    { max: 768, width: '80%', height: 'auto' },         // set the container size based on the viewport size, 768 is mobile
+    { max: 1024, width: '60%', height: 'auto' },        // 1024 is tablet
+    { max: 1366, width: '40%', height: 'auto' },        // 1366 is laptop
+    { max: 1920, width: '25%', height: 'auto' },        // 1920 is desktop
+    { max: 2560, width: '22%', height: 'auto' },        // 2560 is large
+    { max: Infinity, width: '20%', height: 'auto' }     // greater than 2560 
 ]
 
 
@@ -67,8 +67,8 @@ function create_label(txt) {
 function display_guesses() {
     game_modes = [
         { key: gamemode1, label: 'Best time - 120 seconds' },
-        { key: gamemode2, label: "Infinite - guess until you're tired" },
-        { key: gamemode3, label: 'Three lives - three wrong guesses' }
+        { key: gamemode2, label: "Infinite - 3 skips" },
+        { key: gamemode3, label: 'Three lives - 3 wrong guesses' }
     ];
 
     // loop through the game modes and display the stats
@@ -110,14 +110,15 @@ function open_splash(arg) {
     container.className = 'splash_content';
 
     // set the container size based on the viewport size, useful for mobile responsiveness
-    viewport_sizes.forEach(size => {
+    viewport_sizes.some(size => {
         if (vw < size.max) {
             Object.assign(container.style, {
                 width: size.width,
                 height: size.height
             });
-            return;
+            return true; // stop iterating
         }
+        return false;
     });
 
     // create the splash and remove the previous splash, allowing only one splash at a time, for reusal
