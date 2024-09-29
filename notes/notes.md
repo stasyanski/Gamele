@@ -1,10 +1,8 @@
 ### Ideas:
-- clear storage / score button
-- choose gamemode on try again screen
-
 
 ### To do:
-- none 
+- mobile compatability
+- some recode?
 
 ### Bugs:
-- none known
+- for unknown reason, the game doesnt advance on some guesses, no errors produced, logic issue

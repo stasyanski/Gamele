@@ -9,17 +9,12 @@
 
 
 // DOM elements light switch label and switch 
-let light_switch = document.querySelector('.lightswitch');
-let light_input = document.createElement('input');
-let global_arg = null; // for reopening the splash with the same content
-let splash;
-
-
-
-// used to cleart the stats page 
-
 let input_switch_div;
+let light_switch    = document.querySelector('.lightswitch');
+let light_input     = document.createElement('input');
 let game_modes;
+let global_arg      = null; // for reopening the splash with the same content
+let splash;
 
 // the light switch input
 light_input.type = 'checkbox';
@@ -250,6 +245,12 @@ function add_settings_content(splash) {
     const clear_stats_label = create_label('Clear Stats');
     label_div_2.appendChild(clear_stats_label);
 
+    const clear_stats_button = create_div_with_class('clear_stats_div');
+    settings_div_2.appendChild(clear_stats_button);
+
+    // setup the clear stats button
+    setup_clear_stats_bttn();
+
     // setup the light switch in the splash
     setup_light_switch();
 }
@@ -275,6 +276,18 @@ function setup_light_switch() {
         light_switch.checked = false;
         document.body.classList.remove('light_theme');
     }
+}
+
+// setup the clear stats button 
+function setup_clear_stats_bttn() {
+    const clear_stats_button = document.querySelector('.clear_stats_div');
+    clear_stats_button.addEventListener('click', () => {
+        if (game_modes !== undefined) {
+            game_modes.forEach(mode => {
+                localStorage.setItem(mode.key, 0);
+            }); 
+        }
+    });
 }
 
 

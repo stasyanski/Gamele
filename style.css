@@ -641,3 +641,23 @@ input:where([type="checkbox"][role="switch"])::before {
 input:where([type="checkbox"][role="switch"]):checked::before {
     left: 1em;
 }
+
+.clear_stats_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    color: var(--main-bg-color-dark);
+}
+
+.clear_stats_div::before {
+    content: "delete";
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+.clear_stats_div:hover {
+    cursor: pointer;
+}
+
+
