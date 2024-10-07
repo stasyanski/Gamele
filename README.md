@@ -21,7 +21,7 @@
 
 Contributions are always welcome! We would love for others to contribute to this project, and it's improvement, currently it is in its early stages and may have issues.
 
-Feedback is also extremely valuable. We am open to any feedback you have.
+Feedback is also extremely valuable. We are open to any feedback you have.
 
 - To contribute or provide feedback, contact us at [will provide a method soon]
 
