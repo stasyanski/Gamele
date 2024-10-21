@@ -11,6 +11,8 @@
 - **Best time:** guess as many characters as you can in a limited time period!
 - **Infinite:** guess as many characters in a row as you can!
 - **Three lives:** guess as many characters, but a wrong guess results in removing a life.
+- **Statistics:** view your stats per gamemode, and clear stats as needed.
+- **Themes:** switch between light and dark mode!
 
 ## How it functions / libraries
 
@@ -19,7 +21,7 @@
 
 ## Contributing and feedback
 
-Contributions are always welcome! We would love for others to contribute to this project, and it's improvement, currently it is in its early stages and may have issues.
+Contributions are always welcome! We would love for others to contribute to this project, and it's improvement.
 
 Feedback is also extremely valuable. We are open to any feedback you have.
 
